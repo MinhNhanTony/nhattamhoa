@@ -1,0 +1,56 @@
+
+    <a href='/products/{{this.slug}}'>
+      <div class='product__area'>
+        <div class='product__IMG'>
+          <img src='{{this.productImg.[0]}}' alt='{{this.productName}}' />
+          
+          {{#if this.sale includeZero=false}}
+            <div class='product__sale'>
+              <span>GIẢM {{this.sale}}%</span>
+            </div>
+          {{/if}}
+        </div>
+        <div class='product__detail'>
+          <a href='/products/{{this.slug}}' class='product__name'>{{this.productName}}
+          </a>
+          <div class='product__price'>
+          {{#if this.sale includeZero=false}}
+            <span class='product__newPrice'>{{number
+                this.productSalePrice
+              }}₫</span>
+            <span class='product__oldPrice'>{{number this.productPrice}}₫</span>
+            {{else}}
+            <span class='product__oldPrice--notsale'>{{number this.productPrice}}₫</span>
+
+          {{/if}}
+
+
+          </div>
+
+          <div class="product__detail--footer">
+              <div class="product__rating">
+                <div class="product__rating--list">
+                    <div class="product__rating--item">
+                      <i class="product__rating--icon fa-solid fa-star"></i>
+                    </div>
+                    <div class="product__rating--item">
+                      <i class="product__rating--icon fa-solid fa-star"></i>
+                    </div>
+                    <div class="product__rating--item">
+                      <i class="product__rating--icon fa-solid fa-star"></i>
+                    </div>
+                    <div class="product__rating--item">
+                      <i class="product__rating--icon fa-solid fa-star"></i>
+                    </div>
+                    <div class="product__rating--item">
+                      <i class="product__rating--icon fa-solid fa-star"></i>
+                    </div>
+                </div>
+              </div>
+              <div class="product__sold">
+                <p>Đã bán: <span>{{this.quantitySold}}</span></p>
+              </div>
+          </div>
+        </div>
+      </div>
+    </a>

@@ -1,0 +1,55 @@
+.group__filter {
+    margin-bottom: 20px;
+    &--title {
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+    }
+    ul {
+        // margin-left: 20px;
+    }
+    & .form-check {
+        display:flex;
+        align-items: center;
+        gap:10px;
+    }
+    & .form-check-input {
+        position: static;
+        margin-top: 0;
+    }
+    & .form-check-label {
+        cursor: pointer;
+    }
+}
+
+.filter {
+     &__color {
+        ul {
+            display: grid;
+            grid-template-columns: 25% 25% 25% 25%;
+            margin-top: 10px;
+            gap: 10px;
+        }
+        label {
+            cursor: pointer;
+        }
+        label {
+            box-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+
+        }
+        input:checked+label {
+            border: 5px solid rgba(0,0,0,0.5);
+        }
+     }
+}
+@media screen and (max-width: 767.98px) {
+    .filter {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap:10px;
+    }
+    .filter__color ul {
+        grid-template-columns: 25% 25% 25%;
+    }
+}

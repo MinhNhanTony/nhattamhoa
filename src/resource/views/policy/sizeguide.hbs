@@ -1,0 +1,70 @@
+
+<div class="policy sizeguide">
+    <h2 class='policy-heading'>Hướng dẫn chọn size</h2>
+
+    <h5 class='policy-title'>
+       Các bước để chọn size phù hợp:
+    </h5>
+
+
+    <ol>
+        <li>
+            Đo chiều dài chân của bạn: Sử dụng một tấm bìa dài để đo từ đầu ngón chân đến gót chân. Bạn có thể đo từng chân riêng lẻ vì chân của bạn có thể có kích thước khác nhau.
+        </li>
+
+        <li>
+                Xem bảng size của nhãn hiệu giày: Mỗi nhãn hiệu giày sẽ có bảng size khác nhau, vì vậy hãy tìm hiểu kích thước của nhãn hiệu giày bạn muốn mua. Bạn có thể tìm thấy thông tin này trên trang web của nhãn hiệu hoặc hỏi nhân viên bán hàng.
+        </li>
+
+        <li>
+                So sánh kích thước chân của bạn với bảng size của giày: Tìm kích thước giày tương ứng với chiều dài chân của bạn trên bảng size của nhãn hiệu giày.
+
+        </li>
+
+        <li>
+                Thử giày: Điều quan trọng là bạn nên thử giày trước khi mua để đảm bảo rằng chúng phù hợp với chân của bạn.Shop cho thử giày thoải mái khi nhận hàng. Khi thử giày, hãy mặc đôi tất mà bạn thường mặc và đi bộ trên một mặt phẳng sạch để cảm nhận cảm giác chân.
+
+        </li>
+
+
+    </ol>
+
+    
+
+    <p> 
+        Lưu ý rằng kích thước giày có thể khác nhau tùy thuộc vào kiểu dáng và chất liệu của giày, vì vậy bạn nên kiểm tra kích thước mỗi lần mua giày mới. Nếu bạn đang mua giày trực tuyến, hãy kiểm tra chính sách đổi trả của nhà bán hàng để đảm bảo rằng bạn có thể đổi hoặc trả lại giày nếu chúng không phù hợp.
+    </p>
+
+    <h5 class='policy-title'>
+        Mục lục size giày
+    </h5>
+    {{#each sizeList}}
+        <div>
+            <a style='font-weight:500' href="#{{this.title}}" class='p-2'>      {{this.number}}: {{this.title}}
+            </a>
+        </div>
+    {{/each}}
+
+
+    <h5 class='policy-title'>
+        Bảng chọn size của nhiều thương hiệu
+    </h5>
+
+    
+
+
+
+    {{#each sizeList}}
+
+        <h3 id='{{this.title}}'><span>{{this.number}}</span>: <span>{{this.title}}</span></h3>
+        <div class="d-flex justify-content-center">
+            <img src="{{this.img}}" alt="">
+        </div>
+        
+    {{/each}}
+
+   
+        
+</div>
+
+

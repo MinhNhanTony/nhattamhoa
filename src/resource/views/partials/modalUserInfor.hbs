@@ -1,0 +1,474 @@
+<!-- Modal -->
+
+<div
+  class="modal fade"
+  id="modalUserInfor"
+  tabindex="-1"
+  role="dialog"
+  style="z-index: 2000"
+  aria-labelledby="modalUserInforTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Cập Nhật Địa Chỉ</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="modalUserInforForm">
+          <p>-- Thông tin cơ bản --</p>
+          <div class="nameAndPhoneInput">
+
+            <div class='form__group'>
+              <label>
+                <input name='name' id="fname" type="text" placeholder="Họ và tên" />
+                <span>Họ và tên</span>
+                <p></p>
+              </label>
+            </div>
+
+            <div class='form__group'>
+              <label>
+                <input name='phone' id="fphone" type="number" placeholder="Số điện thoại" />
+                <span>Số điện thoại</span>
+                <p></p>
+              </label>
+            </div>
+          </div>
+
+             <div class='form__group'>
+              <label>
+                <input name='email' id="femail" type="email" placeholder="Email" />
+                <span>Email</span>
+                <p></p>
+              </label>
+            </div>
+
+          <p>-- Địa chỉ giao hàng --</p>
+          <div class="addressInput">
+            <div class="provinces address__wrapper form__group">
+              <label>
+                <input
+                  name='provinces'
+                  id="fprovinces"
+                  type="button"
+                  placeholder="Tỉnh/Thành Phố"
+                />
+                <span>Tỉnh/Thành Phố</span>
+                <p></p>
+              </label>
+              <div class="provinces__list address__list"></div>
+            </div>
+            <div class='address__wrapper form__group'>
+              <label>
+                <input
+                  name='district'
+                  id="fdistrict"
+                  type="text"
+                  placeholder="Quận/ Huyện"
+                  disabled
+                />
+                <span>Quận/ Huyện</span>
+                <p></p>
+              </label>
+              <div class="district__list address__list"></div>
+            </div>
+            <div  class='address__wrapper form__group'>
+              <label>
+                <input
+                  name='ward'
+                  id="fward"
+                  type="text"
+                  placeholder="Phường/ Xã"
+                  disabled
+                />
+                <span>Phường/ Xã</span>
+                <p></p>
+              </label>
+              <div class="ward__list address__list"></div>
+            </div>
+          </div>
+
+          <div class='mt-3 form__group'>
+              <label>
+                <input name='detailAddress' id="fdetailAddress" type="text" placeholder="Địa chỉ cụ thể" />
+                <span>Địa chỉ cụ thể</span>
+                <p></p>
+              </label>
+            </div>
+
+          {{! <input type="submit" value="Send" /> }}
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Đóng
+        </button>
+        <button type="button" class="btn btn-primary" id='saveUserInforBtn'>Lưu thay đổi</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('#modalUserInfor').on('show.bs.modal', function (e) {
+    $('#cartModal').modal('hide');
+  });
+</script>
+
+<script>
+  $(function () {
+    $('input').on('change', function () {
+      var input = $(this);
+      if (input.val().length) {
+        input.addClass('populated');
+      } else {
+        input.removeClass('populated');
+      }
+    });
+    setTimeout(function () {
+      $('#fname').trigger('focus');
+    }, 500);
+  });
+</script>
+
+<script>
+  const currentDomane = window.location.origin;
+  const provincesAPI = `${currentDomane}/apis/provinces`;
+
+
+  function stopEventInput() {
+    const addressInput = document.querySelectorAll('.address__wrapper input');
+
+    addressInput.forEach((item)=> {
+      item.addEventListener('keydown',(e)=> {
+        e.preventDefault();
+      })
+    })
+  }
+  fetch(provincesAPI)
+    .then(res => res.json())
+    .then(data => {
+      let provicesList = [];
+      let districtList = [];
+      let wardList = []; // sort provinces provicesList =
+      provicesList = data.sort(function (a, b) {
+        return a.name.localeCompare(b.name);
+      });
+
+      const provincesInputElement = document.getElementById('fprovinces');
+      const districtInputElement = document.getElementById('fdistrict');
+      const wardInputElement = document.getElementById('fward');
+
+      const provincesListElement = document.querySelector('.provinces__list');
+      const districtListElement = document.querySelector('.district__list');
+      const wardListElement = document.querySelector('.ward__list');
+
+
+      provincesInputElement.addEventListener('focus', function () {
+        provincesListElement.style.display = 'block';
+        stopEventInput();
+        const provincesInputElementText =
+          document.getElementById('fprovinces').value;
+        let provincesListHTML = provicesList.map(provices => {
+          let classItem;
+          if (provincesInputElementText == provices.name) {
+            classItem = 'active';
+          }
+          return `<div
+                class="provinces__item address__item ${classItem}"> ${provices.name} </div>`;
+        });
+        provincesListElement.innerHTML = provincesListHTML.join('');
+        const provincesItemElement =
+          document.querySelectorAll('.provinces__item ');
+
+        provincesItemElement.forEach(item => {
+          item.addEventListener('click', function (e) {
+            const provinces = e.target.innerText;
+            provincesInputElement.value = provinces;
+
+            const provincesActive = document.querySelector('.provinces__item.active');
+                                          if(provincesActive) {
+                                                provincesActive.classList.remove('active'); 
+                                          }
+
+                                          item.classList.add('active');
+            provincesListElement.style.display = 'none';
+            districtListElement.style.display = 'block';
+            wardListElement.style.display = 'none';
+            wardInputElement.disabled = true;
+
+
+
+            districtInputElement.value = '';
+            wardInputElement.value = '';
+
+            
+            //DISTRICT
+            districtInputElement.disabled = false;
+            let provincesSelect = provicesList.find(function (item) {
+              return item.name === provinces;
+            });
+            let districtList = provincesSelect.districts.sort(function (a, b) {
+                          return a.name.localeCompare(b.name);
+                        });;
+            const districtInputElementText =
+              document.getElementById('fdistrict').value;
+            let districtListHTML = districtList.map(district => {
+              let style;
+              if (districtInputElementText == district.name) {
+                style = 'background-color:#ccc';
+              }
+              return `<div style=${style} class="district__item
+                          address__item"> ${district.name} </div>`;
+            });
+            districtListElement.innerHTML = districtListHTML.join('');
+            stopEventInput();
+            
+              const districtItemElement =
+                    document.querySelectorAll('.district__item');
+
+
+                  districtItemElement.forEach(item => {
+                    item.addEventListener('click', function (e) {
+
+                      const district = e.target.textContent;
+                      wardListElement.style.display = 'block';
+                      wardInputElement.value = '';
+
+
+                      districtInputElement.value = district;
+                      
+                      if(document.getElementById('fdistrict').value === district) {
+
+
+                        const districtActive = document.querySelector('.district__item.active');
+                        if(districtActive) {
+                              districtActive.classList.remove('active'); 
+                        }
+
+                        item.classList.add('active');
+                      }
+                     
+                      
+                      districtListElement.style.display = 'none';
+                      provincesListElement.style.display = 'none';
+
+                      //WARD
+                      wardInputElement.disabled = false;
+
+
+                      let districtSelect = provincesSelect.districts.find(function (item) {                        
+                        return item.name.trim() == district.trim();
+                      });
+
+
+                      let wardList = districtSelect.wards.sort(function (a, b) {
+                                    return a.name.localeCompare(b.name);
+                                  });
+                      const wardInputElementText =
+                        document.getElementById('fward').value;
+
+                      let wardListHTML = wardList.map(district => {
+                        let style;
+                        if (wardInputElementText == district.name) {
+                          style = 'background-color:#ccc';
+                        }
+                        return `<div style=${style} class="ward__item
+                                    address__item"> ${district.name} </div>`;
+                      });
+
+                      wardListElement.innerHTML = wardListHTML.join('');
+                      stopEventInput();
+
+                      wardInputElement.addEventListener('focus', function () {
+                        wardListElement.style.display = 'block';
+                      });
+
+                      const warditemElement = document.querySelectorAll('.ward__item');
+                  
+
+                      warditemElement.forEach((item)=> {
+                          item.addEventListener('click',(e)=> {
+
+                                   const ward = e.target.textContent;
+                              
+                           
+                                    wardInputElement.value = ward;
+                                        const wardActive = document.querySelector('.ward__item.active');
+                                          if(wardActive) {
+                                                wardActive.classList.remove('active'); 
+                                          }
+
+                                          item.classList.add('active');
+                                    wardListElement.style.display = 'none';
+                                    provincesListElement.style.display = 'none';
+                                    districtListElement.style.display = 'none';
+                          })
+                      })
+                      
+                
+
+                      
+
+
+
+
+                    });
+                  });
+            districtInputElement.addEventListener('focus', function () {
+              districtListElement.style.display = 'block';
+            });
+          });
+        });
+      });
+      provincesInputElement.addEventListener('focusout', () => {});
+    });
+</script>
+
+
+
+<script>
+
+  function checkIsEmptyInput() {
+          const allInput = document.querySelectorAll('.form__group input');
+          let isError = false;
+          allInput.forEach(function(item,index) {
+
+              if(item.value.length === 0) {
+
+                document.querySelectorAll('.form__group p')[index].textContent = "Vui lòng nhập trường này"
+                item.classList.add("error");
+                isError = true
+
+              }
+              else {
+                document.querySelectorAll('.form__group p')[index].textContent = ""
+               item.classList.remove("error");
+
+              }
+          })
+
+          return isError;
+  }
+
+
+  function checkIsNumberPhone() {
+      const phoneInput = document.querySelector("#fphone");
+
+      var vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
+      let isPhoneNumber =  vnf_regex.test(phoneInput.value);
+
+
+      if(!isPhoneNumber){
+          phoneInput.classList.add("error");
+          const phoneFormGroup = phoneInput.closest('.form__group');
+          phoneFormGroup.querySelector('p').textContent = "Số điện thoại không hợp lệ";
+          return true;
+      }
+
+      return false
+
+  }
+  function checkIsEmail() {
+      const emailInput = document.querySelector("#femail");
+
+      var email_regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+      let isEmail =  email_regex.test(emailInput.value);
+
+
+      if(!isEmail){
+          emailInput.classList.add("error");
+          const emailFormGroup = emailInput.closest('.form__group');
+          emailFormGroup.querySelector('p').textContent = "Email không hợp lệ";
+          return true;
+      }
+
+      return false
+
+  }
+
+  const saveUserInforBtn = document.querySelector("#saveUserInforBtn");
+  saveUserInforBtn.addEventListener("click",()=> {
+      const isErrorEmpty = checkIsEmptyInput();
+      const isErrorPhone = checkIsNumberPhone();
+      const isErrorEmail = checkIsEmail();
+
+      if(!isErrorEmpty && !isErrorPhone && !isErrorEmail) {
+          let dataForm = {
+
+          }
+
+          const allInput = document.querySelectorAll('.form__group input');
+          allInput.forEach(function(item,index) {
+
+            dataForm = {...dataForm,[item.name]:item.value}
+             
+          })
+
+
+          const {name,phone,email,provinces,district,ward,detailAddress} = dataForm;
+
+          const userInfor = {
+            name,
+            phone,
+            email,
+            address: {
+              provinces,
+              district,
+              ward,
+              detailAddress
+            }
+          }
+
+          localStorage.setItem('userInfor',JSON.stringify(userInfor));
+          $('#modalUserInfor').modal('hide');
+
+           const cartProductList = JSON.parse(localStorage.getItem('cartProductList')) || [];
+           if(cartProductList.length === 0) {
+              window.location.pathname=`/cart`;
+           }
+           else {
+              window.location.pathname = `/order/checkouts/${JSON.parse(localStorage.getItem('token'))}`;
+           }
+
+          
+
+      }
+  
+  })
+
+  
+
+</script>
+
+
+
+<script>
+    try {
+    const userInfor = JSON.parse(localStorage.getItem('userInfor'));
+
+    const {name,phone,email,address}  = userInfor
+
+      document.getElementById('fname').value = name;
+      document.getElementById('fphone').value = phone;
+      document.getElementById('femail').value = email;
+      document.getElementById('fprovinces').value = address.provinces;
+      document.getElementById('fdistrict').value = address.district;
+      document.getElementById('fward').value = address.ward;
+      document.getElementById('fdetailAddress').value = address.detailAddress;
+
+    }catch(err) {
+      console.log(err)
+    }
+
+</script>
+

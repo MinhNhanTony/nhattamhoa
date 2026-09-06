@@ -1,0 +1,262 @@
+<div class='main'>
+  <div class='slider__Img'>
+      <div class='slider__Img-list'>
+          <div class="main__partner-item">
+            <a href='#'class="main__partner-link">
+              <img src="/img/Slider_img/slideshow_1.webp" alt="">
+            </a>
+          </div>
+          <div class="main__partner-item">
+            <a href='#'class="main__partner-link">
+              <img src="/img/Slider_img/slideshow_2.webp" alt="">
+            </a>
+          </div>
+          <div class="main__partner-item">
+            <a href='#'class="main__partner-link">
+              <img src="/img/Slider_img/slideshow_3.webp" alt="">
+            </a>
+          </div>
+          <div class="main__partner-item">
+            <a href='#'class="main__partner-link">
+              <img src="/img/Slider_img/slideshow_4.webp" alt="">
+            </a>
+          </div>
+        
+
+      </div>
+  </div>
+  <div class='main__collection'>
+    <div>
+
+      <h2 class='collection__header'>
+        <a href='/collections/sale' class='collection__header-link'>
+          SẢN PHẨM ĐẶC BIỆT
+        </a>
+      </h2>
+      <div class='collection__product'>
+        <div class='row'>
+           {{#each products}}
+               <div class='product__item col-6 col-lg-3 col-md-4'>
+                <a href='/products/{{this.slug}}'>
+                  <div class='product__area'>
+                    <div class='product__IMG'>
+                      <img src='{{this.productImg.[0]}}' alt='{{this.productName}}' />
+                      {{#if this.sale includeZero=false}}
+                        <div class='product__sale'> 
+                              <span>Giảm {{this.sale}}%</span>
+                        </div>
+                      {{/if}} 
+                    </div>
+                    <div class='product__detail'>
+                      <a href='/products/{{this.slug}}' class='product__name'>{{this.productName}}
+                      </a>
+                    <div class='product__price'>
+                      {{#if this.sale includeZero=false}}
+                        <span class='product__newPrice'>{{number
+                            this.productSalePrice
+                          }}₫</span>
+                        <span class='product__oldPrice'>{{number this.productPrice}}₫</span>
+                        {{else}}
+                        <span class='product__oldPrice--notsale'>{{number this.productPrice}}₫</span>
+
+                      {{/if}}
+
+
+                      </div>
+
+
+                      <div class="product__detail--footer">
+                        <div class="product__rating">
+                          <div class="product__rating--list">
+                              <div class="product__rating--item">
+                                <i class="product__rating--icon fa-solid fa-star"></i>
+                              </div>
+                              <div class="product__rating--item">
+                                <i class="product__rating--icon fa-solid fa-star"></i>
+                              </div>
+                              <div class="product__rating--item">
+                                <i class="product__rating--icon fa-solid fa-star"></i>
+                              </div>
+                              <div class="product__rating--item">
+                                <i class="product__rating--icon fa-solid fa-star"></i>
+                              </div>
+                              <div class="product__rating--item">
+                                <i class="product__rating--icon fa-solid fa-star"></i>
+                              </div>
+                          </div>
+                        </div>
+                    <div class="product__sold">
+                      <p>Đã bán: <span>{{this.quantitySold}}</span></p>
+                      </div>
+                   </div>
+
+                    </div>
+                  </div>
+                </a>
+              </div>
+           {{/each}}
+        </div>
+      </div>
+      <div class='collection__btns'>
+        <div class='row'>
+          <div class='col-12 text-center'>
+              <a href="/collections/sale">
+                {{> slideBtn title="Xem thêm"}}
+              </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class='main__featured'>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-md-4'>
+          <div class='featured__img'>
+            <h2><i>NEW</i></h2>
+            <img src='{{newestProductAvatar}}' alt='' />
+          </div>
+        </div>
+        <div class='col-md-8'>
+          <div class='featured__detail'>
+            <h3>{{newestProduct.productName}}</h3>
+            <div class='detail__nav'>
+              <ui class='detail__nav-list'>
+                <li class='detail__nav-item nav__product-featured active'>
+                  <a href='#tab1'>Đặc tính sản phẩm</a>
+                </li>
+                <li class='detail__nav-item nav__product-size'>
+                  <a href='#tab2'>Size</a>
+                </li>
+              </ui>
+            </div>
+            <div class='detail__content'>
+              <ui class='detail__content-list'>
+                <li class='detail__content-item active'>
+
+                  {{#each newestProduct.productDescription}}
+                    <p style='margin-bottom:15px;font-size:15px'>
+                       {{this.descText}}
+                    </p>
+                  {{/each}}
+                </li>
+                <li class='detail__content-item'>
+                  <p>EU: {{#each newestProduct.productSize}}
+                    <span style='margin-bottom:15px;font-size:15px'>
+                       - {{this}} 
+                    </span>
+                  {{/each}}</p>
+                </li>
+              </ui>
+            </div>
+            <div class='col-md-12 text-center'>
+              <div class='featured__detail-btn'>
+                <a href="/products/{{newestProduct.slug}}">
+                
+                  {{> slideBtn title="Xem ngay"}}
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="main__partner">
+      <h1 class='collection__header'>
+        <p class='collection__header-link'>
+          QANA NOLAN VÀ KHÁCH HÀNG
+        </p>
+      </h1>
+      <div class="main__partner-list">
+      <div class="main__partner-item">
+        <a href='#'class="main__partner-link">
+          <img src="/img/Partner/partner01.jpg" alt="">
+        </a>
+      </div>
+      <div class="main__partner-item">
+        <a href='#'class="main__partner-link">
+          <img src="/img/Partner/partner02.jpg" alt="">
+        </a>
+      </div>
+      <div class="main__partner-item">
+        <a href='#'class="main__partner-link">
+          <img src="/img/Partner/partner03.jpg" alt="">
+        </a>
+      </div>
+      <div class="main__partner-item">
+        <a href='#'class="main__partner-link">
+          <img src="/img/Partner/partner04.jpg" alt="">
+        </a>
+      </div>
+      <div class="main__partner-item">
+        <a href='#'class="main__partner-link">
+          <img src="/img/Partner/partner05.jpg" alt="">
+        </a>
+      </div>
+      <div class="main__partner-item">
+        <a href='#'class="main__partner-link">
+          <img src="/img/Partner/partner06.jpg" alt="">
+        </a>
+      </div>
+      <div class="main__partner-item">
+        <a href='#'class="main__partner-link">
+          <img src="/img/Partner/partner07.jpg" alt="">
+        </a>
+      </div>
+      <div class="main__partner-item">
+        <a href='#'class="main__partner-link">
+          <img src="/img/Partner/partner08.jpg" alt="">
+        </a>
+      </div>
+      
+      
+      </div>
+  </div>
+
+
+</div>
+
+<script>
+
+const collectionFeatured = document.querySelector(".main__featured");
+const featuredImg = document.querySelector(".featured__img img");
+
+const featuredNavItems = document.querySelectorAll(".detail__nav-item");
+
+// tab UI featuredContentItem
+    featuredNavItems.forEach(function (item, index) {
+      item.onclick = function (e) {
+        const featuredcontentItemActive = doc(".detail__content-item.active");
+        doc(".detail__nav-item.active").classList.remove("active");
+        featuredcontentItemActive.classList.remove("active");
+
+        e.target.closest(".detail__nav-item").classList.add("active");
+        docs(".detail__content-item")[index].classList.add("active");
+      };
+    });
+    window.onscroll = function () {
+      // featured__img scroll
+      const h2Height = document.querySelector(".featured__img h2").clientHeight;
+      const imgHeight = document.querySelector(".featured__img img").clientHeight;
+      const featured__imgHeight = h2Height + imgHeight;
+      const B_collectionFeaturedOffsetTop =
+        collectionFeatured.offsetTop + featured__imgHeight / 2;
+      const A_windowScrollTop =
+        window.scrollY + window.innerHeight - featured__imgHeight / 2;
+      const distanceAB = B_collectionFeaturedOffsetTop - A_windowScrollTop;
+
+      if (distanceAB < 0) {
+        document.querySelector(".featured__img").classList.add("active");
+      }
+      if (distanceAB > -100) {
+        document.querySelector(".featured__img").classList.remove("active");
+      }
+    };
+</script>
+
+

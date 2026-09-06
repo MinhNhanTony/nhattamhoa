@@ -1,0 +1,44 @@
+<div class="cart">
+    <h1 class='text-center pt-5 font-weight-bold pageTitle__center'>GIỎ HÀNG CỦA BẠN</h1>
+    <p class='cart__quality text-center  mt-4 mb-5'>Bạn có 
+        <span class='cart__quality--number'></span> sản phẩm trong giỏ hàng</p>
+
+
+    <div class="cart__body container">
+        <ul class="cart__list">
+        </ul>
+
+        <div class='cart__body--bottom row'>
+
+            <div class="cart__body--whiteSpace col-12 col-md-4 ">
+                {{!-- <textarea id="note" name="note" rows="8" cols="50" placeholder="Ghi chú"></textarea> --}}
+            </div>
+
+            <div class='col-12 col-md-8'>
+                    <div class="d-flex justify-content-end align-items-center my-5">
+                        <span class='font-weight-bold'>TỔNG TIỀN: </span> <span class='cart__total--money'></span>
+                    </div>
+
+
+                    <div class="cartBtn__container justify-content-between">
+                        <a href="/collections/sale">
+                        {{> slideBtn title="Tiếp tục mua hàng"}}</a>
+                        <span>
+                            {{> slideBtn title="Thanh toán" class="pay__btn"}}
+                        </span>
+                    </div>
+            </div>
+
+           
+        </div>
+        
+    </div>
+
+{{>modalUserInfor}}
+</div>
+
+
+
+<script src='/js/renderCart.js'></script>
+
+<script src='/js/payment.js'></script>

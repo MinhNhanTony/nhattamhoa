@@ -1,0 +1,61 @@
+{{>admin-header}}
+
+<style>
+    .update-field-group {
+        padding:20px;
+        background: #cccccc70;
+        margin: 10px;
+    }
+    input,select {
+        padding:3px;
+
+    }
+</style>
+<h1>Sửa sản phẩm hàng loạt</h1>
+
+<div class="update-field-group">
+    <p>Thêm Field</p>
+    <label for="datatype">Kiểu dữ liệu :</label>
+    <select name="datatype" id="datatype">
+        <option value="string">String</option>
+        <option value="number">Number</option>
+        <option value="boolean">Boolean</option>
+    </select>
+
+    <input type="text" placeholder='Field name'  id="field-name">
+    <input type="text" placeholder='Field value' id="field-value">
+    <button class='btn btn-success add-field'>Thêm Field</button>
+</div>
+
+<script>
+
+       
+
+
+        const addFieldElement = document.querySelector('.add-field');
+
+        addFieldElement.addEventListener('click',function addField() {
+            const token = JSON.parse(sessionStorage.getItem('admin-token'));
+            const datatypeValue = document.querySelector('#datatype').value;
+            const fieldnameValue = document.querySelector('#field-name').value;
+            const fieldvalueValue = document.querySelector('#field-value').value;
+
+            const formData = {
+                datatypeValue,
+                fieldnameValue,
+                fieldvalueValue
+            }
+
+            fetch(`/admin/them-field-hang-loat/${token}`, {
+                    method: 'POST',
+                    body: JSON.stringify(formData),
+                    headers: {
+                    'Content-Type': 'application/json'
+                    }
+            })  
+            .then(res => res.json())
+            .then(data => console.log(data));
+        })
+</script>
+
+{{>admin-footer}}

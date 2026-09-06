@@ -1,0 +1,180 @@
+
+ 
+ 
+ #modalUserInfor {
+
+    & .nameAndPhoneInput {
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        gap:10px;
+    
+    }
+    & .addressInput {
+        display:grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap:10px;
+        input {
+            margin-bottom: 0;
+        }
+
+        & .address__list {
+            display:none;
+        }
+    }
+    & .modal-content {
+        width: unset;
+    }
+
+    & .modal-dialog-centered {
+        justify-content:center;
+        align-items: baseline;
+    }
+
+    & .district__item.active,
+    & .provinces__item.active,
+    & .ward__item.active  {
+            background-color: black;
+            color:white;
+    }
+    & .close {
+      font-size: 2.6rem;
+    }
+    button {
+      font-size: 2rem;
+    }
+    & .modal-footer {
+      & button {
+         font-size: 1.6rem;
+       }
+       & #saveUserInforBtn {
+          background-color: $orange--color;
+          border-color: $orange--color;
+       }
+     }
+  
+ 
+ }
+
+
+form#modalUserInforForm {
+    & .form__group {
+      margin-bottom: 20px;
+        & .error {
+          border-color: red;
+        }
+        p {
+        color:red;
+        
+      }
+    }
+    
+
+    label {
+      position: relative;
+      display: block;
+      
+      input {
+        font: 15px Helvetica, Arial, sans-serif;
+        box-sizing: border-box;
+        display: block;
+        border: 1px solid $border-color;
+        padding: 10px;
+        width: 100%;
+        min-width: 200px;
+        font-size: 18px;
+        outline: none;
+        transition: all 0.2s ease-in-out;
+        
+        &::placeholder {
+          transition: all 0.2s ease-in-out;
+          color: #999;
+          font: 15px Helvetica, Arial, sans-serif;
+        }
+        
+        &:focus, &.populated {
+          padding-top: 28px;
+          padding-bottom: 12px;
+          
+          &::placeholder {
+            color: transparent;
+          }
+          
+          & + span {
+            opacity: 1;
+            top: 10px;
+          }
+        }
+      }
+      
+      span {
+        color: #1aaf75;
+        font-weight: 500;
+        font: 15px Helvetica, Arial, sans-serif;
+        position: absolute;
+        top: 0px;
+        left: 20px;
+        opacity: 0;
+        transition: all 0.2s ease-in-out;
+      }
+    }
+    
+    input[type="submit"] {
+      transition: all 0.2s ease-in-out;
+      font: 18px Helvetica, Arial, sans-serif;
+      border: none;
+      background: #1aaf75;
+      color: #fff;
+      padding: 16px 40px;
+      
+      &:hover {
+        background: #109f67;
+      }
+    }
+
+    & .address__wrapper {
+        position: relative;
+    }
+    & .address__list {
+        padding: 10px;
+        position: absolute;
+        border:1px solid $border-color;
+        max-height:400px;
+        overflow: auto;
+        background-color: white;
+        z-index: 10000;
+
+        & .address__item {
+            padding: 5px;
+            cursor: pointer;
+            font-size: 1.4rem;
+            &:hover {
+                background-color: black;
+                color:white;
+            }
+        }
+    }
+    .address__wrapper  {
+      input[type="button"] {
+        background-color:white;
+        text-align: start;
+      }
+    }
+  
+    
+ 
+  }
+@media screen and (max-width: 767.98px) {
+  #modalUserInfor .nameAndPhoneInput {
+    display:block;
+  }
+  form#modalUserInforForm label input {
+    min-width: 300px;
+  }
+  #modalUserInfor .addressInput {
+    display:block;
+
+  }
+  form#modalUserInforForm .address__list {
+    max-height: 200px;
+  }
+}

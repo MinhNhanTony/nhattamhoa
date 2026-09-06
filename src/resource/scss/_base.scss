@@ -1,0 +1,65 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+html {
+  font-size: 62.5%;
+  behavior: scroll;
+  width: 100%;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.6rem;
+  overflow-x: hidden;
+  // background-color: #f3f3a529;
+  background-color: $background;
+
+}
+
+
+/* custom scrollbar */
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d6dee1;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a8bbbf;
+}
+
+.body {
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+  padding-block: 40px;
+  border-top: 1px solid rgba(0,0,0,0.05);
+  
+
+}
+
+a {
+  &:hover {
+    color: $category-color;
+    text-decoration: none;
+    transition: all 0.2s linear;
+  }
+}
+
+@media screen and (max-width: 767.98px) {
+  .body {
+    padding-block: 10px;
+  }
+}

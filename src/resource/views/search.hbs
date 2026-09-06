@@ -1,0 +1,110 @@
+
+
+<h1 class='text-center pt-5 font-weight-bold pageTitle__center'>TÌM KIẾM</h1>
+
+{{#if quatity includeZero=false}} 
+  <p class='cart__quality text-center  mt-4 mb-5'>Có 
+      <span class='cart__quality--number'>{{quatity}}</span> sản phẩm được tìm thấy
+  </p>
+
+  <p class='mt-4 mb-5'>
+      Kết quả tìm kiếm cho "<span class='resultSearchedFor font-weight-bold'>
+          {{resultSearchedFor}}
+      </span>"
+  </p>
+  {{else}}
+
+  <p class='cart__quality text-center font-weight-bold  mt-4 mb-5'>
+    Không tìm thấy nội dung bạn yêu cầu <img class='iconImg'  src="img/Icons/sad.png" alt="">
+  </p>
+
+  <p class='mt-4 mb-5 text-center'>
+     Không tìm thấy kết quả cho 
+     <span class='resultSearchedFor font-weight-bold '>
+          "{{resultSearchedFor}}"
+      </span> 
+      .Kiểm tra lại chính tả hoặc nhập các từ tổng quát hơn bạn nhá <img  class='iconImg' src="img/Icons/love.png" alt="">
+  </p>
+
+
+    <form  class='form__search form__search--inSearchPage active' action="/search">
+        <input type="hidden" name='type' value='product'>
+          <input
+            type='text'
+            name='text'
+            placeholder='Search'
+            id='search__input'
+            autofocus='true'
+          />
+          <button type='submit' id='search__submit'>
+            <i class='search__submit__icon fas fa-search'></i>
+          </button>
+    </form>
+  
+{{/if}}
+
+
+ <div class='collection__product'>
+        <div class='row'>
+           {{#each products}}
+               <div class='product__item col-6 col-lg-3 col-md-4'>
+                  <a href='/products/{{this.slug}}'>
+                    <div class='product__area'>
+                      <div class='product__IMG'>
+                        <img src='{{this.productImg.[0]}}' alt='' />
+                        {{#if this.sale includeZero=false}}
+                          <div class='product__sale'> 
+                                <span>GIẢM {{this.sale}}%</span>
+                          </div>
+                        {{/if}} 
+                      </div>
+                      <div class='product__detail'>
+                        <a href='/products/{{this.slug}}' class='product__name'>{{this.productName}}
+                        </a>
+                      <div class='product__price'>
+                        {{#if this.sale includeZero=false}}
+                          <span class='product__newPrice'>{{number
+                              this.productSalePrice
+                            }}₫</span>
+                          <span class='product__oldPrice'>{{number this.productPrice}}₫</span>
+                          {{else}}
+                          <span class='product__oldPrice--notsale'>{{number this.productPrice}}₫</span>
+
+                        {{/if}}
+
+
+                        </div>
+
+
+                        <div class="product__detail--footer">
+                          <div class="product__rating">
+                            <div class="product__rating--list">
+                                <div class="product__rating--item">
+                                  <i class="product__rating--icon fa-solid fa-star"></i>
+                                </div>
+                                <div class="product__rating--item">
+                                  <i class="product__rating--icon fa-solid fa-star"></i>
+                                </div>
+                                <div class="product__rating--item">
+                                  <i class="product__rating--icon fa-solid fa-star"></i>
+                                </div>
+                                <div class="product__rating--item">
+                                  <i class="product__rating--icon fa-solid fa-star"></i>
+                                </div>
+                                <div class="product__rating--item">
+                                  <i class="product__rating--icon fa-solid fa-star"></i>
+                                </div>
+                            </div>
+                          </div>
+                      <div class="product__sold">
+                        <p>Đã bán: <span>{{this.quantitySold}}</span></p>
+                        </div>
+                    </div>
+
+                      </div>
+                    </div>
+                  </a>
+              </div>
+           {{/each}}
+        </div>
+</div>

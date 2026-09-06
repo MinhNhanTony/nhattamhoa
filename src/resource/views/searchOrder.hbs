@@ -1,0 +1,90 @@
+ <form class='form__search form__search--inSearchPage active'>
+          <input type="hidden" name='type' value='order'>
+          <input
+            type='text'
+            name='orderId'
+            placeholder='Tra cứu đơn hàng'
+            id='search__input'
+            autofocus='true'
+          />
+          <button id='searchOrder__submit'>
+            <i class='search__submit__icon fas fa-search'></i>
+          </button>
+    </form>
+    
+    <div class="order_result p-5 table-responsive">
+
+    </div>
+
+    <script>
+      const searchBtn = document.querySelector('#searchOrder__submit');
+      const orderResultElement = document.querySelector('.order_result')
+      searchBtn.addEventListener('click',(e)=> {
+        
+          e.preventDefault();
+           const orderId = document.querySelector('input[name="orderId"]').value;
+
+          fetch(`/apis/searchOrder`, {
+                method: 'POST',
+                body: JSON.stringify({orderId}),
+                headers: {
+                  'Content-Type': 'application/json'
+                }
+              })
+                .then(response => response.json())
+                .then(result => {
+                  const {isSuccess,message,order,sevendaysAfter,orderTime} = result
+                  if(isSuccess) {
+                    const orderResultHTML = `<table class="table table-bordered">
+                                                <thead class="thead-dark">
+                                                  <tr>
+                                                    <th scope="col">Mã đơn</th>
+                                                    <th scope="col">Ngày đặt</th>
+                                                    <th scope="col">Dự kiến nhận</th>
+                                                    <th scope="col">Ship</th>
+                                                    <th scope="col">Giảm giá</th>
+                                                    <th scope="col">Tổng</th>
+                                                   
+                                                    <th scope="col">Trạng thái</th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody>
+                                                  <tr>
+                                                    <th scope="row">${order._id}</th>
+                                                    <td>${orderTime}</td>
+                                                    <td>${sevendaysAfter}</td>
+                                                    <td>${order.ship}</td>
+                                                    <td>${order.discount}</td>
+                                                    <td>${order.finalPrice}</td>
+                                                    <td>${order.status}</td>
+
+                                                  </tr>
+                                                    </tbody>
+                                              </table>
+                                        `
+
+                              orderResultElement.innerHTML = orderResultHTML;
+                  }
+                  else {
+                    alert(message);
+                  }
+
+                })
+                .catch(error => {
+                  console.error(error);
+                });
+      })
+    </script>
+
+
+    <script>
+        const currentOrderId = localStorage.getItem('orderId');
+
+
+        if(currentOrderId)
+        {
+          const searchOrderInput = document.querySelector('input[name="orderId"]');
+         searchOrderInput.value = currentOrderId;
+        }
+        
+    </script>

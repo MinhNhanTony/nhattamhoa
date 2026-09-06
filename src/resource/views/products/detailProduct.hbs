@@ -1,0 +1,696 @@
+<div class="detailProduct mt 5 pt-5">
+    <div class="row">
+        <div class="col-md-7 col-sm-12 detailProduct__img">
+        
+            <div class="detailProduct__img--main">
+                       <div class="btn-open-modal" style="cursor: pointer;" data-toggle="modal" data-target="#ProductImgZoomModal">
+                            <img src="{{productInfor.productImg.[0]}}" alt="">
+
+                        </div>
+                        <div class="detailProduct__zoomIn--Btn">
+                            <button class="btn-open-modal" data-toggle="modal" data-target="#ProductImgZoomModal">
+                                    <img src="/img/Icons/zoom.png" alt="">
+                            </button>
+                        </div>
+                    
+            </div>
+
+            <div class="detailProduct__img--list">
+                
+                  <button class="btn-open-modal">
+                                    {{#activeFirstProuctImg}}
+                                         {{productInfor}}
+                                     {{/activeFirstProuctImg}}           
+                 </button>
+             
+
+                   
+            </div>
+        </div>
+        <div class="col-md-5 col-sm-12 detailProduct__content">
+            <input type="hidden" id='productId' value='{{productInfor._id}}'>
+            <h1 class="detailProduct__content--name border-bottom">
+                {{productInfor.productName}}
+                <div class='detailProduct__content--name-des'>
+                    <div class='detailProduct__content--name-des__wraper'>Phân loại:
+                        <h5 class='detailProduct__content--name-des__content'>  {{productInfor.category}}
+                            
+                        </h5> 
+                        <span>|</span>
+                    </div>
+
+                    <div class='detailProduct__content--name-des__wraper'>Mã SP:<h5 class='detailProduct__content--name-des__content'>{{productInfor.productCode}}</h5> 
+                    </div>
+
+                    
+                </div>
+            </h1>
+
+            <h2 class="detailProduct__content--price border-bottom">
+                   {{#if productInfor.sale includeZero=false}}
+                        <span class='product__newPrice detailProduct__price' data-price='{{productInfor.productSalePrice}}'>{{number
+                            productInfor.productSalePrice
+                          }}₫</span>
+                        <span class='product__oldPrice detailProduct__price'>{{number productInfor.productPrice}}₫</span>
+                        <div class="productDetail__sale--percent p-2 bg-red">
+                            <span class=''>Giảm {{productInfor.sale}}% </span>
+                        </div>
+                        
+                        
+                        {{else}}
+                        <span class='product__oldPrice--notsale detailProduct__price' data-price='{{productInfor.productPrice}}'>{{number productInfor.productPrice}}₫
+                            
+                        </span>
+
+                      {{/if}}
+
+
+                      {{#if productInfor.isPreOrder}}
+                            <div class="productDetail__preOrder p-2">
+                                <div class="productDetail__sale--percent">
+                                    <span>
+                                        Đặt trước 1 ngày
+                                </span>
+                                </div>
+                            </div>
+                        {{/if}}
+            </h2>
+
+            <div class="promotion py-3 border-bottom ">
+                <h6 class="promotion__title detailProduct__content--title"> <img class='hiddenonMobile' src="/img/Icons/sale-tag.png" alt="">Khuyến mãi :</h6>
+                <div class='productColor__content-promotion'>
+                    <p><img class='icon-small' src="/img/Icons/hot-sale.png" alt=""> <b>MIỄN PHÍ SHIP</b> đơn hàng từ 500.000 VND Bán kính 6km</p>
+                    {{!-- <ul class='content-promotion__list'>
+                        <li class='content-promotion__item'>
+                           <img class='icon-small' src="/img/Icons/hot-sale.png" alt=""></h6> <b>Giảm 50k</b> đơn hàng từ 1.000.000 VND
+                        </li>
+                        <li class='content-promotion__item'>
+                            <img class='icon-small' src="/img/Icons/hot-sale.png" alt=""></h6> <b>Giảm 100k</b>  đơn hàng từ 1.500.000 VND
+                        </li>
+                        <li class='content-promotion__item'>
+                            <img class='icon-small' src="/img/Icons/hot-sale.png" alt=""></h6> <b>Giảm 150k</b> đơn hàng từ 2.000.000 VND
+
+                        </li>
+                    </ul> --}}
+                    <p class='content-promotion__item'><img class='icon-small' src="/img/Icons/hot-sale.png" alt=""><b>Miễn phí</b> chỉnh sửa nếu khách hàng chưa ưng ý về sản phẩm</p>
+                </div>
+
+                {{!-- <div class="promotion__content ">
+                     <p>
+                        <a class="btn btn-primary promotion__btn bg-orange" data-toggle="collapse" href="#salecode" role="button" aria-expanded="false" aria-controls="salecode">
+                            Nhập mã FREESHIP miễn phí giao hàng >
+                        </a>
+             
+                    </p>
+                    <div class="collapse" id="salecode">
+                    <div class="card card-body">
+                        Nhập mã <span class='text-orange'>FREESHIP</span> miễn phí giao hàng khi mua đơn hàng từ 400,000 đ áp dụng từ ngày 22/08 - 31/08. Chương trình không áp dụng với các chương trình khuyến mãi khác.
+                    </div>
+                    </div>
+
+                </div> --}}
+            </div>
+
+            {{!-- <div class="selectSize py-3 border-bottom">
+                <h6 class="selectSize__title detailProduct__content--title">Chọn size
+                    <p><a href='/policy/chon-size' class='mt-3 text-danger' target="_blank">Hướng dẫn chọn size</a>
+                <p ></p>
+                </h6>
+                <ul class="selectSize__btn--list">
+                    {{#activeFirstSize}}{{productInfor}}{{/activeFirstSize}}
+                </ul>
+                
+            </div> --}}
+
+            <div class="productColor py-3 border-bottom">
+                <h6 class="productColor__title detailProduct__content--title">Màu sắc</h6>
+                <div class="productColor__content">
+
+                      <div  style= "background-color:{{productInfor.productColor}}" class=" productColor__text text-center m-0 p-2 text-uppercase font-weight-bold" ></div>
+                    </div>
+                </div>
+            
+              <div class="selector-actions">
+                <div class="quantity-area clearfix">
+                    <input type="button" value="-" onclick="minusQuantity()" class="qty-btn">
+                    <input type="text" id="quantity" name="quantity" value="1" min="1" class="quantity-selector"  disabled="disabled">
+                    <input type="button" value="+" onclick="plusQuantity()" class="qty-btn">
+                </div>
+                
+                {{!-- <div class='mt-4'>
+                    {{> slideBtn title="Thêm vào giỏ hàng"}}
+                </div> --}}
+                <button style='color:white' type="button" class="addToCart-btn btn btn-demo btn-lg btn-warning" data-toggle="modal" data-target="#cartModal" data-whatever="{{productInfor}}">
+			            Thêm vào giỏ hàng
+		        </button>
+
+                <!-- Modal -->
+                    <div class="modal right fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel2">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="cartModalLabel2">Giỏ hàng</h4>
+                                    <button type="button" class="close close-cartModal-btn" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true"><i class="fa-solid fa-circle-xmark"></i></span>
+                                    <button>
+                                </div>
+
+                                <div class="modal-body">
+                                     <p class='cart__quality text-center  mt-4 mb-5'>Bạn có 
+                                         <span class='cart__quality--number'></span> sản phẩm trong giỏ hàng</p>
+                                    <ul class="cart__list">
+                                    </ul>
+                                    <div class="d-flex justify-content-between my-5">
+                                        <span class='font-weight-bold'>TỔNG TIỀN</span> <span class='cart__total--money'></span>
+                                    </div>
+                                    <div class="cartBtn__container justify-content-between">
+                                        <a href="/cart">{{> slideBtn title="Xem giỏ hàng"}}</a>
+
+                                        <span href="">
+                                             {{> slideBtn title="Thanh toán" class="pay__btn"}}
+                                        </span>
+                                        
+                                           
+                                    </div>
+
+                                </div>
+
+                            </div><!-- modal-content -->
+                        </div><!-- modal-dialog -->
+                    </div>
+                <!-- modal -->
+                
+                <p class='mt-4'>Đối với các sản phẩm cần phải order, bạn vui lòng liên qua <strong><a href="https://www.facebook.com/profile.php?id=100079283596226" target="_blank" >Fanpage Nhất Tâm Hoa</a></strong>  để được nhân viên hỗ trợ đặt trước sản phẩm và sẽ liên hệ với bạn ngay khi có hàng</p>
+
+              
+                    
+                    Gọi <a href="tel:{{hotline}}">{{hotline}}</a> để mua hàng nhanh hơn
+                    Miễn phí giao hàng cho đơn hàng từ 500k - Bán kính 6km
+                </p>
+			</div>
+            
+              
+            </div>
+
+            
+
+          
+
+            
+
+        
+        </div>
+        
+
+        <div class="col-12 mt-5">
+            <div class="product__desc--tabs">
+
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="productDesc-tab" data-toggle="pill" data-target="#productDesc" type="button" role="tab" aria-controls="productDesc" aria-selected="true">Mô tả sản phẩm</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="returnPolicy-tab" data-toggle="pill" data-target="#returnPolicy" type="button" role="tab" aria-controls="returnPolicy" aria-selected="false">Chính sách đổi trả</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pstorageInstructions-tab" data-toggle="pill" data-target="#pstorageInstructions" type="button" role="tab" aria-controls="pstorageInstructions" aria-selected="false">Hướng dẫn bảo quản</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="pills-tabCotent">
+                <div class="tab-pane fade show active" id="productDesc" role="tabpanel" aria-labelledby="productDesc-tab">
+                    <div class="description-productdetail productDesc hide">
+                             <p>
+                                {{productInfor.productName}}
+                            </p>
+                            <p>SHOP ĐẢM BẢO và CAM KẾT CHO CÁC BẠN</p>
+                            <p>🏆 Về sản phẩm: Cam kết chất lượng sản phẩm tốt nhất trong tầm giá</p>
+                            <p>
+                                🏆 Dịch vụ: Hỗ trợ đổi trả hàng thoải mái trong 7 ngày, dịch vụ vệ giày miễn phí trọn đời
+                            </p>
+
+                            <p>
+                                🏆 Thời gian giao hàng : Hàng luông có sẵn thời gian vận chuyển tối đa 7 ngày kể từ ngày đơn hàng được xác nhận
+                            </p>
+
+                            <p>
+                                ------------------------------------------------.
+                            </p>
+
+                            <p>
+                                    Tên sản phẩm: <span>
+                                        {{productInfor.productName}}
+                                    </span>
+                            </p>
+            
+     
+                            <p>
+                                ------------------------------------------------.
+                            </p>
+
+                            <p>
+                                    Thông tin sản phẩm
+                            </p>
+
+                            <p>
+                                ✔️Thương hiệu: <span>{{productInfor.category}}</span>
+                            </p>
+                            <p>
+                                ✔️Màu sắc: <span>{{productInfor.productColor}}</span>
+                            </p>
+                            
+                            <p>
+                                ✔️Kích thước: <span>
+                                    {{#each productInfor.productSize}}
+                                        {{this}}
+                                    {{/each}}
+                                </span>
+                            </p>
+                        {{#each productInfor.productDescription}}
+                            
+                            <p>
+                              {{this.descText}}
+                            </p>
+                            
+                            
+                        {{/each}}
+                        <p>✔️Đối tượng: Mọi người , phù hợp nhất với các bạn học sinh, sinh viên đam mê sneaker</p>
+                        <p>
+                            ✔️Mùa thích hợp: Thời trang cả năm
+                        </p>
+                        <p>
+                            ✔️Freeship : Miễn phí vận chuyển trên toàn quốc
+                        </p>
+                        <p>
+                            ----------------------------------------------------.
+                        </p>
+
+                        <p>  Qana Sneaker luôn mong muốn mang lại những sản phẩm chất lượng và phù hợp nhất cho khách hàng , Shop sẵn sàng hỗ trợ khách hàng tư vấn để tìm ra nhu cầu của khách để có cho mình sản phẩm phù hợp nhất</p>
+
+                        <p>
+                             🚛 Free Ship - Chất lượng đảm bảo - Phục vụ tận tâm
+                        </p>
+
+                         <p>
+                                {{productInfor.productName}}
+                            </p>
+                         <p>
+                                 Xuất xứ: Trung Quốc
+                         </p>
+
+                         <p>
+                            Cảm ơn quý khách đã ghé thăm và ủng hộ Shop.
+                         </p>
+                         <p>
+                            📣📣📣 Giỏ hàng ở góc trên bên phải còn chần chờ gì nữa mà không chốt đơn ngay thôi nào
+                         </p>
+
+                         
+                    </div>
+                   
+                 
+                    
+                </div>
+                <div class="tab-pane fade" id="returnPolicy" role="tabpanel" aria-labelledby="returnPolicy-tab">
+                    <div class="description-productdetail">
+                            {{> policy-replacement}}  
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pstorageInstructions" role="tabpanel" aria-labelledby="pstorageInstructions-tab">
+                    <div class="description-productdetail">
+                        <p>
+                              👟👟 Để giày của bạn luôn được giữ gìn và sử dụng lâu dài, dưới đây là một số hướng dẫn bảo quản giày mà bạn có thể tham khảo:
+                        </p>
+                       
+
+                       <p>
+                            ✔️ Đọc kỹ nhãn chỉ dẫn: Mỗi đôi giày đều có những yêu cầu riêng về cách bảo quản và vệ sinh. Hãy đọc kỹ nhãn chỉ dẫn để biết cách chăm sóc giày của bạn đúng cách.
+                       </p>
+
+                        
+                        <p>
+                            ✔️ Làm sạch giày thường xuyên: Nếu để bụi bẩn và mồ hôi tích tụ trên giày, chúng sẽ gây ảnh hưởng đến chất lượng và độ bền của giày. Vì vậy, hãy làm sạch giày của bạn thường xuyên bằng cách lau chùi bằng khăn ẩm hoặc bàn chải mềm.
+
+                        </p>
+
+                        <p>
+                            ✔️ Bảo quản giày ở nơi thoáng mát và khô ráo: Không bao giờ để giày ở nơi ẩm ướt hoặc đầy nắng nóng. Hãy bảo quản giày của bạn ở nơi thoáng mát và khô ráo để tránh tình trạng giày bị nấm mốc hoặc bong tróc.
+                        </p>
+
+                        <p>
+                            ✔️ Sử dụng chất tẩy rửa đúng loại: Khi sử dụng chất tẩy rửa để vệ sinh giày, hãy chọn loại phù hợp với chất liệu của giày. Đừng sử dụng chất tẩy rửa có chứa hoá chất mạnh hoặc tẩy trắng, vì chúng có thể làm hỏng chất liệu và làm giảm độ bền của giày.
+                        </p>
+
+                        <p>
+                             ✔️ Bảo quản giày trong hộp hoặc túi đựng giày: Để bảo vệ giày khỏi bụi bẩn và các tác nhân bên ngoài khác, bạn nên bảo quản giày trong hộp hoặc túi đựng giày sau khi sử dụng.
+                        </p>
+
+                        <p> 
+                            
+                            ✔️ Thay đổi đôi giày: Không nên sử dụng cùng một đôi giày liên tục trong nhiều ngày liên tiếp. Hãy thay đổi đôi giày để giúp chúng được thoải mái và tránh bị hư hỏng.
+                        </p>
+
+                        <p>
+                                   ❤️❤️ Hy vọng những hướng dẫn bảo quản giày trên sẽ giúp bạn giữ cho giày của mình luôn mới và bền bỉ.
+                        </p>
+                        
+                        
+
+                        
+
+                       
+
+
+                    
+                    </div>
+                </div>
+                </div>
+
+                <div class='view-more-desc-wrapper'>
+                        <button class='view-more-desc btn btn-outline-secondary'>Xem thêm</button>
+                </div>
+            </div>
+        </div>
+
+         {{!-- product Video --}}
+         <div class="col-12">
+            <div class="row pt-5">
+                {{#each productInfor.productVideo}}
+                <div class="col-12 col-md-6 mb-5">
+                  <video width="100%" height="100%" poster="{{productInfor.productImg.[0]}}" controls>
+                    <source src="{{this}}" type="video/mp4">
+                    
+                    
+                    </video>
+                </div>
+                {{/each}}
+               
+            </div>
+        </div>
+
+        {{!-- //product IMG --}}
+        <div class="col-12">
+            <div class="row pt-5">
+                {{#each productInfor.productImg}}
+                <div class="col-12 col-md-6 mb-5">
+                    <img src="{{this}}" style='width:100%' alt="">
+                </div>
+                {{/each}}
+               
+            </div>
+        </div>
+        <div class="col-12">
+            <h3 class='collection__header-link'>Sản Phẩm Liên Quan</h3>
+            <div class="row mt-5 pt-5 mb-4">
+                
+                {{#each products}}
+
+                    <div class='product__item col-6 col-sm-6 col-md-4 col-lg-2'>
+                        {{> productItem }}
+                    </div>
+                {{/each}}
+
+            </div>
+        </div>
+    </div>
+    <button style='color:white' type="button" class="addToCart-btn addToCart-btn-sticky btn btn-demo btn-lg btn-warning" data-toggle="modal" data-target="#cartModal" data-whatever="{{productInfor}}">
+        <i class="fa-solid fa-cart-plus"></i>
+			Thêm vào giỏ hàng
+	</button>
+</div>
+
+
+{{!-- Modal --}}
+
+<!-- Modal Fullscreen xl -->
+<div class="modal ProductImgZoomModal" id="ProductImgZoomModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+     
+      <div class="modal-body">
+            <div id="ProductImgZoom" class="carousel slide" data-ride="carousel">
+                <button type="button" class="close closeBtn" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true"><i class="closeBtn__icon fa-regular fa-circle-xmark"></i></span>
+                </button>  
+
+                  <ol class="carousel-indicators">
+                    {{#each productInfor.productImg}} 
+
+                    <li data-target="#ProductImgZoom" data-slide-to="{{@index}}" class=""></li>
+            
+                    {{/each}}
+
+                </ol>
+                <div class="carousel-inner">   
+
+                    {{#each productInfor.productImg}} 
+                    
+                         <div class="carousel-item">
+                            <img class="d-block" src="{{this}}" alt="First slide">
+                        </div>
+                    {{/each}}
+         
+                </div>
+                <a class="carousel-control-prev" href="#ProductImgZoom" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#ProductImgZoom" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{>modalUserInfor}}
+
+{{!-- viewmore --}}
+<script>
+    const descElement = document.querySelector('.productDesc');
+    const viewMoreDescElement = document.querySelector('.view-more-desc');
+
+    let descElementHeight = descElement.offsetHeight;
+    let newDescElementHeight = (descElementHeight*20/100).toFixed();
+
+    descElement.style.height = newDescElementHeight + "px";
+  
+
+   
+    function toggleDescContent() {
+        if(descElement.classList.contains('hide')) {
+             descElement.style.height = descElementHeight + "px";
+        }
+        else {
+             descElement.style.height = newDescElementHeight + "px";
+
+        }
+        descElement.classList.toggle('hide');
+
+    }
+
+    viewMoreDescElement.addEventListener('click',toggleDescContent)
+    descElement.addEventListener('click',toggleDescContent)
+
+  
+
+    
+
+</script>
+
+<script>
+
+
+    const selectSizeBtns = document.querySelectorAll('.selectSize__btn--item');
+   
+    //Select size
+    selectSizeBtns.forEach((item)=> {
+        item.addEventListener('click',(e)=> {
+            document.querySelector('.selectSize__btn--item.active').classList.remove('active');
+            e.target.classList.add('active');
+        })
+    })
+
+    // Change IMG main
+
+    const productImgList = document.querySelectorAll('.detailProduct__img--item');
+
+    function changeActiveImg (e) {
+            const imgActiveElement = document.querySelector('.detailProduct__img--item.active');
+
+            imgActiveElement && imgActiveElement.classList.remove('active');
+
+            e.target.classList.add('active');
+            document.querySelector('.detailProduct__img--main img').src=e.target.src;
+    }
+
+    productImgList.forEach((item) => {
+        item.addEventListener('click', (e) => {
+            changeActiveImg(e);
+        })
+    })
+    productImgList.forEach((item) => {
+        item.addEventListener('dblclick', (e) => {
+            $('#ProductImgZoomModal').modal('show')
+        })
+    })
+   
+    // Active img main
+    productImgList.forEach((item)=> {
+        item.addEventListener('mouseover',(e)=> {
+            e.stopPropagation();
+            changeActiveImg(e)
+
+        })
+    })
+
+    //changeProductQuantity
+     
+       
+        function plusQuantity() {
+            const currentQuantity = document.getElementById('quantity').value;
+
+            document.getElementById('quantity').value = Number(currentQuantity) + 1;
+            
+        }
+        function minusQuantity() {
+
+        
+            const currentQuantity = Number(document.getElementById('quantity').value);
+            
+            if(currentQuantity > 1) {
+                document.getElementById('quantity').value =currentQuantity - 1;
+
+            }
+            
+        }
+
+
+   
+
+   
+    // show modal cart
+    $('#cartModal').on('show.bs.modal',async function (event) {
+        var button = $(event.relatedTarget) 
+
+       
+
+        const cartItemId = document.querySelector('#productId').value;
+
+        const productInfor =await fetch(`/products/infor/${cartItemId}`).then((res)=> {
+            return res.json();
+        }).then(productInfor=> {
+            return productInfor
+        })
+
+        const cartItemImgUrl = `{{productAvatar}}`
+
+        const cartItemName = document.querySelector('.detailProduct__content--name').innerText;
+
+        const cartItemSize = Number(document.querySelector('.selectSize__btn--item.active').textContent);
+
+        const cartItemColor = document.querySelector('.productColor__text').textContent;
+
+        const cartItemAmount = Number(document.getElementById('quantity').value);
+
+        const cartItemPrice = Number(document.querySelector('.detailProduct__price').dataset.price);
+
+      
+
+        const cartItemPriceString =  numberToMoney(cartItemPrice);
+
+
+
+        const cartItemInfor = {
+            cartItemId,
+            cartItemImgUrl,
+            cartItemName,
+            cartItemSize,
+            cartItemColor,
+            cartItemAmount,
+            cartItemPrice,
+            cartItemSlug: productInfor.slug,
+            cartItemPriceString,
+        }
+
+        // Add item to cart list in localstorage
+
+
+           const localListCart = JSON.parse(localStorage.getItem('cartProductList'));
+
+           if(localListCart !== null) {
+                const haveStoraged = localListCart.some((item)=> item.cartItemId === cartItemInfor.cartItemId && item.cartItemSize === cartItemInfor.cartItemSize);
+
+
+                if(haveStoraged) {
+                        localListCart.map(item=> {
+                            if(item.cartItemId === cartItemInfor.cartItemId) {
+                                item.cartItemAmount = item.cartItemAmount + cartItemAmount
+                            }
+                            return item
+                        })
+                }
+                else {
+                    localListCart.push(cartItemInfor)
+                }
+
+                // save to store
+                localStorage.setItem('cartProductList',JSON.stringify(localListCart))
+
+                // render UI
+                renderListCart(localListCart)
+           }
+                
+           else {
+              localStorage.setItem('cartProductList',JSON.stringify([cartItemInfor]))
+              renderListCart([cartItemInfor])
+           }
+
+        
+
+        var modal = $(this)
+        // modal.find('.modal-title').text('New message to ' + recipient)
+
+      //  modal.find('.modal-body input').val(productInfor)
+
+        })
+
+    // Auto update cart item when have change
+
+   
+
+        $('#ProductImgZoomModal').on('show.bs.modal', function (e) {
+
+            const activeImgIndex = Number(document.querySelector('.detailProduct__img--item.active').dataset.index);
+
+
+            const carouselInnerElement = document.querySelectorAll('#ProductImgZoom .carousel-inner .carousel-item');
+            
+            const carouselDotsElemement = document.querySelectorAll('#ProductImgZoom .carousel-indicators li');
+
+            function addActiveClassFunction (elements) {
+             elements.forEach((item,index)=> {
+                if(index === activeImgIndex) {
+                    item.classList.add('active');
+                }
+                else {
+                    item.classList.remove('active');
+                }
+            })
+            }
+            addActiveClassFunction(carouselInnerElement);
+            addActiveClassFunction(carouselDotsElemement);
+
+         
+
+        })
+
+        $('#ProductImgZoom').carousel({
+            interval: false,
+        });
+
+</script>
+<script src='/js/renderCart.js'></script>
+<script src='/js/payment.js'></script>

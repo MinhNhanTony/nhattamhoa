@@ -1,0 +1,18 @@
+/* Error: Expected whitespace.
+ *    ,
+ * 20 | @media screen and(max-width: 767.98px) {
+ *    |                  ^
+ *    '
+ *   src\resource\scss\_collections.scss 20:18  @import
+ *   src\resource\scss\app.scss 9:9             root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Expected whitespace.\a    \2577 \a 20 \2502  @media screen and(max-width: 767.98px) {\d\a    \2502                   ^\a    \2575 \a   src\\resource\\scss\\_collections.scss 20:18  @import\a   src\\resource\\scss\\app.scss 9:9             root stylesheet";
+}

@@ -1,0 +1,53 @@
+.policy {
+    line-height: 3rem;
+    font-size: 1.6rem;
+    &.orderguide {
+        & .policy-title {
+            font-size: 2.0rem;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        p {
+            padding-bottom: 15px;
+        }
+    }
+    &-heading {
+        text-align: center;
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+    }
+    &-title {
+        font-size: 2.5rem;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        
+    }
+    p {
+        padding-bottom: 25px;
+    }
+
+
+    img {
+        --width:700px;
+        min-width: var(--width);
+        max-width: var(--width);
+        padding-bottom: 20px;
+    }
+    ol.s {
+        list-style-type: inherit;
+    }
+    &.payment {
+        img {
+            --width:300px;
+        }
+    }
+
+}
+.introduce {
+
+}
+@media screen and (max-width: 767.98px) {
+    .policy img {
+        --width:100%;
+    }
+}

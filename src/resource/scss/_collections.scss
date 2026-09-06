@@ -1,0 +1,36 @@
+.collections {
+  &__type {
+    margin: 10px 0;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Playfair Display', sans-serif;
+    font-size: 4rem;
+  }
+}
+.sortByBtnList {
+  display: flex;
+}
+
+@media screen and (min-width: 1024px) {
+  .sort__title {
+      margin-right: 20px;
+  }
+}
+
+@media screen and (max-width: 767.98px) {
+  .sortByBtnList {
+      display: grid;
+      grid-template-columns:1fr 1fr;
+  }
+  .sortByBtn {
+    padding: 5px 10px;
+    font-size: 1rem;
+  }
+  .sortByBtnList--contaiter {
+    display: flex;
+    justify-content: space-between;
+  }
+  .collections__type {
+      font-size: 3rem;
+  }
+}

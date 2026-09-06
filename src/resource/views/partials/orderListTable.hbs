@@ -1,0 +1,64 @@
+ <table class="table table-dark table-striped">
+        <thead>
+          <tr>
+            <th scope="col">STT</th>
+            <th scope="col">MÃ ĐƠN</th>
+            <th scope="col">SẢN PHẨM</th>
+            <th scope="col">GIÁ</th>
+            <th scope="col">LƯU Ý</th>
+            <th scope="col"></th>
+            <th scope="col">NGÀY ĐẶT</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each orderList}}
+          <tr>
+
+          <td>
+            {{inc @index}}
+          </td>
+            <td>
+                {{this._id}}
+            </td>
+
+            <td class='order_detail-link' data-id='{{this.this._id}}'>
+          {{#each productList}}
+                  <p class="productName py-2">
+
+                    {{this.cartItemName}}
+
+                    <span style='color:brown'>
+                      {{this.cartItemPrice}}
+                    </span>
+                    <span>
+                      x {{this.cartItemAmount}}
+                    </span>
+                  </p>
+                
+
+          {{/each}}
+      
+
+            </td>
+
+           
+        
+          
+            <td>
+                {{this.finalPrice}}
+            </td>
+            <td>
+                {{this.note}}
+            </td>
+            <td>
+                {{this.orderTimeFromNow}}
+            </td>
+            <td>
+                {{this.orderDate}}
+            </td>
+           
+          </tr>
+          {{/each}}
+          
+        </tbody>
+      </table>

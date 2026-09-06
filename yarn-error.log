@@ -1,0 +1,71 @@
+Arguments: 
+  E:\Chuong Trinh\Filecai\Nodejs\node.exe C:\Users\HP\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js start
+
+PATH: 
+  C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Pages\v1.0\;E:\Chuong Trinh\Filecai\Git\Git\cmd;C:\Users\HP\AppData\Local\Android\Sdk;C:\ProgramData\chocolatey\bin;C:\Program Files\Java\jdk-15;E:\Chuong Trinh\Filecai\Nodejs\;C:\Program Files (x86)\dotnet\;C:\Users\HP\AppData\Local\Microsoft\WindowsApps;;E:\Chuong Trinh\Filecai\VsCode\Microsoft VS Code\bin;C:\Users\HP\AppData\Roaming\npm
+
+Yarn version: 
+  1.22.17
+
+Node version: 
+  16.14.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  SyntaxError: D:\Qana Nolan Resourse\qananolan\package.json: Unexpected token } in JSON at position 849
+      at JSON.parse (<anonymous>)
+      at C:\Users\HP\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (C:\Users\HP\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:310:30)
+      at C:\Users\HP\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:321:13
+
+npm manifest: 
+  {
+    "dependencies": {
+      "@types/set-tz": "^0.2.0",
+      "axios": "^0.27.2",
+      "body-parser": "^1.20.1",
+      "cors": "^2.8.5",
+      "crypto-js": "^4.1.1",
+      "dotenv": "^16.0.2",
+      "express": "^4.17.3",
+      "express-handlebars": "^6.0.3",
+      "handlebars.numeral": "^0.2.0",
+      "jsonwebtoken": "^8.5.1",
+      "method-override": "^3.0.0",
+      "moment": "^2.29.4",
+      "mongoose": "^6.5.3",
+      "mongoose-slug-generator": "^1.0.4",
+      "multer": "^1.4.5-lts.1",
+      "node-sass": "^7.0.1",
+      "nodemailer": "^6.9.0",
+      "nodemailer-express-handlebars": "^6.0.0",
+      "proxy": "^1.0.2",
+      "request": "^2.88.2",
+      "set-tz": "^0.2.0"
+    },
+    "name": "coursenodejsf8",
+    "version": "1.0.0",
+    "description": "learn nodejs in f8",
+    "main": "src/main.js",
+    "engine": {
+      "node": "16.x"
+    },
+    "scripts": {
+      "start": "node src/main.js",
+     
+    },
+    "author": "minhnhan",
+    "license": "ISC",
+    "devDependencies": {
+      "morgan": "^1.10.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

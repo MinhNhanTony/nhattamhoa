@@ -1,0 +1,169 @@
+
+{{>admin-header}}
+<div class="container">
+    <div>
+  <p class='order_detail-heading'>Thông tin đơn hàng</p>
+    <div class="" role="">
+      Trạng thái : 
+
+
+       {{#checkOrderStatus}}
+                {{order}}
+      {{/checkOrderStatus}}        
+  
+    </div>
+    <p class='text-info' style='font-size:20px!important'>
+     Thời gian đặt: {{orderTime}} {{orderDate}}
+
+    </p>
+      
+    <table class="table">
+      <thead>
+        <tr>
+
+          <th scope="col">#</th>
+          <th scope="col">Tên sản phẩm</th>
+          <th scope="col">Số lượng</th>
+          <th scope="col">Size</th>
+          <th scope="col">Màu sắc</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each order.productList}}
+          <tr>
+            <td>
+             
+              <img style='width: 100px;height:100px;object-fit: contain;' src="{{this.cartItemImgUrl}}" alt="">
+              
+            </td>
+            <td>{{this.cartItemName}}</td>
+            <td>{{this.cartItemAmount}}</td>
+            <td>{{this.cartItemSize}}</td>
+            <td>{{this.cartItemColor}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
+</div>
+
+<div class="row">
+    
+    <div class='col-sm-12 col-md-6'>
+          <div class='py-5'>
+            <p class='order_detail-heading'>Thông tin về giá</p>
+            <p>Phí ship: <span class='font-weight-bold'>{{shipString}}</span></p>
+            <p>Giảm giá: <span class='font-weight-bold'>{{discountString}}</span></p>
+            <p>Tổng: <span class='font-weight-bold'>{{finalPriceString}}</span></p>
+            <p>Hình thức thanh toán: <span class='font-weight-bold'>{{order.orderPayOption}}</span></p>
+          </div>
+
+          <div>
+            <p class='order_detail-heading'>Ghi chú</p>
+            <p style='border-color: black;border-width: 1px;'>.............{{order.note}}.............</p>
+
+          </div>
+    </div>
+
+<input type="hidden" id='token' value='{{token}}'>
+<input type="hidden" id='id' value='{{order._id}}'>
+
+
+<div class='col-sm-12 col-md-6'>
+    <form method="post" action='/admin/change-order-infor/{{order._id}}/{{token}}'>
+      
+      <p class='order_detail-heading'>Thông tin khách hàng</p>
+      <div class='row'>
+          <div class='col-md-12 col-lg-6'>
+                <div class="form-group">
+                  <label class='text-muted' for="formGroupExampleInput">Tên</label>
+                  <input type="text" class="form-control" id="name" name='name' placeholder="Example input" value='{{order.userInfor.name}}'>
+                </div>
+
+                <div class="form-group">
+                  <label class='text-muted' for="formGroupExampleInput">Số điện thoại</label>
+                  <input type="text" class="form-control" id="phone" name='phone' placeholder="Example input" value='{{order.userInfor.phone}}'>
+                </div>
+
+                <div class="form-group">
+                  <label class='text-muted' for="formGroupExampleInput">Email</label>
+                  <input type="text" class="form-control" id="email" name='email' placeholder="Example input" value='{{order.userInfor.email}}'>
+                </div>
+          </div>
+
+          <div class='col-md-12 col-lg-6'>
+                <div class="form-group">
+                    <label class='text-muted' for="formGroupExampleInput">Địa chỉ chi tiết (Số nhà tên đường)</label>
+                    <input type="text" class="form-control" id="detailAddress" name='detailAddress' placeholder="Example input" value='{{order.userInfor.address.detailAddress}}'>
+                  </div>
+
+                  <div class="form-group">
+                    <label class='text-muted' for="formGroupExampleInput">Xã / Phường</label>
+                    <input type="text" class="form-control" id="ward" name='ward' placeholder="Example input" value='{{order.userInfor.address.ward}}'>
+                  </div>
+
+                  <div class="form-group">
+                    <label class='text-muted' for="formGroupExampleInput">Quận / Huyện</label>
+                    <input type="text" class="form-control" id="district" name='district' placeholder="Example input" value='{{order.userInfor.address.district}}'>
+                  </div>
+
+                  <div class="form-group">
+                    <labelclass='text-muted' for="formGroupExampleInput">Tỉnh / Thành phố</label>
+                    <input type="text" class="form-control" id="provinces" name='provinces' placeholder="Example input" value='{{order.userInfor.address.provinces}}'>
+                  </div>
+
+                  <button type='submit' class='btn btn-primary'>Thay đổi</button>
+          </div>
+      </div>
+      
+
+      
+
+    </form>
+    </div>
+
+      <button  type="button"  data-handle='Waiting' class='btn btn-danger handle_order-btn'>Chưa xác nhân</button> 
+        <button  type="button"  data-handle='Confirm' class='btn btn-success handle_order-btn'>Đã Xác nhận</button>
+        <button  type="button"  data-handle='Cancel' class='btn btn-danger handle_order-btn'>Hủy</button> 
+    </div>
+
+</div>
+
+   
+
+
+    <script>
+      const token = document.getElementById("token").value;
+      const id = document.getElementById("id").value;
+
+      const handleOrderBtns = document.querySelectorAll('.handle_order-btn');
+      handleOrderBtns.forEach(function(item){
+          item.addEventListener('click', function(e) {
+              const handle =  e.target.dataset.handle;
+              fetch(`/admin/change-order-status/${id}/${token}`, {
+                method: 'POST',
+                body: JSON.stringify({handle}),
+                headers: {
+                  'Content-Type': 'application/json'
+                }
+              })
+                .then(response => response.json())
+                .then(result => {
+                  const {isSuccess,message} = result
+                  alert(message);
+                  if(isSuccess) {
+                    window.location = `/admin/orders/${token}`;
+                  }
+
+                })
+                .catch(error => {
+                  console.error(error);
+                });
+
+          })
+      })
+    </script>
+
+{{>admin-footer}}
+
+

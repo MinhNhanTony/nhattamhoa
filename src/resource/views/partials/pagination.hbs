@@ -1,0 +1,108 @@
+
+<div class="d-flex justify-content-center p-2 pt-4">
+    
+
+    <input type="hidden" name="currentPage" value='{{currentPage}}'>
+    <input type="hidden" name="numberPage" value='{{pages.length}}'>
+    <nav aria-label="...">
+    <ul class="pagination">
+        <li class="page-item page-item-pre  page-item-pre-next">
+           <span class="page-link">Trước</span>
+        </li>
+
+        {{#each pages}}
+            
+            <li class="page-item page-item-js">
+            
+                 <div class='page-link page-link-js' href="">{{this}}</div>
+                  
+            </li>
+        {{/each}}
+        <li class="page-item page-item-next page-item-pre-next">
+        <a class="page-link" href="#">Sau</a>
+        </li>
+    </ul>
+    </nav>
+</div>
+
+
+<script>
+        const pageLinkList = document.querySelectorAll('.page-link-js');
+        const pageItemList = document.querySelectorAll('.page-item-js');
+
+        const previousPage = document.querySelector('.page-item-pre');
+        const nextPage = document.querySelector('.page-item-next');
+        
+        const currentPage = document.querySelector('input[name=currentPage]').value;
+        const numberPage = document.querySelector('input[name=numberPage]').value;
+
+        function rengerUrlWithQuery (index) {
+            const url = new URL(window.location.href);
+            const params = new URLSearchParams(url.search);
+
+            const sortBy = params.get("sortBy");
+
+            const queryParams = new URLSearchParams({
+                sortBy: sortBy,
+                page:index + 1
+            });
+
+            const newUrl = `/collections/tat-ca-san-pham?${queryParams}`;
+            console.log("🚀 ~ file: pagination.hbs:52 ~ rengerUrlWithQuery ~ currentPage:", currentPage)
+            return newUrl
+        }
+
+       
+
+        pageLinkList.forEach((pageLink,index)=> {
+                 
+                pageLink.addEventListener('click',()=> {
+        
+                    window.location.href = rengerUrlWithQuery(index);
+
+                })
+        })
+
+
+        pageLinkList.forEach((pageLink,index)=> {
+
+            if(Number(pageLink.textContent) === Number(currentPage)) {
+                    pageItemList[index].classList.add('active');
+            }
+
+            {{!-- Ẩn 2 nút trước và sau --}}
+            if(Number(currentPage) === 1) {
+                previousPage.classList.add('disabled');
+            }
+            else {
+                previousPage.classList.remove('disabled');
+            }
+            
+            if(Number(currentPage) === Number(numberPage)) {
+                nextPage.classList.add('disabled');
+            }
+            else {
+                nextPage.classList.remove('disabled');
+            }
+
+        })
+
+
+        if (previousPage && !previousPage.disabled) {
+                previousPage.addEventListener('click',()=> {
+                    const pageActiveNumber = document.querySelector('.page-item.page-item-js.active');
+
+                    console.log("🚀 ~ file: pagination.hbs:96 ~ previousPage.addEventListener ~ pageActiveNumber:", pageActiveNumber.value)
+                    
+                    {{!-- window.location.href = rengerUrlWithQuery(pageActiveNumber); --}}
+                })
+        }
+
+
+
+
+
+     
+
+
+</script>
