@@ -1,6 +1,6 @@
 const OrderModel = require("../models/Order");
 const ProductModel = require("../models/Product");
-const categoryModel = require("../models/category");
+const categoryModel = require("../models/Category");
 const moment = require("moment");
 require('moment/locale/vi');
 const path = require('path');

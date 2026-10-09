@@ -1,5 +1,5 @@
 const ProductModel = require("../models/Product");
-const categoryModel = require("../models/category");
+const categoryModel = require("../models/Category");
 const OrderModel = require("../models/Order");
 const { mongooseToObject ,mutipleMongooseToObject} = require('../../util/mongoose');
 const provincesJSON = require('../../resource/json/provinces.json')
