@@ -3,7 +3,7 @@ const {
   mutipleMongooseToObject,
 } = require('../../util/mongoose');
 const ProductModel = require('../../app/models/Product');
-const categoryModel = require('../../app/models/category');
+const categoryModel = require('../../app/models/Category');
 const { filterAvailableProduct} = require('../../util/ignoreProduct')
 const { makeNumberSorter} = require('../../util/makeNumberSorter')
 const { ArrayObject} = require('../../util/shuffleArr')
