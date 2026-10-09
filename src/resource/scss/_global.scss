@@ -4,11 +4,13 @@
     display: inline-block;
     position: relative;
     z-index: 1;
+
     &.disabled {
       opacity: 0.6;
     }
   }
   .btn-container__btn {
+    border-radius: 15px;
     
     min-width: 139px;
     // width: 139px;
@@ -27,6 +29,8 @@
   }
   .btn-container:not(:hover) {
     left: 0;
+    
+
   }
   .btn-container:hover .btn-container__background {
     width: 0;
@@ -37,6 +41,8 @@
   }
   .btn-container__background {
     position: absolute;
+    border-radius: 15px;
+
     top: 0;
     width: 100%;
     height: 43px;
@@ -45,14 +51,19 @@
     transition: all 0.45s cubic-bezier(0.19, 0.135, 0.15, 0.86);
   }
 
-  .border-bottom {
-    border-bottom: 1px dotted #dfe0e1;
+  .my-border-bottom {
+    border-bottom: 1px dotted #dfe0e198;
   }
   .text-orange {
     color:$orange--color;
   }
   .text-green {
     color:$green--color;
+  }
+  .text-brand-color-50 {
+    color: $category-color-50 !important;
+    font-size:2rem !important;
+  
   }
   .text-gray {
     font-size: 14px;
@@ -136,6 +147,7 @@
   -webkit-user-select: none;
   touch-action: manipulation;
   font-size: 1.3rem;
+  border-radius: 15px;
 }
 
 .button-87:hover {
@@ -162,7 +174,7 @@
   margin: 3px;
 }
 .payment-qr {
-  --width:300px;
+  --width:450px;
   min-width: var(--width);
   max-width: var(--width);
   padding-bottom: 20px;
@@ -176,5 +188,100 @@
 
 }
 
+.fontPlayfair
+{
+  font-family: "font-family: "Playfair Display", sans-serif; Display", sans-serif!important;
+}
+
 // scroll to top
 
+/* =========================================
+   PRODUCT GRID
+========================================= */
+
+/* Giảm gutter mặc định 30px của Bootstrap */
+.product-list {
+    margin-left: -7px;
+    margin-right: -7px;
+}
+
+.product-list > [class*="col-"] {
+    padding-left: 7px;
+    padding-right: 7px;
+
+    margin-bottom: 14px;
+}
+.form__search--inSearchPage {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    left: auto !important;
+    bottom: auto !important;
+
+    display: flex !important;
+    align-items: center;
+
+    width: 100%;
+    max-width: 600px;
+    height: 48px;
+
+    margin: 30px auto 20px;
+    padding: 0;
+
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+
+    overflow: hidden;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+
+    input {
+        flex: 1;
+        width: 100%;
+        height: 100%;
+
+        padding: 0 16px;
+
+        border: none;
+        outline: none;
+
+        font-size: 14px;
+        color: #222;
+
+        &::placeholder {
+            color: #999;
+        }
+    }
+
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 52px;
+        height: 100%;
+
+        border: none;
+        background: #111;
+        color: #fff;
+
+        cursor: pointer;
+
+        transition: 0.2s ease;
+
+        &:hover {
+            background: #333;
+        }
+    }
+
+    .search__submit__icon {
+        font-size: 15px;
+    }
+}
+
+.form__search--inSearchPage {
+    width: min(600px, calc(100% - 30px));
+    margin: 40px auto 30px;
+}

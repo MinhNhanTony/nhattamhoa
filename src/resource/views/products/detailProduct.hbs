@@ -1,197 +1,506 @@
 <div class="detailProduct mt 5 pt-5">
     <div class="row">
-        <div class="col-md-7 col-sm-12 detailProduct__img">
-        
-            <div class="detailProduct__img--main">
-                       <div class="btn-open-modal" style="cursor: pointer;" data-toggle="modal" data-target="#ProductImgZoomModal">
-                            <img src="{{productInfor.productImg.[0]}}" alt="">
+        <div class="col-md-5 col-sm-12 detailProduct__img">
 
-                        </div>
-                        <div class="detailProduct__zoomIn--Btn">
-                            <button class="btn-open-modal" data-toggle="modal" data-target="#ProductImgZoomModal">
-                                    <img src="/img/Icons/zoom.png" alt="">
+                <!-- =========================
+                    MAIN GALLERY
+                ========================== -->
+                <div class="detailProduct__gallery">
+
+                  <div class="detailProduct__gallery-main">
+
+                        {{#each productInfor.productImg}}
+
+                            <div
+                                class="detailProduct__gallery-slide {{#if @first}}active{{/if}}"
+                                data-index="{{@index}}"
+                            >
+                                <img
+                                    src="{{this}}"
+                                    alt="{{../productInfor.productName}} - ảnh {{@index}}"
+                                    loading="{{#if @first}}eager{{else}}lazy{{/if}}"
+                                >
+                            </div>
+
+                        {{/each}}
+
+
+                        <button
+                            type="button"
+                            class="detailProduct__gallery-zoom"
+                            data-toggle="modal"
+                            data-target="#ProductImgZoomModal"
+                            aria-label="Phóng to hình ảnh"
+                        >
+                            <img
+                                src="/img/Icons/zoom.png"
+                                alt="Phóng to"
+                            >
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="detailProduct__gallery-arrow detailProduct__gallery-arrow--prev"
+                            aria-label="Ảnh trước"
+                        >
+                            ‹
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="detailProduct__gallery-arrow detailProduct__gallery-arrow--next"
+                            aria-label="Ảnh tiếp theo"
+                        >
+                            ›
+                        </button>
+
+                    </div>
+
+
+                    <!-- =========================
+                        DOTS MOBILE
+                    ========================== -->
+
+                    <div class="detailProduct__gallery-dots">
+
+                        {{#each productInfor.productImg}}
+
+                            <button
+                                type="button"
+                                class="detailProduct__gallery-dot {{#if @first}}active{{/if}}"
+                                data-index="{{@index}}"
+                                aria-label="Xem ảnh {{@index}}">
                             </button>
-                        </div>
-                    
-            </div>
 
-            <div class="detailProduct__img--list">
-                
-                  <button class="btn-open-modal">
-                                    {{#activeFirstProuctImg}}
-                                         {{productInfor}}
-                                     {{/activeFirstProuctImg}}           
-                 </button>
-             
+                        {{/each}}
 
-                   
-            </div>
-        </div>
-        <div class="col-md-5 col-sm-12 detailProduct__content">
-            <input type="hidden" id='productId' value='{{productInfor._id}}'>
-            <h1 class="detailProduct__content--name border-bottom">
-                {{productInfor.productName}}
-                <div class='detailProduct__content--name-des'>
-                    <div class='detailProduct__content--name-des__wraper'>Phân loại:
-                        <h5 class='detailProduct__content--name-des__content'>  {{productInfor.category}}
-                            
-                        </h5> 
-                        <span>|</span>
                     </div>
 
-                    <div class='detailProduct__content--name-des__wraper'>Mã SP:<h5 class='detailProduct__content--name-des__content'>{{productInfor.productCode}}</h5> 
+
+                    <!-- =========================
+                        THUMBNAILS DESKTOP
+                    ========================== -->
+
+                    <div class="detailProduct__gallery-thumbnails">
+
+                        {{#each productInfor.productImg}}
+
+                            <button
+                                type="button"
+                                class="detailProduct__gallery-thumbnail {{#if @first}}active{{/if}}"
+                                data-index="{{@index}}">
+
+                                <img
+                                    src="{{this}}"
+                                    alt="{{../productInfor.productName}}"
+                                    loading="lazy"
+                                >
+
+                            </button>
+
+                        {{/each}}
+
                     </div>
 
-                    
                 </div>
-            </h1>
 
-            <h2 class="detailProduct__content--price border-bottom">
-                   {{#if productInfor.sale includeZero=false}}
-                        <span class='product__newPrice detailProduct__price' data-price='{{productInfor.productSalePrice}}'>{{number
-                            productInfor.productSalePrice
-                          }}₫</span>
-                        <span class='product__oldPrice detailProduct__price'>{{number productInfor.productPrice}}₫</span>
-                        <div class="productDetail__sale--percent p-2 bg-red">
-                            <span class=''>Giảm {{productInfor.sale}}% </span>
-                        </div>
-                        
-                        
-                        {{else}}
-                        <span class='product__oldPrice--notsale detailProduct__price' data-price='{{productInfor.productPrice}}'>{{number productInfor.productPrice}}₫
-                            
+            </div>
+     
+<div class="col-md-7 col-sm-12 detailProduct__content">
+
+    <input type="hidden" id="productId" value="{{productInfor._id}}">
+
+    <!-- ================= PRODUCT HEADER ================= -->
+    <div class="product-detail__header">
+
+        <div class="product-detail__category">
+            <span>{{productInfor.category}}</span>
+            <i class="fa-solid fa-circle"></i>
+            <span>Mã SP: {{productInfor.productCode}}</span>
+        </div>
+
+        <h1 class="product-detail__name">
+            {{productInfor.productName}}
+        </h1>
+
+    </div>
+
+
+    <!-- ================= PRICE ================= -->
+    <div class="product-detail__price-box">
+
+        {{#if productInfor.sale includeZero=false}}
+
+            <div class="product-detail__price-main">
+
+                <span
+                    class="product__newPrice detailProduct__price"
+                    data-price="{{productInfor.productSalePrice}}">
+                    {{number productInfor.productSalePrice}}₫
+                </span>
+
+                <span class="product__oldPrice detailProduct__price">
+                    {{number productInfor.productPrice}}₫
+                </span>
+
+                <span class="product-detail__discount">
+                    -{{productInfor.sale}}%
+                </span>
+
+            </div>
+
+            <div class="product-detail__saving">
+                <i class="fa-solid fa-tag"></i>
+                Tiết kiệm
+                {{number
+                    (subtract
+                        productInfor.productPrice
+                        productInfor.productSalePrice
+                    )
+                }}₫
+            </div>
+
+        {{else}}
+
+            <div class="product-detail__price-main">
+
+                <span
+                    class="product__oldPrice--notsale detailProduct__price"
+                    data-price="{{productInfor.productPrice}}">
+                    {{number productInfor.productPrice}}₫
+                </span>
+
+            </div>
+
+        {{/if}}
+
+
+        {{#if productInfor.isPreOrder}}
+
+            <div class="product-detail__preorder">
+                <span class="product-detail__preorder-icon">
+                    <i class="fa-regular fa-calendar-check"></i>
+                </span>
+
+                <div>
+                    <strong>Đặt trước sản phẩm</strong>
+                    <small>Vui lòng đặt trước 1 ngày để shop chuẩn bị sản phẩm.</small>
+                </div>
+            </div>
+
+        {{/if}}
+
+    </div>
+
+
+    <!-- ================= PROMOTION ================= -->
+    <div class="product-detail__promotion">
+
+        <div class="product-detail__section-title">
+
+            <span class="product-detail__section-icon">
+                <i class="fa-solid fa-gift"></i>
+            </span>
+
+            <span>Ưu đãi dành cho bạn</span>
+
+        </div>
+
+
+        <div class="product-detail__promotion-list">
+
+            <div class="product-detail__promotion-item">
+
+                <span class="promotion-check">
+                    <i class="fa-solid fa-check"></i>
+                </span>
+
+                <div>
+                    <strong>MIỄN PHÍ SHIP</strong>
+                    <span>
+                        Đơn hàng từ 500.000₫ trong bán kính 6km
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="product-detail__promotion-item">
+
+                <span class="promotion-check">
+                    <i class="fa-solid fa-check"></i>
+                </span>
+
+                <div>
+                    <strong>MIỄN PHÍ CHỈNH SỬA</strong>
+                    <span>
+                        Hỗ trợ chỉnh sửa nếu bạn chưa ưng ý sản phẩm, hỗ trợ tối đa trong khả năng của shop
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= COLOR + QUANTITY ================= -->
+    <div class="product-detail__options">
+
+        <!-- COLOR -->
+        <div class="product-detail__option">
+
+            <div class="product-detail__option-label">
+                <span>Màu sắc</span>
+            </div>
+
+            <div class="product-detail__color">
+
+                <span
+                    class="product-detail__color-circle"
+                    data-color="{{productInfor.productColor}}"
+                    style="background-color:{{productInfor.productColor}}">
+                </span>
+
+                <span class="product-detail__color-code">
+                    {{productInfor.productColor}}
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- QUANTITY -->
+        <div class="product-detail__option product-detail__quantity">
+
+            <div class="product-detail__option-label">
+                <span>Số lượng</span>
+            </div>
+
+            <div class="quantity-control">
+
+                <button
+                    type="button"
+                    onclick="minusQuantity()"
+                    class="quantity-control__btn">
+                    <i class="fa-solid fa-minus"></i>
+                </button>
+
+                <input
+                    type="text"
+                    id="quantity"
+                    name="quantity"
+                    value="1"
+                    min="1"
+                    class="quantity-control__input"
+                    disabled>
+
+                <button
+                    type="button"
+                    onclick="plusQuantity()"
+                    class="quantity-control__btn">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= CTA ================= -->
+    <div class="product-detail__actions">
+
+        <button
+            type="button"
+            class="addToCart-btn product-detail__add-cart"
+            data-toggle="modal"
+            data-target="#cartModal"
+            data-whatever="{{productInfor}}">
+
+            <span class="product-detail__add-cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </span>
+
+            <span>
+                <strong>Thêm vào giỏ hàng</strong>
+                <small>Tiếp tục mua sắm</small>
+            </span>
+
+            <i class="fa-solid fa-arrow-right product-detail__arrow"></i>
+
+        </button>
+
+    </div>
+
+
+    <!-- ================= QUICK ORDER ================= -->
+    <div class="product-detail__quick-order">
+
+        <div class="quick-order__icon">
+            <i class="fa-solid fa-phone"></i>
+        </div>
+
+        <div class="quick-order__content">
+
+            <strong>Đặt hàng nhanh</strong>
+
+            <span>
+                Gọi ngay
+                <a href="tel:{{hotline}}">
+                    {{hotline}}
+                </a>
+                để được hỗ trợ
+            </span>
+
+        </div>
+
+        <i class="fa-solid fa-chevron-right"></i>
+
+    </div>
+
+
+    <!-- ================= ORDER NOTE ================= -->
+    <div class="product-detail__note">
+
+        <div class="product-detail__note-icon">
+            <i class="fa-brands fa-facebook-f"></i>
+        </div>
+
+        <div class="product-detail__note-content">
+
+            <strong>Sản phẩm cần đặt trước?</strong>
+
+            <p>
+                Với những sản phẩm cần order, bạn vui lòng liên hệ
+                <a
+                    href="https://www.facebook.com/profile.php?id=100079283596226"
+                    target="_blank">
+                    Fanpage Nhất Tâm Hoa
+                </a>
+                để được nhân viên hỗ trợ đặt trước và thông báo ngay khi có hàng.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= SHIPPING ================= -->
+    <div class="product-detail__benefits">
+
+        <div class="product-detail__benefit">
+
+            <span>
+                <i class="fa-solid fa-truck-fast"></i>
+            </span>
+
+            <div>
+                <strong>Miễn phí giao hàng</strong>
+                <small>Đơn từ 500.000₫ · Bán kính 6km</small>
+            </div>
+
+        </div>
+
+
+        <div class="product-detail__benefit">
+
+            <span>
+                <i class="fa-solid fa-shield-heart"></i>
+            </span>
+
+            <div>
+                <strong>Hỗ trợ tận tâm</strong>
+                <small>Luôn sẵn sàng hỗ trợ bạn</small>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= CART MODAL ================= -->
+    <div
+        class="modal right fade"
+        id="cartModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="cartModalLabel2">
+
+        <div class="modal-dialog" role="document">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h4 class="modal-title" id="cartModalLabel2">
+                        Giỏ hàng
+                    </h4>
+
+                    <button
+                        type="button"
+                        class="close close-cartModal-btn"
+                        data-dismiss="modal"
+                        aria-label="Close">
+
+                        <span aria-hidden="true">
+                            <i class="fa-solid fa-circle-xmark"></i>
                         </span>
 
-                      {{/if}}
+                    </button>
 
-
-                      {{#if productInfor.isPreOrder}}
-                            <div class="productDetail__preOrder p-2">
-                                <div class="productDetail__sale--percent">
-                                    <span>
-                                        Đặt trước 1 ngày
-                                </span>
-                                </div>
-                            </div>
-                        {{/if}}
-            </h2>
-
-            <div class="promotion py-3 border-bottom ">
-                <h6 class="promotion__title detailProduct__content--title"> <img class='hiddenonMobile' src="/img/Icons/sale-tag.png" alt="">Khuyến mãi :</h6>
-                <div class='productColor__content-promotion'>
-                    <p><img class='icon-small' src="/img/Icons/hot-sale.png" alt=""> <b>MIỄN PHÍ SHIP</b> đơn hàng từ 500.000 VND Bán kính 6km</p>
-                    {{!-- <ul class='content-promotion__list'>
-                        <li class='content-promotion__item'>
-                           <img class='icon-small' src="/img/Icons/hot-sale.png" alt=""></h6> <b>Giảm 50k</b> đơn hàng từ 1.000.000 VND
-                        </li>
-                        <li class='content-promotion__item'>
-                            <img class='icon-small' src="/img/Icons/hot-sale.png" alt=""></h6> <b>Giảm 100k</b>  đơn hàng từ 1.500.000 VND
-                        </li>
-                        <li class='content-promotion__item'>
-                            <img class='icon-small' src="/img/Icons/hot-sale.png" alt=""></h6> <b>Giảm 150k</b> đơn hàng từ 2.000.000 VND
-
-                        </li>
-                    </ul> --}}
-                    <p class='content-promotion__item'><img class='icon-small' src="/img/Icons/hot-sale.png" alt=""><b>Miễn phí</b> chỉnh sửa nếu khách hàng chưa ưng ý về sản phẩm</p>
                 </div>
 
-                {{!-- <div class="promotion__content ">
-                     <p>
-                        <a class="btn btn-primary promotion__btn bg-orange" data-toggle="collapse" href="#salecode" role="button" aria-expanded="false" aria-controls="salecode">
-                            Nhập mã FREESHIP miễn phí giao hàng >
-                        </a>
-             
+
+                <div class="modal-body">
+
+                    <p class="cart__quality text-center mt-4 mb-5">
+                        Bạn có
+                        <span class="cart__quality--number"></span>
+                        sản phẩm trong giỏ hàng
                     </p>
-                    <div class="collapse" id="salecode">
-                    <div class="card card-body">
-                        Nhập mã <span class='text-orange'>FREESHIP</span> miễn phí giao hàng khi mua đơn hàng từ 400,000 đ áp dụng từ ngày 22/08 - 31/08. Chương trình không áp dụng với các chương trình khuyến mãi khác.
-                    </div>
+
+                    <ul class="cart__list"></ul>
+
+
+                    <div class="d-flex justify-content-between my-5">
+
+                        <span class="font-weight-bold">
+                            TỔNG TIỀN
+                        </span>
+
+                        <span class="cart__total--money"></span>
+
                     </div>
 
-                </div> --}}
+
+                    <div class="cartBtn__container justify-content-between">
+
+                        <a href="/cart">
+                            {{> slideBtn title="Xem giỏ hàng"}}
+                        </a>
+
+                        <span>
+                            {{> slideBtn title="Thanh toán" class="pay__btn"}}
+                        </span>
+
+                    </div>
+
+                </div>
+
             </div>
 
-            {{!-- <div class="selectSize py-3 border-bottom">
-                <h6 class="selectSize__title detailProduct__content--title">Chọn size
-                    <p><a href='/policy/chon-size' class='mt-3 text-danger' target="_blank">Hướng dẫn chọn size</a>
-                <p ></p>
-                </h6>
-                <ul class="selectSize__btn--list">
-                    {{#activeFirstSize}}{{productInfor}}{{/activeFirstSize}}
-                </ul>
-                
-            </div> --}}
+        </div>
 
-            <div class="productColor py-3 border-bottom">
-                <h6 class="productColor__title detailProduct__content--title">Màu sắc</h6>
-                <div class="productColor__content">
+    </div>
 
-                      <div  style= "background-color:{{productInfor.productColor}}" class=" productColor__text text-center m-0 p-2 text-uppercase font-weight-bold" ></div>
-                    </div>
-                </div>
-            
-              <div class="selector-actions">
-                <div class="quantity-area clearfix">
-                    <input type="button" value="-" onclick="minusQuantity()" class="qty-btn">
-                    <input type="text" id="quantity" name="quantity" value="1" min="1" class="quantity-selector"  disabled="disabled">
-                    <input type="button" value="+" onclick="plusQuantity()" class="qty-btn">
-                </div>
-                
-                {{!-- <div class='mt-4'>
-                    {{> slideBtn title="Thêm vào giỏ hàng"}}
-                </div> --}}
-                <button style='color:white' type="button" class="addToCart-btn btn btn-demo btn-lg btn-warning" data-toggle="modal" data-target="#cartModal" data-whatever="{{productInfor}}">
-			            Thêm vào giỏ hàng
-		        </button>
+</div>
 
-                <!-- Modal -->
-                    <div class="modal right fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel2">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-
-                                <div class="modal-header">
-                                    <h4 class="modal-title" id="cartModalLabel2">Giỏ hàng</h4>
-                                    <button type="button" class="close close-cartModal-btn" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true"><i class="fa-solid fa-circle-xmark"></i></span>
-                                    <button>
-                                </div>
-
-                                <div class="modal-body">
-                                     <p class='cart__quality text-center  mt-4 mb-5'>Bạn có 
-                                         <span class='cart__quality--number'></span> sản phẩm trong giỏ hàng</p>
-                                    <ul class="cart__list">
-                                    </ul>
-                                    <div class="d-flex justify-content-between my-5">
-                                        <span class='font-weight-bold'>TỔNG TIỀN</span> <span class='cart__total--money'></span>
-                                    </div>
-                                    <div class="cartBtn__container justify-content-between">
-                                        <a href="/cart">{{> slideBtn title="Xem giỏ hàng"}}</a>
-
-                                        <span href="">
-                                             {{> slideBtn title="Thanh toán" class="pay__btn"}}
-                                        </span>
-                                        
-                                           
-                                    </div>
-
-                                </div>
-
-                            </div><!-- modal-content -->
-                        </div><!-- modal-dialog -->
-                    </div>
-                <!-- modal -->
-                
-                <p class='mt-4'>Đối với các sản phẩm cần phải order, bạn vui lòng liên qua <strong><a href="https://www.facebook.com/profile.php?id=100079283596226" target="_blank" >Fanpage Nhất Tâm Hoa</a></strong>  để được nhân viên hỗ trợ đặt trước sản phẩm và sẽ liên hệ với bạn ngay khi có hàng</p>
-
-              
-                    
-                    Gọi <a href="tel:{{hotline}}">{{hotline}}</a> để mua hàng nhanh hơn
-                    Miễn phí giao hàng cho đơn hàng từ 500k - Bán kính 6km
-                </p>
-			</div>
-            
-              
-            </div>
 
             
 
@@ -210,159 +519,134 @@
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="productDesc-tab" data-toggle="pill" data-target="#productDesc" type="button" role="tab" aria-controls="productDesc" aria-selected="true">Mô tả sản phẩm</button>
                     </li>
+                 
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="returnPolicy-tab" data-toggle="pill" data-target="#returnPolicy" type="button" role="tab" aria-controls="returnPolicy" aria-selected="false">Chính sách đổi trả</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pstorageInstructions-tab" data-toggle="pill" data-target="#pstorageInstructions" type="button" role="tab" aria-controls="pstorageInstructions" aria-selected="false">Hướng dẫn bảo quản</button>
+                        <button class="nav-link" id="pstorageInstructions-tab" data-toggle="pill" data-target="#pstorageInstructions" type="button" role="tab" aria-controls="pstorageInstructions" aria-selected="false">Chăm sóc hoa</button>
                     </li>
                 </ul>
                 <div class="tab-content" id="pills-tabCotent">
                 <div class="tab-pane fade show active" id="productDesc" role="tabpanel" aria-labelledby="productDesc-tab">
                     <div class="description-productdetail productDesc hide">
-                             <p>
-                                {{productInfor.productName}}
-                            </p>
-                            <p>SHOP ĐẢM BẢO và CAM KẾT CHO CÁC BẠN</p>
-                            <p>🏆 Về sản phẩm: Cam kết chất lượng sản phẩm tốt nhất trong tầm giá</p>
-                            <p>
-                                🏆 Dịch vụ: Hỗ trợ đổi trả hàng thoải mái trong 7 ngày, dịch vụ vệ giày miễn phí trọn đời
-                            </p>
 
-                            <p>
-                                🏆 Thời gian giao hàng : Hàng luông có sẵn thời gian vận chuyển tối đa 7 ngày kể từ ngày đơn hàng được xác nhận
-                            </p>
+    <p>
+        🌸 <b>{{productInfor.productName}}</b>
+    </p>
 
-                            <p>
-                                ------------------------------------------------.
-                            </p>
+    <p>
+        Một thiết kế hoa được <b>Nhất Tâm Hoa</b> chăm chút từ khâu chọn hoa
+        đến cách phối màu, mang vẻ đẹp tự nhiên và tinh tế, phù hợp để gửi
+        tặng trong những dịp đặc biệt.
+    </p>
 
-                            <p>
-                                    Tên sản phẩm: <span>
-                                        {{productInfor.productName}}
-                                    </span>
-                            </p>
-            
-     
-                            <p>
-                                ------------------------------------------------.
-                            </p>
+    <p>
+        ✔️ <b>Loại hoa:</b> {{productInfor.category}}
+    </p>
 
-                            <p>
-                                    Thông tin sản phẩm
-                            </p>
+    <p>
+        ✔️ <b>Màu sắc:</b> {{productInfor.productColor}}
+    </p>
 
-                            <p>
-                                ✔️Thương hiệu: <span>{{productInfor.category}}</span>
-                            </p>
-                            <p>
-                                ✔️Màu sắc: <span>{{productInfor.productColor}}</span>
-                            </p>
-                            
-                            <p>
-                                ✔️Kích thước: <span>
-                                    {{#each productInfor.productSize}}
-                                        {{this}}
-                                    {{/each}}
-                                </span>
-                            </p>
-                        {{#each productInfor.productDescription}}
-                            
-                            <p>
-                              {{this.descText}}
-                            </p>
-                            
-                            
-                        {{/each}}
-                        <p>✔️Đối tượng: Mọi người , phù hợp nhất với các bạn học sinh, sinh viên đam mê sneaker</p>
-                        <p>
-                            ✔️Mùa thích hợp: Thời trang cả năm
-                        </p>
-                        <p>
-                            ✔️Freeship : Miễn phí vận chuyển trên toàn quốc
-                        </p>
-                        <p>
-                            ----------------------------------------------------.
-                        </p>
+    {{#each productInfor.productDescription}}
+        <p>{{this.descText}}</p>
+    {{/each}}
 
-                        <p>  Qana Sneaker luôn mong muốn mang lại những sản phẩm chất lượng và phù hợp nhất cho khách hàng , Shop sẵn sàng hỗ trợ khách hàng tư vấn để tìm ra nhu cầu của khách để có cho mình sản phẩm phù hợp nhất</p>
+    <p>
+        ✔️ <b>Phù hợp:</b> Sinh nhật, kỷ niệm, chúc mừng, khai trương
+        hoặc những dịp muốn gửi trao yêu thương.
+    </p>
 
-                        <p>
-                             🚛 Free Ship - Chất lượng đảm bảo - Phục vụ tận tâm
-                        </p>
+    <p>
+        ✔️ <b>Lưu ý:</b> Hoa là sản phẩm tự nhiên nên màu sắc, kích thước
+        và độ nở có thể thay đổi nhẹ tùy từng thời điểm, nhưng Nhất Tâm Hoa
+        luôn đảm bảo sự hài hòa và chỉn chu của sản phẩm.
+    </p>
 
-                         <p>
-                                {{productInfor.productName}}
-                            </p>
-                         <p>
-                                 Xuất xứ: Trung Quốc
-                         </p>
+    <p>
+        🚚 <b>Giao hàng:</b> Hỗ trợ giao hoa nhanh tại TP. Hồ Chí Minh
+        và các khu vực lân cận.
+    </p>
 
-                         <p>
-                            Cảm ơn quý khách đã ghé thăm và ủng hộ Shop.
-                         </p>
-                         <p>
-                            📣📣📣 Giỏ hàng ở góc trên bên phải còn chần chờ gì nữa mà không chốt đơn ngay thôi nào
-                         </p>
+    <p>
+        ❤️ <b>Nhất Tâm Hoa</b> trân trọng từng khoảnh khắc bạn muốn gửi gắm
+        qua một đóa hoa.
+    </p>
 
-                         
-                    </div>
+</div>
                    
                  
                     
                 </div>
-                <div class="tab-pane fade" id="returnPolicy" role="tabpanel" aria-labelledby="returnPolicy-tab">
-                    <div class="description-productdetail">
-                            {{> policy-replacement}}  
-                    </div>
-                </div>
+
                 <div class="tab-pane fade" id="pstorageInstructions" role="tabpanel" aria-labelledby="pstorageInstructions-tab">
-                    <div class="description-productdetail">
-                        <p>
-                              👟👟 Để giày của bạn luôn được giữ gìn và sử dụng lâu dài, dưới đây là một số hướng dẫn bảo quản giày mà bạn có thể tham khảo:
-                        </p>
-                       
+                 <div class="description-productdetail">
 
-                       <p>
-                            ✔️ Đọc kỹ nhãn chỉ dẫn: Mỗi đôi giày đều có những yêu cầu riêng về cách bảo quản và vệ sinh. Hãy đọc kỹ nhãn chỉ dẫn để biết cách chăm sóc giày của bạn đúng cách.
-                       </p>
+    <p>
+        🌸🌸 Để hoa luôn giữ được vẻ đẹp tươi tắn và thời gian sử dụng lâu hơn,
+        dưới đây là một số hướng dẫn chăm sóc hoa mà bạn có thể tham khảo:
+    </p>
 
-                        
-                        <p>
-                            ✔️ Làm sạch giày thường xuyên: Nếu để bụi bẩn và mồ hôi tích tụ trên giày, chúng sẽ gây ảnh hưởng đến chất lượng và độ bền của giày. Vì vậy, hãy làm sạch giày của bạn thường xuyên bằng cách lau chùi bằng khăn ẩm hoặc bàn chải mềm.
+    <p>
+        ✔️ <b>Đặt hoa ở nơi thoáng mát:</b> Nên đặt hoa ở nơi thoáng mát,
+        tránh ánh nắng trực tiếp, nơi có nhiệt độ cao hoặc gần các thiết bị
+        tỏa nhiệt. Điều này giúp hoa hạn chế bị mất nước và giữ được độ tươi lâu hơn.
+    </p>
 
-                        </p>
+    <p>
+        ✔️ <b>Hạn chế thay đổi môi trường đột ngột:</b> Khi mới nhận hoa,
+        nên để hoa ổn định trong môi trường mát trước khi thực hiện các bước
+        chăm sóc khác. Tránh đặt hoa ngay dưới nắng hoặc trong môi trường quá nóng.
+    </p>
 
-                        <p>
-                            ✔️ Bảo quản giày ở nơi thoáng mát và khô ráo: Không bao giờ để giày ở nơi ẩm ướt hoặc đầy nắng nóng. Hãy bảo quản giày của bạn ở nơi thoáng mát và khô ráo để tránh tình trạng giày bị nấm mốc hoặc bong tróc.
-                        </p>
+    <p>
+        ✔️ <b>Giữ nước luôn sạch đối với hoa cắm bình:</b> Thường xuyên kiểm tra
+        lượng nước và thay nước khi cần thiết. Khi thay nước, nên vệ sinh nhẹ
+        phần bình để hạn chế vi khuẩn ảnh hưởng đến độ tươi của hoa.
+    </p>
 
-                        <p>
-                            ✔️ Sử dụng chất tẩy rửa đúng loại: Khi sử dụng chất tẩy rửa để vệ sinh giày, hãy chọn loại phù hợp với chất liệu của giày. Đừng sử dụng chất tẩy rửa có chứa hoá chất mạnh hoặc tẩy trắng, vì chúng có thể làm hỏng chất liệu và làm giảm độ bền của giày.
-                        </p>
+    <p>
+        ✔️ <b>Cắt tỉa phần cành hoa:</b> Đối với hoa cắm bình, có thể cắt vát
+        phần gốc cành một góc khoảng 45° trước khi cắm hoặc khi thay nước.
+        Việc này giúp cành hoa dễ dàng hút nước hơn.
+    </p>
 
-                        <p>
-                             ✔️ Bảo quản giày trong hộp hoặc túi đựng giày: Để bảo vệ giày khỏi bụi bẩn và các tác nhân bên ngoài khác, bạn nên bảo quản giày trong hộp hoặc túi đựng giày sau khi sử dụng.
-                        </p>
+    <p>
+        ✔️ <b>Loại bỏ hoa và lá đã héo:</b> Thường xuyên kiểm tra và nhẹ nhàng
+        loại bỏ những cánh hoa, lá hoặc phần hoa đã héo để giữ tổng thể bó hoa
+        luôn sạch đẹp và hạn chế ảnh hưởng đến những bông hoa còn tươi.
+    </p>
 
-                        <p> 
-                            
-                            ✔️ Thay đổi đôi giày: Không nên sử dụng cùng một đôi giày liên tục trong nhiều ngày liên tiếp. Hãy thay đổi đôi giày để giúp chúng được thoải mái và tránh bị hư hỏng.
-                        </p>
+    <p>
+        ✔️ <b>Không đặt hoa gần trái cây:</b> Một số loại trái cây khi chín
+        có thể tạo ra khí ethylene, làm hoa nhanh héo hơn. Vì vậy, nên đặt hoa
+        cách xa khu vực bảo quản trái cây.
+    </p>
 
-                        <p>
-                                   ❤️❤️ Hy vọng những hướng dẫn bảo quản giày trên sẽ giúp bạn giữ cho giày của mình luôn mới và bền bỉ.
-                        </p>
-                        
-                        
+    <p>
+        ✔️ <b>Hạn chế tác động mạnh lên hoa:</b> Hoa có cấu tạo tự nhiên khá
+        mỏng manh, vì vậy nên hạn chế va chạm, bóp hoặc di chuyển hoa quá nhiều
+        để tránh làm gãy cành, dập cánh hoặc ảnh hưởng đến kiểu dáng ban đầu.
+    </p>
 
-                        
+    <p>
+        ✔️ <b>Đối với hoa bó và hoa hộp:</b> Nên giữ nguyên cách sắp xếp và
+        hạn chế tháo bó hoặc thay đổi cấu trúc của sản phẩm nếu không cần thiết.
+        Đặt hoa ở nơi khô ráo, thoáng mát và tránh ánh nắng trực tiếp.
+    </p>
 
-                       
+    <p>
+        ✔️ <b>Chăm sóc nhẹ nhàng mỗi ngày:</b> Một chút quan tâm và chăm sóc
+        đúng cách sẽ giúp hoa duy trì màu sắc, hình dáng và vẻ đẹp tự nhiên
+        trong thời gian lâu hơn.
+    </p>
 
+    <p>
+        ❤️❤️ Hy vọng những hướng dẫn chăm sóc hoa trên sẽ giúp bạn giữ cho
+        món hoa của mình luôn tươi đẹp và trọn vẹn trong suốt thời gian sử dụng.
+        <b>Nhất Tâm Hoa</b> chúc bạn luôn có những khoảnh khắc thật đẹp
+        cùng những đóa hoa yêu thương.
+    </p>
 
-                    
-                    </div>
+</div>
                 </div>
                 </div>
 
@@ -400,7 +684,7 @@
             </div>
         </div>
         <div class="col-12">
-            <h3 class='collection__header-link'>Sản Phẩm Liên Quan</h3>
+            <h3 class='collection__header-link'>Có thể bạn sẽ thích</h3>
             <div class="row mt-5 pt-5 mb-4">
                 
                 {{#each products}}
@@ -430,23 +714,23 @@
       <div class="modal-body">
             <div id="ProductImgZoom" class="carousel slide" data-ride="carousel">
                 <button type="button" class="close closeBtn" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true"><i class="closeBtn__icon fa-regular fa-circle-xmark"></i></span>
+                <span aria-hidden="true"><i class="closeBtn__icon fa-solid fa-xmark"></i></span>
                 </button>  
 
-                  <ol class="carousel-indicators">
-                    {{#each productInfor.productImg}} 
-
-                    <li data-target="#ProductImgZoom" data-slide-to="{{@index}}" class=""></li>
-            
+                 <ol class="carousel-indicators">
+                    {{#each productInfor.productImg}}
+                        <li
+                            data-target="#ProductImgZoom"
+                            data-slide-to="{{@index}}"
+                            class="{{#if @first}}active{{/if}}">
+                        </li>
                     {{/each}}
-
                 </ol>
                 <div class="carousel-inner">   
 
-                    {{#each productInfor.productImg}} 
-                    
-                         <div class="carousel-item">
-                            <img class="d-block" src="{{this}}" alt="First slide">
+                   {{#each productInfor.productImg}}  
+                        <div class="carousel-item {{#if @first}}active{{/if}}">
+                            <img class="d-block" src="{{this}}" alt="Product image">
                         </div>
                     {{/each}}
          
@@ -502,195 +786,1590 @@
 
 <script>
 
+    /* =========================================================
+       1. CHỌN SIZE
+       ========================================================= */
 
     const selectSizeBtns = document.querySelectorAll('.selectSize__btn--item');
-   
-    //Select size
-    selectSizeBtns.forEach((item)=> {
-        item.addEventListener('click',(e)=> {
-            document.querySelector('.selectSize__btn--item.active').classList.remove('active');
-            e.target.classList.add('active');
-        })
-    })
 
-    // Change IMG main
+    if (selectSizeBtns.length > 0) {
 
-    const productImgList = document.querySelectorAll('.detailProduct__img--item');
+        selectSizeBtns.forEach((item) => {
 
-    function changeActiveImg (e) {
-            const imgActiveElement = document.querySelector('.detailProduct__img--item.active');
+            item.addEventListener('click', (e) => {
 
-            imgActiveElement && imgActiveElement.classList.remove('active');
+                const activeSize = document.querySelector('.selectSize__btn--item.active');
 
-            e.target.classList.add('active');
-            document.querySelector('.detailProduct__img--main img').src=e.target.src;
-    }
-
-    productImgList.forEach((item) => {
-        item.addEventListener('click', (e) => {
-            changeActiveImg(e);
-        })
-    })
-    productImgList.forEach((item) => {
-        item.addEventListener('dblclick', (e) => {
-            $('#ProductImgZoomModal').modal('show')
-        })
-    })
-   
-    // Active img main
-    productImgList.forEach((item)=> {
-        item.addEventListener('mouseover',(e)=> {
-            e.stopPropagation();
-            changeActiveImg(e)
-
-        })
-    })
-
-    //changeProductQuantity
-     
-       
-        function plusQuantity() {
-            const currentQuantity = document.getElementById('quantity').value;
-
-            document.getElementById('quantity').value = Number(currentQuantity) + 1;
-            
-        }
-        function minusQuantity() {
-
-        
-            const currentQuantity = Number(document.getElementById('quantity').value);
-            
-            if(currentQuantity > 1) {
-                document.getElementById('quantity').value =currentQuantity - 1;
-
-            }
-            
-        }
-
-
-   
-
-   
-    // show modal cart
-    $('#cartModal').on('show.bs.modal',async function (event) {
-        var button = $(event.relatedTarget) 
-
-       
-
-        const cartItemId = document.querySelector('#productId').value;
-
-        const productInfor =await fetch(`/products/infor/${cartItemId}`).then((res)=> {
-            return res.json();
-        }).then(productInfor=> {
-            return productInfor
-        })
-
-        const cartItemImgUrl = `{{productAvatar}}`
-
-        const cartItemName = document.querySelector('.detailProduct__content--name').innerText;
-
-        const cartItemSize = Number(document.querySelector('.selectSize__btn--item.active').textContent);
-
-        const cartItemColor = document.querySelector('.productColor__text').textContent;
-
-        const cartItemAmount = Number(document.getElementById('quantity').value);
-
-        const cartItemPrice = Number(document.querySelector('.detailProduct__price').dataset.price);
-
-      
-
-        const cartItemPriceString =  numberToMoney(cartItemPrice);
-
-
-
-        const cartItemInfor = {
-            cartItemId,
-            cartItemImgUrl,
-            cartItemName,
-            cartItemSize,
-            cartItemColor,
-            cartItemAmount,
-            cartItemPrice,
-            cartItemSlug: productInfor.slug,
-            cartItemPriceString,
-        }
-
-        // Add item to cart list in localstorage
-
-
-           const localListCart = JSON.parse(localStorage.getItem('cartProductList'));
-
-           if(localListCart !== null) {
-                const haveStoraged = localListCart.some((item)=> item.cartItemId === cartItemInfor.cartItemId && item.cartItemSize === cartItemInfor.cartItemSize);
-
-
-                if(haveStoraged) {
-                        localListCart.map(item=> {
-                            if(item.cartItemId === cartItemInfor.cartItemId) {
-                                item.cartItemAmount = item.cartItemAmount + cartItemAmount
-                            }
-                            return item
-                        })
-                }
-                else {
-                    localListCart.push(cartItemInfor)
+                if (activeSize) {
+                    activeSize.classList.remove('active');
                 }
 
-                // save to store
-                localStorage.setItem('cartProductList',JSON.stringify(localListCart))
+                e.currentTarget.classList.add('active');
 
-                // render UI
-                renderListCart(localListCart)
-           }
-                
-           else {
-              localStorage.setItem('cartProductList',JSON.stringify([cartItemInfor]))
-              renderListCart([cartItemInfor])
-           }
+            });
 
-        
-
-        var modal = $(this)
-        // modal.find('.modal-title').text('New message to ' + recipient)
-
-      //  modal.find('.modal-body input').val(productInfor)
-
-        })
-
-    // Auto update cart item when have change
-
-   
-
-        $('#ProductImgZoomModal').on('show.bs.modal', function (e) {
-
-            const activeImgIndex = Number(document.querySelector('.detailProduct__img--item.active').dataset.index);
-
-
-            const carouselInnerElement = document.querySelectorAll('#ProductImgZoom .carousel-inner .carousel-item');
-            
-            const carouselDotsElemement = document.querySelectorAll('#ProductImgZoom .carousel-indicators li');
-
-            function addActiveClassFunction (elements) {
-             elements.forEach((item,index)=> {
-                if(index === activeImgIndex) {
-                    item.classList.add('active');
-                }
-                else {
-                    item.classList.remove('active');
-                }
-            })
-            }
-            addActiveClassFunction(carouselInnerElement);
-            addActiveClassFunction(carouselDotsElemement);
-
-         
-
-        })
-
-        $('#ProductImgZoom').carousel({
-            interval: false,
         });
 
+    }
+
+
+    /* =========================================================
+       2. PRODUCT IMAGE GALLERY
+       
+       - Mobile: vuốt trái/phải
+       - Desktop: click thumbnail
+       - Dấu chấm trên mobile
+       - Nút Previous / Next
+       ========================================================= */
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+        const gallery = document.querySelector('.detailProduct__gallery');
+
+        // Nếu trang không có gallery thì dừng
+        if (!gallery) return;
+
+
+        const slides = gallery.querySelectorAll(
+            '.detailProduct__gallery-slide'
+        );
+       
+
+        const dots = gallery.querySelectorAll(
+            '.detailProduct__gallery-dot'
+        );
+
+        const thumbnails = gallery.querySelectorAll(
+            '.detailProduct__gallery-thumbnail'
+        );
+        const gallerySlides = gallery.querySelectorAll(
+            '.detailProduct__gallery-slide'
+        );
+
+        const prevButton = gallery.querySelector(
+            '.detailProduct__gallery-arrow--prev'
+        );
+
+        const nextButton = gallery.querySelector(
+            '.detailProduct__gallery-arrow--next'
+        );
+
+
+        // Không có ảnh thì dừng
+        if (!slides.length) return;
+
+
+        let currentIndex = 0;
+
+        let touchStartX = 0;
+        let touchStartY = 0;
+
+        let touchEndX = 0;
+        let touchEndY = 0;
+
+
+        /* ---------------------------------------------------------
+           Hiển thị ảnh
+           --------------------------------------------------------- */
+
+        function showSlide(index) {
+
+            // Nếu index nhỏ hơn 0
+            if (index < 0) {
+                index = slides.length - 1;
+            }
+
+            // Nếu index lớn hơn ảnh cuối
+            if (index >= slides.length) {
+                index = 0;
+            }
+
+            currentIndex = index;
+
+
+            /* Active ảnh chính */
+
+            slides.forEach((slide, i) => {
+
+                slide.classList.toggle(
+                    'active',
+                    i === currentIndex
+                );
+
+            });
+
+
+            /* Active dots */
+
+            dots.forEach((dot, i) => {
+
+                dot.classList.toggle(
+                    'active',
+                    i === currentIndex
+                );
+
+            });
+
+
+            /* Active thumbnail */
+
+            thumbnails.forEach((thumbnail, i) => {
+
+                thumbnail.classList.toggle(
+                    'active',
+                    i === currentIndex
+                );
+
+            });
+
+
+            /* Cuộn thumbnail tới ảnh đang chọn */
+
+            if (thumbnails[currentIndex]) {
+
+                thumbnails[currentIndex].scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest',
+                    inline: 'center'
+                });
+
+            }
+
+        }
+
+
+        /* ---------------------------------------------------------
+           Nút Previous
+           --------------------------------------------------------- */
+
+        if (prevButton) {
+
+            prevButton.addEventListener('click', function () {
+
+                showSlide(currentIndex - 1);
+
+            });
+
+        }
+
+
+        /* ---------------------------------------------------------
+           Nút Next
+           --------------------------------------------------------- */
+
+        if (nextButton) {
+
+            nextButton.addEventListener('click', function () {
+
+                showSlide(currentIndex + 1);
+
+            });
+
+        }
+
+
+        /* ---------------------------------------------------------
+           Click dots
+           --------------------------------------------------------- */
+
+        dots.forEach((dot) => {
+
+            dot.addEventListener('click', function () {
+
+                const index = Number(this.dataset.index);
+
+                showSlide(index);
+
+            });
+
+        });
+
+
+        /* ---------------------------------------------------------
+           Click thumbnail
+           --------------------------------------------------------- */
+
+        thumbnails.forEach((thumbnail) => {
+
+            thumbnail.addEventListener('click', function () {
+
+                const index = Number(this.dataset.index);
+
+                showSlide(index);
+
+            });
+
+        });
+                    /* =========================================================
+            CLICK ẢNH CHÍNH → MỞ MODAL ZOOM
+            ========================================================= */
+
+            gallerySlides.forEach((slide) => {
+
+                slide.addEventListener('click', function (event) {
+
+                    /*
+                    * Nếu đây là thao tác vuốt thì không mở modal.
+                    * Chỉ click bình thường mới mở.
+                    */
+
+                    const index = Number(this.dataset.index);
+
+                    // Đồng bộ ảnh đang xem
+                    showSlide(index);
+
+                    // Mở modal zoom
+                    $('#ProductImgZoomModal').modal('show');
+
+                });
+
+            });
+
+
+        /* =========================================================
+           MOBILE SWIPE
+           ========================================================= */
+
+        gallery.addEventListener(
+            'touchstart',
+            function (event) {
+
+                const touch = event.changedTouches[0];
+
+                touchStartX = touch.screenX;
+                touchStartY = touch.screenY;
+
+            },
+            {
+                passive: true
+            }
+        );
+
+
+        gallery.addEventListener(
+            'touchend',
+            function (event) {
+
+                const touch = event.changedTouches[0];
+
+                touchEndX = touch.screenX;
+                touchEndY = touch.screenY;
+
+
+                const distanceX =
+                    touchEndX - touchStartX;
+
+                const distanceY =
+                    touchEndY - touchStartY;
+
+
+                /*
+                 * Chỉ xử lý nếu người dùng vuốt ngang.
+                 *
+                 * 50px là khoảng cách tối thiểu
+                 * để tránh nhầm với click.
+                 */
+
+                if (
+                    Math.abs(distanceX) > 50 &&
+                    Math.abs(distanceX) > Math.abs(distanceY)
+                ) {
+
+                    // Vuốt sang trái → ảnh tiếp theo
+
+                    if (distanceX < 0) {
+
+                        showSlide(currentIndex + 1);
+
+                    }
+
+                    // Vuốt sang phải → ảnh trước
+
+                    else {
+
+                        showSlide(currentIndex - 1);
+
+                    }
+
+                }
+
+            },
+            {
+                passive: true
+            }
+        );
+
+
+        /* ---------------------------------------------------------
+           Hiển thị ảnh đầu tiên
+           --------------------------------------------------------- */
+
+        showSlide(0);
+
+    });
+
+
+
+    /* =========================================================
+       3. TĂNG / GIẢM SỐ LƯỢNG
+       ========================================================= */
+
+    function plusQuantity() {
+
+        const quantityInput =
+            document.getElementById('quantity');
+
+        if (!quantityInput) return;
+
+
+        const currentQuantity =
+            Number(quantityInput.value) || 1;
+
+
+        quantityInput.value =
+            currentQuantity + 1;
+
+    }
+
+
+    function minusQuantity() {
+
+        const quantityInput =
+            document.getElementById('quantity');
+
+        if (!quantityInput) return;
+
+
+        const currentQuantity =
+            Number(quantityInput.value) || 1;
+
+
+        if (currentQuantity > 1) {
+
+            quantityInput.value =
+                currentQuantity - 1;
+
+        }
+
+    }
+
+
+
+    /* =========================================================
+       4. THÊM SẢN PHẨM VÀO GIỎ HÀNG
+       ========================================================= */
+
+    $('#cartModal').on(
+        'show.bs.modal',
+        async function (event) {
+
+            const cartItemId =
+                document.querySelector('#productId')?.value;
+
+
+            if (!cartItemId) {
+                return;
+            }
+
+
+            /* -----------------------------------------------------
+               Lấy thông tin sản phẩm
+               ----------------------------------------------------- */
+
+            let productInfor;
+
+            try {
+
+                productInfor = await fetch(
+                    `/products/infor/${cartItemId}`
+                ).then((res) => {
+
+                    return res.json();
+
+                });
+
+            }
+            catch (error) {
+
+                console.error(
+                    'Không lấy được thông tin sản phẩm:',
+                    error
+                );
+
+                return;
+
+            }
+
+
+            /* -----------------------------------------------------
+               Ảnh sản phẩm
+               ----------------------------------------------------- */
+
+            const cartItemImgUrl =
+                `{{productAvatar}}`;
+
+
+            /* -----------------------------------------------------
+               Tên sản phẩm
+               ----------------------------------------------------- */
+
+            const nameElement =
+                document.querySelector(
+                    '.product-detail__name'
+                );
+
+
+            const cartItemName =
+                nameElement
+                    ? nameElement.innerText
+                    : '';
+
+
+
+            /* =====================================================
+               SIZE
+
+               Đây là code cũ của giày.
+               
+               Vì Nhất Tâm Hoa không dùng size giày,
+               nên không lấy .selectSize nữa.
+               ===================================================== */
+
+            let cartItemSize = null;
+
+            const activeSize =
+                document.querySelector(
+                    '.selectSize__btn--item.active'
+                );
+
+            if (activeSize) {
+
+                cartItemSize =
+                    Number(activeSize.textContent);
+
+            }
+
+
+
+            /* =====================================================
+               MÀU HOA
+
+               Nếu sản phẩm hoa của bạn vẫn có .productColor__text
+               thì lấy dữ liệu.
+
+               Nếu không có thì để null.
+               ===================================================== */
+
+         let cartItemColor = null;
+
+const colorElement =
+    document.querySelector('.product-detail__color-circle');
+
+if (colorElement) {
+
+    cartItemColor =
+        colorElement.dataset.color ||
+        null;
+
+}
+
+
+
+            /* -----------------------------------------------------
+               Số lượng
+               ----------------------------------------------------- */
+
+            const quantityElement =
+                document.getElementById('quantity');
+
+
+            const cartItemAmount =
+                quantityElement
+                    ? Number(quantityElement.value) || 1
+                    : 1;
+
+
+
+            /* -----------------------------------------------------
+               Giá
+               ----------------------------------------------------- */
+
+            const priceElement =
+                document.querySelector(
+                    '.detailProduct__price'
+                );
+
+
+            const cartItemPrice =
+                priceElement
+                    ? Number(priceElement.dataset.price)
+                    : 0;
+
+
+            const cartItemPriceString =
+                numberToMoney(cartItemPrice);
+
+
+
+            /* -----------------------------------------------------
+               Object sản phẩm trong giỏ
+               ----------------------------------------------------- */
+
+            const cartItemInfor = {
+
+                cartItemId,
+
+                cartItemImgUrl,
+
+                cartItemName,
+
+                cartItemSize,
+
+                cartItemColor,
+
+                cartItemAmount,
+
+                cartItemPrice,
+
+                cartItemSlug:
+                    productInfor.slug,
+
+                cartItemPriceString,
+
+            };
+
+
+
+            /* =====================================================
+               LOCAL STORAGE
+               ===================================================== */
+
+            const localListCart =
+                JSON.parse(
+                    localStorage.getItem(
+                        'cartProductList'
+                    )
+                );
+
+
+            /* -----------------------------------------------------
+               Đã có giỏ hàng
+               ----------------------------------------------------- */
+
+            if (localListCart !== null) {
+
+                /*
+                 * Với hoa, không nên dùng size để phân biệt
+                 * sản phẩm.
+                 *
+                 * Tạm thời kiểm tra bằng product ID.
+                 */
+
+                const haveStoraged =
+                    localListCart.some(
+                        (item) =>
+                            item.cartItemId ===
+                            cartItemInfor.cartItemId
+                    );
+                    console.log(cartItemInfor)
+
+
+                /* ---------------------------------------------
+                   Sản phẩm đã có → tăng số lượng
+                   --------------------------------------------- */
+
+                if (haveStoraged) {
+
+                    localListCart.forEach((item) => {
+
+                        if (
+                            item.cartItemId ===
+                            cartItemInfor.cartItemId
+                        ) {
+
+                            item.cartItemAmount =
+                                Number(item.cartItemAmount) +
+                                cartItemAmount;
+
+                        }
+
+                    });
+
+                }
+
+
+                /* ---------------------------------------------
+                   Sản phẩm mới
+                   --------------------------------------------- */
+
+                else {
+
+                    localListCart.push(
+                        cartItemInfor
+                    );
+
+                }
+
+
+                /* ---------------------------------------------
+                   Lưu lại
+                   --------------------------------------------- */
+
+                localStorage.setItem(
+                    'cartProductList',
+                    JSON.stringify(localListCart)
+                );
+
+
+                /* ---------------------------------------------
+                   Render giỏ hàng
+                   --------------------------------------------- */
+
+                renderListCart(
+                    localListCart
+                );
+
+            }
+
+
+            /* -----------------------------------------------------
+               Chưa có giỏ hàng
+               ----------------------------------------------------- */
+
+            else {
+
+                const newCart = [
+                    cartItemInfor
+                ];
+
+
+                localStorage.setItem(
+                    'cartProductList',
+                    JSON.stringify(newCart)
+                );
+
+
+                renderListCart(newCart);
+
+            }
+
+        }
+    );
+
+
+
+    /* =========================================================
+       5. MODAL ZOOM ẢNH
+       
+       Khi click nút zoom:
+       → modal mở
+       → carousel hiển thị đúng ảnh đang xem
+       ========================================================= */
+
+    $('#ProductImgZoomModal').on(
+        'show.bs.modal',
+        function () {
+
+            const gallery =
+                document.querySelector(
+                    '.detailProduct__gallery'
+                );
+
+
+            if (!gallery) return;
+
+
+            const activeSlide =
+                gallery.querySelector(
+                    '.detailProduct__gallery-slide.active'
+                );
+
+
+            if (!activeSlide) return;
+
+
+            const activeImgIndex =
+                Number(
+                    activeSlide.dataset.index
+                );
+
+
+            const carouselInnerElements =
+                document.querySelectorAll(
+                    '#ProductImgZoom .carousel-inner .carousel-item'
+                );
+
+
+            const carouselDotsElements =
+                document.querySelectorAll(
+                    '#ProductImgZoom .carousel-indicators li'
+                );
+
+
+            /* -----------------------------------------------------
+               Active carousel image
+               ----------------------------------------------------- */
+
+            carouselInnerElements.forEach(
+                (item, index) => {
+
+                    if (index === activeImgIndex) {
+
+                        item.classList.add('active');
+
+                    }
+
+                    else {
+
+                        item.classList.remove('active');
+
+                    }
+
+                }
+            );
+
+
+            /* -----------------------------------------------------
+               Active carousel dot
+               ----------------------------------------------------- */
+
+            carouselDotsElements.forEach(
+                (item, index) => {
+
+                    if (index === activeImgIndex) {
+
+                        item.classList.add('active');
+
+                    }
+
+                    else {
+
+                        item.classList.remove('active');
+
+                    }
+
+                }
+            );
+
+
+            /* -----------------------------------------------------
+               Đồng bộ Bootstrap Carousel
+               ----------------------------------------------------- */
+
+            $('#ProductImgZoom').carousel(
+                activeImgIndex
+            );
+
+        }
+    );
+
+
+
+    /* =========================================================
+       6. BOOTSTRAP ZOOM CAROUSEL
+       ========================================================= */
+
+    $('#ProductImgZoom').carousel({
+
+        interval: false,
+
+        wrap: true
+
+    });
+
+
+
+    /* =========================================================
+       7. SWIPE TRONG MODAL ZOOM
+       ========================================================= */
+
+    const zoomCarousel =
+        document.getElementById(
+            'ProductImgZoom'
+        );
+
+
+    if (zoomCarousel) {
+
+        let zoomStartX = 0;
+        let zoomStartY = 0;
+
+
+        /* -----------------------------------------------------
+           Touch start
+           ----------------------------------------------------- */
+
+        zoomCarousel.addEventListener(
+            'touchstart',
+            function (event) {
+
+                const touch =
+                    event.changedTouches[0];
+
+
+                zoomStartX =
+                    touch.screenX;
+
+                zoomStartY =
+                    touch.screenY;
+
+            },
+            {
+                passive: true
+            }
+        );
+
+
+        /* -----------------------------------------------------
+           Touch end
+           ----------------------------------------------------- */
+
+        zoomCarousel.addEventListener(
+    'touchend',
+    function (event) {
+
+        /*
+         * ĐANG ZOOM
+         * → tuyệt đối không cho Carousel next / prev
+         */
+        if (isZoomed) {
+            return;
+        }
+
+
+        const touch =
+            event.changedTouches[0];
+
+
+        const zoomEndX =
+            touch.screenX;
+
+        const zoomEndY =
+            touch.screenY;
+
+
+        const distanceX =
+            zoomEndX - zoomStartX;
+
+        const distanceY =
+            zoomEndY - zoomStartY;
+
+
+        /*
+         * Chỉ chuyển ảnh khi:
+         *
+         * 1. Kéo ngang đủ xa
+         * 2. Kéo ngang nhiều hơn kéo dọc
+         */
+        if (
+            Math.abs(distanceX) > 70 &&
+            Math.abs(distanceX) > Math.abs(distanceY) * 1.5
+        ) {
+
+            if (distanceX < 0) {
+
+                $('#ProductImgZoom')
+                    .carousel('next');
+
+            }
+
+            else {
+
+                $('#ProductImgZoom')
+                    .carousel('prev');
+
+            }
+
+        }
+
+    },
+    {
+        passive: true
+    }
+);
+    }
+
+</script>
+
+<script>
+        /* =====================================================
+       CHẶN BOOTSTRAP CAROUSEL KHI ĐANG ZOOM
+    ====================================================== */
+
+    const zoomArea =
+        document.getElementById('ProductImgZoom');
+
+
+    if (zoomArea) {
+
+        /*
+         * TOUCH START
+         */
+        zoomArea.addEventListener(
+            'touchstart',
+            function (e) {
+
+                if (!isZoomed) {
+                    return;
+                }
+
+                const img =
+                    e.target.closest(
+                        '.zoom-product-image'
+                    );
+
+                if (!img) {
+                    return;
+                }
+
+                /*
+                 * Không cho Bootstrap Carousel
+                 * nhận gesture.
+                 */
+                e.stopPropagation();
+
+            },
+            {
+                capture: true,
+                passive: false
+            }
+        );
+
+
+        /*
+         * TOUCH MOVE
+         */
+        zoomArea.addEventListener(
+            'touchmove',
+            function (e) {
+
+                if (!isZoomed) {
+                    return;
+                }
+
+                const img =
+                    e.target.closest(
+                        '.zoom-product-image'
+                    );
+
+                if (!img) {
+                    return;
+                }
+
+                /*
+                 * Đây là thao tác kéo ảnh zoom.
+                 */
+                e.preventDefault();
+
+                e.stopPropagation();
+
+            },
+            {
+                capture: true,
+                passive: false
+            }
+        );
+
+
+        /*
+         * TOUCH END
+         */
+        zoomArea.addEventListener(
+            'touchend',
+            function (e) {
+
+                if (!isZoomed) {
+                    return;
+                }
+
+                const img =
+                    e.target.closest(
+                        '.zoom-product-image'
+                    );
+
+                if (!img) {
+                    return;
+                }
+
+                e.stopPropagation();
+
+            },
+            {
+                capture: true,
+                passive: false
+            }
+        );
+
+
+        /*
+         * TOUCH CANCEL
+         */
+        zoomArea.addEventListener(
+            'touchcancel',
+            function (e) {
+
+                if (!isZoomed) {
+                    return;
+                }
+
+                e.stopPropagation();
+
+            },
+            {
+                capture: true,
+                passive: false
+            }
+        );
+
+    }
+</script>
+
+<script>
+$(document).ready(function () {
+
+    /* =====================================================
+       CONFIG
+    ====================================================== */
+
+    const ZOOM_SCALE = 2.5;
+
+
+    /* =====================================================
+       STATE
+    ====================================================== */
+
+    let isZoomed = false;
+    let isDragging = false;
+
+    let currentImage = null;
+
+    let translateX = 0;
+    let translateY = 0;
+
+    let startX = 0;
+    let startY = 0;
+
+    let startTranslateX = 0;
+    let startTranslateY = 0;
+
+    /*
+     * Dùng để phân biệt:
+     *
+     * click
+     * với
+     * kéo ảnh
+     */
+    let moved = false;
+
+
+    /* =====================================================
+       APPLY TRANSFORM
+    ====================================================== */
+
+    function applyTransform(img) {
+
+        if (!img) {
+            return;
+        }
+
+        img.style.transform =
+            `translate3d(
+                calc(-50% + ${translateX}px),
+                calc(-50% + ${translateY}px),
+                0
+            ) scale(${ZOOM_SCALE})`;
+
+    }
+
+
+    /* =====================================================
+       RESET ZOOM
+    ====================================================== */
+
+    function resetZoom() {
+
+        isZoomed = false;
+        isDragging = false;
+        moved = false;
+
+        translateX = 0;
+        translateY = 0;
+
+        currentImage = null;
+
+        document.body.style.userSelect = '';
+
+        /*
+         * Reset tất cả ảnh
+         */
+        $('#ProductImgZoom .carousel-item img').each(function () {
+
+            this.classList.remove('is-zoomed');
+            this.classList.remove('is-dragging');
+
+            this.style.transform =
+                'translate3d(-50%, -50%, 0) scale(1)';
+
+        });
+
+    }
+
+
+    /* =====================================================
+       TÍNH GIỚI HẠN KÉO
+    ====================================================== */
+
+    function clampPosition(img) {
+
+        if (!img) {
+            return;
+        }
+
+
+        const container =
+            document.getElementById('ProductImgZoom');
+
+
+        if (!container) {
+            return;
+        }
+
+
+        /*
+         * Lấy kích thước ảnh sau khi zoom
+         */
+        const imgRect =
+            img.getBoundingClientRect();
+
+
+        const containerRect =
+            container.getBoundingClientRect();
+
+
+        /*
+         * Khoảng ảnh có thể vượt khỏi màn hình
+         */
+        const maxX =
+            Math.max(
+                0,
+                (imgRect.width - containerRect.width) / 2
+            );
+
+
+        const maxY =
+            Math.max(
+                0,
+                (imgRect.height - containerRect.height) / 2
+            );
+
+
+        /*
+         * Giới hạn X
+         */
+        translateX =
+            Math.max(
+                -maxX,
+                Math.min(
+                    maxX,
+                    translateX
+                )
+            );
+
+
+        /*
+         * Giới hạn Y
+         */
+        translateY =
+            Math.max(
+                -maxY,
+                Math.min(
+                    maxY,
+                    translateY
+                )
+            );
+
+    }
+
+
+    /* =====================================================
+       CLICK ĐỂ ZOOM TẠI ĐIỂM CLICK
+    ====================================================== */
+
+    $(document).on(
+        'click',
+        '#ProductImgZoom .carousel-item.active img',
+        function (e) {
+
+            /*
+             * Nếu vừa kéo ảnh thì không xử lý click
+             */
+            if (moved) {
+                moved = false;
+                return;
+            }
+
+
+            const img = this;
+
+
+            /*
+             * Nếu đang zoom
+             * → click để reset
+             */
+            if (img.classList.contains('is-zoomed')) {
+
+                resetZoom();
+
+                return;
+
+            }
+
+
+            const rect =
+                img.getBoundingClientRect();
+
+
+            /*
+             * Vị trí click bên trong ảnh
+             */
+            const clickX =
+                e.clientX - rect.left;
+
+
+            const clickY =
+                e.clientY - rect.top;
+
+
+            /*
+             * Tỷ lệ vị trí click
+             */
+            const percentX =
+                clickX / rect.width;
+
+
+            const percentY =
+                clickY / rect.height;
+
+
+            /*
+             * Tính vị trí dịch
+             */
+            translateX =
+                (
+                    0.5 - percentX
+                ) *
+                rect.width *
+                (
+                    ZOOM_SCALE - 1
+                );
+
+
+            translateY =
+                (
+                    0.5 - percentY
+                ) *
+                rect.height *
+                (
+                    ZOOM_SCALE - 1
+                );
+
+
+            isZoomed = true;
+
+            currentImage = img;
+
+
+            img.classList.add(
+                'is-zoomed'
+            );
+
+
+            /*
+             * Apply zoom
+             */
+            applyTransform(img);
+
+
+            /*
+             * Giới hạn vị trí
+             */
+            requestAnimationFrame(function () {
+
+                clampPosition(img);
+
+                applyTransform(img);
+
+            });
+
+        }
+    );
+
+
+    /* =====================================================
+       POINTER DOWN
+       Hỗ trợ:
+       - Mouse
+       - Touch
+       - Pen
+    ====================================================== */
+
+$(document).on(
+    'pointerdown',
+    '#ProductImgZoom .carousel-item.active img',
+    function (e) {
+
+        if (!isZoomed) {
+            return;
+        }
+
+
+        const img = this;
+
+        currentImage = img;
+
+
+        isDragging = true;
+        moved = false;
+
+
+        startX = e.clientX;
+        startY = e.clientY;
+
+
+        startTranslateX = translateX;
+        startTranslateY = translateY;
+
+
+        img.classList.add('is-dragging');
+
+
+        /*
+         * Giữ pointer trên chính ảnh
+         */
+        try {
+
+            img.setPointerCapture(
+                e.pointerId
+            );
+
+        } catch (error) {}
+
+
+        document.body.style.userSelect =
+            'none';
+
+
+        /*
+         * QUAN TRỌNG
+         *
+         * Chặn Bootstrap Carousel
+         */
+        e.preventDefault();
+        e.stopPropagation();
+
+    }
+);
+    /* =====================================================
+       POINTER MOVE
+    ====================================================== */
+
+$(document).on(
+    'pointermove',
+    '#ProductImgZoom .carousel-item.active img',
+    function (e) {
+
+        if (!isZoomed || !isDragging) {
+            return;
+        }
+
+
+        const img = this;
+
+
+        /*
+         * Độ nhạy kéo
+         *
+         * 1    = bình thường
+         * 0.8  = hơi chậm
+         * 0.65 = dễ kiểm soát
+         * 0.5  = rất nhẹ
+         */
+        const DRAG_SENSITIVITY = 0.65;
+
+
+        /*
+         * Khoảng cách thực tế người dùng kéo
+         */
+        const rawDeltaX =
+            e.clientX - startX;
+
+        const rawDeltaY =
+            e.clientY - startY;
+
+
+        /*
+         * Giảm độ nhạy
+         */
+        const deltaX =
+            rawDeltaX * DRAG_SENSITIVITY;
+
+        const deltaY =
+            rawDeltaY * DRAG_SENSITIVITY;
+
+
+        /*
+         * Phải kéo ít nhất 10px
+         * mới tính là đang kéo ảnh
+         */
+        const DRAG_THRESHOLD = 10;
+
+
+        if (
+            Math.abs(rawDeltaX) > DRAG_THRESHOLD ||
+            Math.abs(rawDeltaY) > DRAG_THRESHOLD
+        ) {
+
+            moved = true;
+
+        }
+
+
+        /*
+         * Tính vị trí mới
+         */
+        translateX =
+            startTranslateX + deltaX;
+
+        translateY =
+            startTranslateY + deltaY;
+
+
+        /*
+         * Không cho ảnh kéo ra ngoài vùng cho phép
+         */
+        clampPosition(img);
+
+
+        /*
+         * Render
+         */
+        applyTransform(img);
+
+
+        /*
+         * QUAN TRỌNG:
+         *
+         * Không cho Bootstrap Carousel
+         * nhận gesture này.
+         */
+        e.preventDefault();
+        e.stopPropagation();
+
+    }
+);
+    /* =====================================================
+       POINTER UP
+    ====================================================== */
+
+    $(document).on(
+        'pointerup pointercancel',
+        '#ProductImgZoom .carousel-item.active img',
+        function (e) {
+
+            if (!isDragging) {
+                return;
+            }
+
+
+            isDragging = false;
+
+
+            document.body.style.userSelect =
+                '';
+
+
+            this.classList.remove(
+                'is-dragging'
+            );
+
+
+            /*
+             * Release pointer
+             */
+            try {
+
+                this.releasePointerCapture(
+                    e.pointerId
+                );
+
+            } catch (error) {
+                // Không làm gì
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       DOUBLE CLICK
+       → RESET ZOOM
+    ====================================================== */
+
+    $(document).on(
+        'dblclick',
+        '#ProductImgZoom .carousel-item.active img',
+        function () {
+
+            resetZoom();
+
+        }
+    );
+
+
+    /* =====================================================
+       KHI CAROUSEL CHUYỂN ẢNH
+       → RESET ZOOM
+    ====================================================== */
+
+    $('#ProductImgZoom').on(
+        'slide.bs.carousel',
+        function () {
+
+            resetZoom();
+
+        }
+    );
+
+
+    /* =====================================================
+       KHI CAROUSEL CHUYỂN XONG
+    ====================================================== */
+
+    $('#ProductImgZoom').on(
+        'slid.bs.carousel',
+        function () {
+
+            resetZoom();
+
+        }
+    );
+
+
+    /* =====================================================
+       KHI ĐÓNG MODAL
+    ====================================================== */
+
+    $('#ProductImgZoomModal').on(
+        'hidden.bs.modal',
+        function () {
+
+            resetZoom();
+
+        }
+    );
+
+
+});
 </script>
 <script src='/js/renderCart.js'></script>
 <script src='/js/payment.js'></script>

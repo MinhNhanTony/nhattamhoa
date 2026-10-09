@@ -1,186 +1,993 @@
-/* .footer */
+/* =========================================================
+   FOOTER
+========================================================= */
+
 .footer {
-  margin-top: 20px;
+    margin-top: 50px;
+    background: #fff;
+    color: $text-color;
 }
+
+
+/* =========================================================
+   NEWSLETTER
+========================================================= */
+
 .footer_top {
-  width: 100%;
-  padding: 15px 0;
+    width: 100%;
+    padding: 28px 0;
+
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
 }
+
 .area_newsletter {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    align-items: center;
+    gap: 30px;
 }
+
 .title_newsletter {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
 }
+
 .title_newsletter i {
-  font-size: 2rem;
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+
+    border-radius: 50%;
+
+    background: #f5f5f5;
+    color: $category-color;
 }
+
 .title_newsletter h4 {
-  margin: 0;
-  padding: 10px 20px;
+    margin: 0;
+    padding: 0 0 0 12px;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    color: $text-color;
+
+    white-space: nowrap;
 }
+
 .form_newsletter {
-  display: flex;
+    flex: 1;
+
+    display: flex;
+
+    max-width: 520px;
 }
+
 .form_newsletter input {
-  flex:1;
-  height: 43px;
-  padding-left: 10px;
-  font-size: 1.4rem;
-  border: 1px solid $border-color;
-  outline: none;
+    flex: 1;
+
+
+    padding: 0 15px;
+
+    font-size: 14px;
+
+    color: $text-color;
+    background: #fff;
+
+    border: 1px solid $border-color;
+    border-right: none;
+
+    border-radius: 6px 0 0 6px;
+
+    outline: none;
+
+    transition: border-color 0.25s ease,
+                box-shadow 0.25s ease;
 }
+
+.form_newsletter input::placeholder {
+    color: #999;
+}
+
+.form_newsletter input:focus {
+    border-color: $category-color;
+
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.04);
+}
+
+
+/* =========================================================
+   HOTLINE
+========================================================= */
+
 .area_phone_contact {
-  height: 44px;
-  display: flex;
-  align-items: center;
+    min-height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
+
 .number_phone {
-  margin: 0;
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
+
+    margin: 0;
 }
+
 .number_phone i {
-  font-size: 2rem;
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 18px;
+
+    color: $category-color;
 }
+
 .number_phone span {
-  font-size: 1.6rem;
-  margin: 0 10px;
+    margin: 0 10px;
+
+    font-size: 13px;
+    color: #777;
 }
+
 .number_phone a {
-  font-size: 1.6rem;
-  text-decoration: none;
-  color: $price-text--color;
+    font-size: 16px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    color: $price-text--color;
+
+    transition: color 0.2s ease;
 }
+
+.number_phone a:hover {
+    color: $category-color;
+}
+
+
+/* =========================================================
+   SUPPORT SERVICES
+========================================================= */
 
 .footer_support {
-  width: 100%;
-  background-color: #fcfcfc;
-  border-bottom: 1px solid $border-color;
-}
-.footer_support-item {
-  padding: 55px 25px;
-  cursor: pointer;
-  a {
-    display: inline-block;
     width: 100%;
-  }
-}
-.support-item_icon {
-  text-align: center;
-}
-.support-item_icon i {
-  font-size: 4rem;
-  color: #000000;
-}
-.footer_support-item h3 {
-  font-size: 1.8rem;
-  margin: 20px 0 4px;
-  text-align: center;
-  text-transform: uppercase;
-}
-.footer_support-item p {
-  font-size: 1.5rem;
-  text-align: center;
-  color: #636363;
+
+    background: #fafafa;
+
+    border-bottom: 1px solid $border-color;
 }
 
+.footer_support .row {
+    margin: 0;
+}
+
+.footer_support-item {
+    height: 100%;
+
+    padding: 35px 20px;
+
+    text-align: center;
+
+    transition:
+        background-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.footer_support-item:hover {
+    background: #fff;
+}
+
+.footer_support-item a {
+    display: block;
+
+    width: 100%;
+
+    text-decoration: none;
+
+    color: inherit;
+}
+
+.support-item_icon {
+    width: 50px;
+    height: 50px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #fff;
+
+    border: 1px solid #e9e9e9;
+
+    transition:
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.support-item_icon i {
+    font-size: 21px;
+
+    color: #222;
+
+    transition: color 0.25s ease;
+}
+
+.footer_support-item:hover .support-item_icon {
+    background: $category-color;
+    border-color: $category-color;
+
+    transform: translateY(-3px);
+}
+
+.footer_support-item:hover .support-item_icon i {
+    color: #fff;
+}
+
+.footer_support-item h3 {
+    margin: 0 0 6px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    line-height: 1.4;
+
+    color: $text-color;
+
+    text-transform: uppercase;
+}
+
+.footer_support-item p {
+    margin: 0;
+
+    font-size: 13px;
+    line-height: 1.5;
+
+    color: #777;
+}
+
+
+/* =========================================================
+   FOOTER MAIN
+========================================================= */
+
 .footer_main {
-  padding: 50px 10px 55px;
-  width: 100%;
+    width: 100%;
+
+    padding: 50px 10px 45px;
+
+    border-bottom: 1px solid $border-color;
+}
+
+.footer_main-item {
+    height: 100%;
 }
 
 .support-item_header h3 {
-  font-size: 1.6rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  color: $text-color;
-  margin-top: 30px;
+    position: relative;
 
+    margin: 0 0 20px;
+
+    padding-bottom: 11px;
+
+    font-size: 14px;
+    font-weight: 800;
+
+    line-height: 1.4;
+
+    color: $text-color;
+
+    text-transform: uppercase;
 }
-.support-item_content-list {
-  list-style: none;
-  margin-top: 10px;
+
+.support-item_header h3::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 30px;
+    height: 2px;
+
+    background: $category-color;
+
+    border-radius: 2px;
 }
+
+
+/* =========================================================
+   FOOTER DESCRIPTION
+========================================================= */
+
 .support-item_content {
-  margin-top: 10px;
-  font-size: 1.5rem;
-  font-weight: 500;
-}
-.support-item_content-item {
-  margin: 5px 0;
-  font-size: 1.5rem;
-  color: $text-color;
-  font-weight: 500;
-  transition: color 0.2s linear;
-}
-.support-item_content-item:hover{
-  color: $category-color;
-  cursor: pointer;
-}
-.support-item_content-item:hover a{
-  color: $category-color;
-  cursor: pointer;
-}
-.support-item_content-item i {
-  margin-right: 10px;
-  font-size: 1.6rem;
-}
-.scroll-to-top {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  bottom: 50px;
-  left: 10px;
-  width: 50px;
-  height: 50px;
-  color: black;
-  background-color: $category-color;
-  border-radius: 50px;
-  cursor: pointer;
-  opacity: 0;
+    margin-top: 0;
+
+    font-size: 14px;
+    font-weight: 400;
+
+    line-height: 1.8;
+
+    color: #666;
 }
 
-@media screen and (max-width:768px) {
-  .area_newsletter {
-    display:grid;
-    grid-template-columns: 1fr;
-  }
-  .title_newsletter {
-    justify-content: flex-start;
-  }
-  .footer_support-item {
-    padding: 13px 15px;
-    cursor: pointer;
-  }
-  .support-item_icon i {
-    font-size: 2.5rem;
-  }
-  .footer_support-item h3 {
-    font-size: 1.5rem;
-  }
-  .footer_support-item p {
-    font-size: 1.3rem;
-  }
-  .footer_main {
-    padding: 10px 10px 55px;
-  }
-  
+
+/* =========================================================
+   FOOTER LIST
+========================================================= */
+
+.support-item_content-list {
+    list-style: none;
+
+    margin: 0;
+    padding: 0;
 }
+
+.support-item_content-item {
+    display: flex;
+    align-items: flex-start;
+
+    margin: 0 0 12px;
+
+    padding: 0;
+
+    font-size: 14px;
+    font-weight: 400;
+
+    line-height: 1.6;
+
+    color: #666;
+
+    transition: color 0.2s ease;
+}
+
+.support-item_content-item a {
+    color: inherit;
+
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+.support-item_content-item:hover,
+.support-item_content-item:hover a {
+    color: $category-color;
+}
+
+.support-item_content-item i {
+    flex-shrink: 0;
+
+    width: 22px;
+
+    margin-top: 3px;
+    margin-right: 8px;
+
+    font-size: 14px;
+
+    color: #555;
+}
+
+.support-item_content-item:hover i {
+    color: $category-color;
+}
+
+
+/* =========================================================
+   GOOGLE MAP ADDRESS
+========================================================= */
 
 .address-ggmap {
-  display: flex;
-  align-items:flex-start;
+    display: flex;
+    align-items: flex-start;
 }
+
+.address-ggmap a {
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   CONTACT FLOATING
+========================================================= */
+
+.contact-floating {
+    position: fixed;
+
+    right: 22px;
+    bottom: 25px;
+
+    z-index: 9999;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.contact-floating__item {
+    width: 54px;
+    height: 54px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    text-decoration: none;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.15);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.contact-floating__item:hover {
+    transform: translateY(-4px) scale(1.05);
+
+    box-shadow:
+        0 9px 25px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Phone */
+
+.contact-floating__phone {
+    background: #00c98b;
+    color: #fff;
+
+    font-size: 21px;
+}
+
+.contact-floating__phone:hover {
+    color: #fff;
+}
+
+
+/* Messenger */
+
+.contact-floating__messenger {
+    background: #168bf7;
+    color: #fff;
+
+    font-size: 23px;
+}
+
+.contact-floating__messenger:hover {
+    color: #fff;
+}
+
+
+/* Zalo */
+
+.contact-floating__zalo {
+    background: #0866ff;
+    color: #fff;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.contact-floating__zalo:hover {
+    color: #fff;
+}
+
+.contact-floating__zalo span {
+    padding: 3px 5px;
+
+    line-height: 1;
+
+    border: 1.5px solid #fff;
+    border-radius: 5px;
+}
+
+
+/* =========================================================
+   SCROLL TO TOP
+========================================================= */
+
+.scroll-to-top {
+    position: fixed;
+
+    left: 22px;
+    bottom: 25px;
+
+    z-index: 9998;
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    color: #fff;
+
+    background-color: $category-color;
+
+    border: none;
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    opacity: 0;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.15);
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.scroll-to-top:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 8px 22px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-to-top svg {
+    width: 19px;
+    height: 19px;
+}
+
+
+/* =========================================================
+   CERTIFICATE
+========================================================= */
+
 .chung-nhan-bo-cong-thuong {
-  width: 100%;
-  height: 100%;
-  img {
+    width: 130px;
+    margin-top: 20px;
+}
+
+.chung-nhan-bo-cong-thuong img {
+    display: block;
+
     width: 100%;
-    height: 100%;
-  }
+    height: auto;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media screen and (max-width: 991px) {
+
+    .area_newsletter {
+        gap: 15px;
+    }
+
+    .title_newsletter h4 {
+        font-size: 15px;
+    }
+
+    .number_phone {
+        justify-content: flex-end;
+    }
+
+    .number_phone span {
+        display: none;
+    }
+
+    .footer_support-item {
+        padding: 30px 12px;
+    }
+
+    .footer_main {
+        padding: 40px 5px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media screen and (max-width: 768px) {
+
+    .footer {
+        margin-top: 30px;
+    }
+
+
+    /* Newsletter */
+
+    .footer_top {
+        padding: 22px 0;
+    }
+
+    .area_newsletter {
+        display: flex;
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 15px;
+    }
+
+    .title_newsletter {
+        justify-content: center;
+    }
+
+    .title_newsletter h4 {
+        font-size: 15px;
+    }
+
+    .form_newsletter {
+        width: 100%;
+        max-width: none;
+    }
+
+    .form_newsletter input {
+        height: 42px;
+        font-size: 13px;
+    }
+
+
+    /* Hotline */
+
+    .area_phone_contact {
+        justify-content: center;
+
+        margin-top: 18px;
+    }
+
+    .number_phone {
+        justify-content: center;
+    }
+
+    .number_phone span {
+        display: block;
+
+        font-size: 12px;
+    }
+
+    .number_phone a {
+        font-size: 14px;
+    }
+
+
+    /* Support */
+
+    .footer_support-item {
+        padding: 22px 8px;
+    }
+
+    .support-item_icon {
+        width: 42px;
+        height: 42px;
+
+        margin-bottom: 10px;
+    }
+
+    .support-item_icon i {
+        font-size: 17px;
+    }
+
+    .footer_support-item h3 {
+        font-size: 11px;
+    }
+
+    .footer_support-item p {
+        font-size: 11px;
+    }
+
+
+    /* Main footer */
+
+    .footer_main {
+        padding: 35px 10px 30px;
+    }
+
+    .footer_main-item {
+        margin-bottom: 28px;
+    }
+
+    .support-item_header h3 {
+        margin-bottom: 15px;
+
+        font-size: 13px;
+    }
+
+    .support-item_content {
+        font-size: 13px;
+    }
+
+    .support-item_content-item {
+        font-size: 13px;
+
+        margin-bottom: 10px;
+    }
+
+
+    /* Floating buttons */
+
+    .contact-floating {
+        right: 12px;
+        bottom: 15px;
+
+        gap: 8px;
+    }
+
+    .contact-floating__item {
+        width: 45px;
+        height: 45px;
+    }
+
+    .contact-floating__phone {
+        font-size: 18px;
+    }
+
+    .contact-floating__messenger {
+        font-size: 19px;
+    }
+
+    .contact-floating__zalo {
+        font-size: 9px;
+    }
+
+
+    /* Scroll top */
+
+    .scroll-to-top {
+        left: 12px;
+        bottom: 15px;
+
+        width: 42px;
+        height: 42px;
+    }
+
+    .scroll-to-top svg {
+        width: 17px;
+        height: 17px;
+    }
+}
+
+
+/* =========================================================
+   THANH LIÊN HỆ BÊN PHẢI
+========================================================= */
+
+.contact-floating {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+
+/* =========================================================
+   ICON
+========================================================= */
+
+.contact-floating__item {
+    position: relative;
+
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    background: #fff;
+
+    text-decoration: none !important;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.15);
+
+    animation: contactFloat 3s ease-in-out infinite;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* Icon FontAwesome */
+
+.contact-floating__item i {
+    font-size: 25px;
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+/* =========================================================
+   MÀU ICON
+========================================================= */
+
+.contact-floating__phone i {
+    color: #222;
+}
+
+.contact-floating__messenger i {
+    color: #0084ff;
+}
+
+
+/* ZALO */
+
+.contact-floating__zalo span {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0068ff;
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+/* =========================================================
+   HIỆU ỨNG DI CHUYỂN
+========================================================= */
+
+.contact-floating__phone {
+    animation-delay: 0s;
+}
+
+.contact-floating__messenger {
+    animation-delay: 0.5s;
+}
+
+.contact-floating__zalo {
+    animation-delay: 1s;
+}
+
+
+@keyframes contactFloat {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   HIỆU ỨNG VÒNG LAN
+========================================================= */
+
+.contact-floating__item::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(0, 0, 0, 0.15);
+
+    pointer-events: none;
+
+    animation: contactPulse 2.5s ease-out infinite;
+}
+
+
+.contact-floating__phone::before {
+    animation-delay: 0s;
+}
+
+.contact-floating__messenger::before {
+    animation-delay: 0.5s;
+}
+
+.contact-floating__zalo::before {
+    animation-delay: 1s;
+}
+
+
+@keyframes contactPulse {
+
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+
+    70% {
+        transform: scale(1.45);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1.45);
+        opacity: 0;
+    }
+
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.contact-floating__item:hover {
+    transform: scale(1.12);
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.22);
+}
+
+
+.contact-floating__item:hover i {
+    transform: scale(1.15);
+}
+
+
+.contact-floating__item:hover span {
+    transform: scale(1.1);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 767px) {
+
+    .contact-floating {
+        right: 12px;
+        bottom: 15px;
+        gap: 9px;
+    }
+
+    .contact-floating__item {
+        width: 48px;
+        height: 48px;
+    }
+
+    .contact-floating__item i {
+        font-size: 20px;
+    }
+
+    .contact-floating__zalo span {
+        font-size: 12px;
+    }
+
 }

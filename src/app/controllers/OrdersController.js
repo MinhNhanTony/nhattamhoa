@@ -4,13 +4,14 @@ const { mongooseToObject ,mutipleMongooseToObject} = require('../../util/mongoos
 const { numberToMoney } = require('../../util/numberToMoney')
 const {calculateShipPrice,getDiscountFromId} = require('../../util/calculatePriceBeforeSaveToDB');
 var nodemailer = require('nodemailer');
+const { Resend } = require("resend");
 const moment = require('moment');
-
+const Handlebars = require("handlebars");
 const {exportTimeString} = require('../../util/time')
 const hbs = require('nodemailer-express-handlebars')
   const path = require('path')
-
-
+const fs = require("fs/promises");
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 class OrdersController {
   //  [GET]  / checkouts
@@ -113,94 +114,128 @@ class OrdersController {
            //  Giá hợp lệ
             
             // Gửi Email
-            function sendEmailAcceptToClient(orderId,orderDate,orderTime,finalPrice,discount,DOMAINNAME,sevendaysAfter) {
+          async function sendEmailAcceptToClient(
+    orderId,
+    orderDate,
+    orderTime,
+    finalPrice,
+    discount,
+    DOMAINNAME,
+    sevendaysAfter
+) {
+    try {
+        // Đường dẫn template email hiện tại
+        const viewsDir = path.resolve("./src/resource/views");
+        const templatePath = path.join(viewsDir, "email.hbs");
 
-                
-              //  Nodejs Email with nodemailer
-              var transporter = nodemailer.createTransport({
-                service: 'gmail',
-                host: 'smtp.gmail.com',
-                port: 465,
-                secure: true,
-                auth: {
-                    user: `${process.env.EMAILADDRESS}`,
-                    pass: `${process.env.EMAILPASSWORD}`,
-                },
-              });
+        // Đọc nội dung template
+        const templateSource = await fs.readFile(
+            templatePath,
+            "utf8"
+        );
 
+        // Đăng ký partial nếu thư mục này tồn tại
+        const partialsDir = path.join(viewsDir, "partials");
 
-              // point to the template folder
-              const handlebarOptions = {
-                viewEngine: {
-                  extName: ".hbs",
-                  partialsDir: path.resolve("/.src/resource/views/"),
-                  defaultLayout: false,
-                },
-                viewPath: path.resolve('./src/resource/views'),
-                extName: ".hbs",
-              };
+        try {
+            const partialFiles = await fs.readdir(partialsDir);
 
-              // use a template file with nodemailer
-              transporter.use('compile', hbs(handlebarOptions))
+            for (const file of partialFiles) {
+                if (file.endsWith(".hbs")) {
+                    const partialName = path.basename(file, ".hbs");
+                    const partialContent = await fs.readFile(
+                        path.join(partialsDir, file),
+                        "utf8"
+                    );
 
-             
-              
-
-              // const attachmentList = productInfor.map(function (product) {
-              //   return {   // stream as an attachment
-              //     path: `${process.env.DOMAINNAME}${product.cartItemImgUrl}`
-              //   }
-              // });
-              // console.log("🚀 ~ file: OrdersController.js:156 ~ OrdersController ~ attachmentList ~ attachmentList", attachmentList)
-              const mailList = [`${userInfor.email}`,`${process.env.ADMIN_EMAIL}`]
-              
-              var mailOptions = {
-                from: `"QANA NOLAN" ${process.env.EMAILADDRESS}`,
-                to: mailList,
-                subject: 'XÁC NHẬN ĐẶT HÀNG',
-                text: 'Xin chào bạn',
-                // attachments:attachmentList,
-                
-                template:'email',
-                context: {
-                  username:userInfor.name,
-                  address: userInfor.address,
-                  orderId:orderId,
-                  orderDate,
-                  orderTime,
-                  finalPrice,
-                  discount,
-                  productInfor,
-                  DOMAINNAME:DOMAINNAME,
-                  sevendaysAfter
-                  
+                    Handlebars.registerPartial(
+                        partialName,
+                        partialContent
+                    );
                 }
-              
-              };
+            }
+        } catch (error) {
+            // Không có thư mục partials thì bỏ qua
+            if (error.code !== "ENOENT") {
+                throw error;
+            }
+        }
 
-              transporter.sendMail(mailOptions, function (error, info) {
-                if (error) {
-                    console.log(error);
-                } else {
-                    console.log('Email sent: ' + info.response);
-                }
-              });
+        // Render template với dữ liệu đơn hàng
+        const template = Handlebars.compile(templateSource);
 
-             }
+        const html = template({
+            username: userInfor.senderName,
+            address: userInfor.address,
+            orderId,
+            orderDate,
+            orderTime,
+            finalPrice,
+            discount,
+            productInfor,
+            DOMAINNAME,
+            sevendaysAfter
+        });
+
+        // Gửi email qua Resend
+        const { data, error } = await resend.emails.send({
+            from: process.env.RESEND_FROM,
+            to: userInfor.email,
+            cc: process.env.ADMIN_EMAIL
+                ? [process.env.ADMIN_EMAIL]
+                : undefined,
+            subject: "XÁC NHẬN ĐẶT HÀNG - NHẤT TÂM HOA",
+            html
+        });
+
+        if (error) {
+            console.error("Resend gửi email thất bại:", {
+                orderId,
+                error
+            });
+
+            return {
+                success: false,
+                error
+            };
+        }
+
+        console.log("Gửi email thành công:", {
+            orderId,
+            emailId: data.id
+        });
+
+        return {
+            success: true,
+            emailId: data.id
+        };
+
+    } catch (error) {
+        console.error(
+            `Lỗi gửi email đơn hàng ${orderId}:`,
+            error.message
+        );
+
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+}
 
 
 
               // Lưu vào Database;
 
-              const priceWithDiscount = totalMoney +  shipmentFee;
+              const priceWithDiscount = totalMoney;
               const discount = (totalPriceFromClient + initshipmentFee) - priceWithDiscount
               
               
               const dataForSave = {
                 price:totalMoney,
-                ship:shipmentFee,
+                ship:0,
                 finalPrice:priceWithDiscount ,
-                discount ,
+                discount:0 ,
                 userInfor,
                 orderPayOption,
                 productList,
@@ -213,7 +248,7 @@ class OrdersController {
             
               
                 const {orderDate,orderTime} =  await exportTimeString(small?.createdAt);
-                const sevendaysAfter = moment(small?.createdAt).subtract(-7, 'days').startOf('day').format('DD/MM/YYYY');
+                const sevendaysAfter = moment(small?.createdAt).subtract(-2, 'days').startOf('day').format('DD/MM/YYYY');
                 
                   sendEmailAcceptToClient(small._id,orderDate,orderTime,await numberToMoney(priceWithDiscount),await numberToMoney(discount),process.env.DOMAINNAME,sevendaysAfter);
 

@@ -1,0 +1,626 @@
+<section class="category-story">
+
+    <!-- Hoa trang trí -->
+    <div class="category-story__flower category-story__flower--1">
+        🌸
+    </div>
+
+    <div class="category-story__flower category-story__flower--2">
+        🌿
+    </div>
+
+    <div class="category-story__flower category-story__flower--3">
+        🌷
+    </div>
+
+       <div class="category-story__flower category-story__flower--4">
+        🌷
+    </div>
+
+    <div class="category-story__container">
+
+        <div class="category-story__list" id="categoryStoryList">
+
+            <div class="category-story__loading">
+                Đang tải danh mục...
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<style>
+    /* =====================================================
+   CATEGORY STORY
+===================================================== */
+
+.category-story {
+    position: relative;
+
+    width: 100%;
+
+    margin: 38px 0 42px;
+
+    overflow: hidden;
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.category-story__container {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    max-width: 1270px;
+
+
+    padding: 15px;
+
+    background: #fff;
+
+    border: 1px solid #eeeeee;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 2px 5px rgba(0, 0, 0, .035),
+        0 8px 25px rgba(0, 0, 0, .045);
+}
+
+
+/* =====================================================
+   LIST
+===================================================== */
+
+.category-story__list {
+    display: flex;
+
+    align-items: flex-start;
+
+
+    gap: 22px;
+
+    width: 100%;
+
+    overflow-x: auto;
+
+    overflow-y: visible;
+
+    padding: 3px 10px 5px;
+
+    scrollbar-width: none;
+
+    scroll-behavior: smooth;
+
+    flex-wrap: nowrap;
+}
+
+.category-story__list::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* =====================================================
+   ITEM
+===================================================== */
+
+.category-story__item {
+    position: relative;
+
+    flex: 0 0 100px;
+
+    width: 92px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    text-decoration: none;
+
+    color: #687386;
+
+    transition:
+        transform .3s ease,
+        color .3s ease;
+}
+
+
+.category-story__item:hover {
+    color: #315c43;
+
+}
+
+
+/* =====================================================
+   IMAGE
+===================================================== */
+
+.category-story__image {
+    position: relative;
+
+    width: 60px;
+    height: 60px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    overflow: hidden;
+
+    background: #f5f7f5;
+
+    border: 1px solid #dfe5df;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-bottom: 11px;
+
+    transition:
+        border-color .3s ease,
+        box-shadow .3s ease,
+        transform .3s ease;
+}
+
+
+/* Vòng nhẹ bên ngoài */
+
+.category-story__image::after {
+    content: "";
+
+    position: absolute;
+
+    inset: -3px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(49, 92, 67, .08);
+
+    pointer-events: none;
+}
+
+
+.category-story__item:hover .category-story__image {
+
+    border-color: #315c43;
+
+    box-shadow:
+        0 6px 18px rgba(49, 92, 67, .18);
+
+    transform: scale(1.04);
+}
+
+
+/* =====================================================
+   IMAGE
+===================================================== */
+
+.category-story__image img {
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition:
+        transform .5s ease;
+}
+
+
+.category-story__item:hover
+.category-story__image img {
+
+    transform: scale(1.1);
+}
+
+
+/* =====================================================
+   NAME
+===================================================== */
+
+.category-story__name {
+
+    display: block;
+
+    width: 100%;
+
+    text-align: center;
+
+    font-size: 12px;
+
+    line-height: 19px;
+
+
+    color: #687386;
+
+    white-space: normal;
+
+    word-break: break-word;
+
+    overflow-wrap: anywhere;
+
+
+    transition: color .25s ease;
+}
+
+
+.category-story__item:hover
+.category-story__name {
+
+    color: #315c43;
+}
+
+
+/* =====================================================
+   FLOWER DECORATION
+===================================================== */
+
+.category-story__flower {
+
+    position: absolute;
+
+    z-index: 3;
+
+    pointer-events: none;
+
+    user-select: none;
+
+    font-size: 27px;
+
+    opacity: .8;
+
+    filter:
+        drop-shadow(
+            0 3px 5px rgba(0,0,0,.08)
+        );
+}
+
+
+/* =====================================================
+   FLOWER 1
+===================================================== */
+
+.category-story__flower--1 {
+
+    top: 0;
+
+    left: 8%;
+
+    animation:
+        flowerFloat1
+        4.5s
+        ease-in-out
+        infinite;
+}
+
+
+/* =====================================================
+   FLOWER 2
+===================================================== */
+
+.category-story__flower--2 {
+
+    right: 8%;
+
+    bottom: 4px;
+
+    font-size: 25px;
+
+    opacity: .6;
+
+    animation:
+        flowerFloat2
+        5s
+        ease-in-out
+        infinite;
+}
+
+
+/* =====================================================
+   FLOWER 3
+===================================================== */
+
+.category-story__flower--3,.category-story__flower--4 {
+
+    top: 7px;
+
+    right: 25%;
+
+    font-size: 20px;
+
+    opacity: .45;
+
+    animation:
+        flowerFloat3
+        4s
+        ease-in-out
+        infinite;
+}
+
+
+/* =====================================================
+   ANIMATION
+===================================================== */
+
+@keyframes flowerFloat1 {
+
+    0% {
+        transform:
+            translateY(0)
+            rotate(-8deg);
+    }
+
+    50% {
+        transform:
+            translateY(-8px)
+            rotate(8deg);
+    }
+
+    100% {
+        transform:
+            translateY(0)
+            rotate(-8deg);
+    }
+
+}
+
+
+@keyframes flowerFloat2 {
+
+    0% {
+        transform:
+            translateY(0)
+            rotate(5deg);
+    }
+
+    50% {
+        transform:
+            translateY(-10px)
+            rotate(-8deg);
+    }
+
+    100% {
+        transform:
+            translateY(0)
+            rotate(5deg);
+    }
+
+}
+
+
+@keyframes flowerFloat3 {
+
+    0% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+        opacity: .35;
+    }
+
+    50% {
+        transform:
+            translateY(-6px)
+            rotate(12deg);
+        opacity: .65;
+    }
+
+    100% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+        opacity: .35;
+    }
+
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.category-story__loading {
+
+    width: 100%;
+
+    padding: 20px;
+
+    text-align: center;
+
+    font-size: 14px;
+
+    color: #999;
+}
+
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.category-story__empty {
+
+    width: 100%;
+
+    padding: 20px;
+
+    text-align: center;
+
+    font-size: 14px;
+
+    color: #999;
+}
+
+
+/* =====================================================
+   DESKTOP
+===================================================== */
+
+@media (min-width: 992px) {
+
+    .category-story__list {
+
+        min-height: 105px;
+
+    }
+
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (min-width: 768px)
+and (max-width: 991px) {
+
+    .category-story {
+
+        margin: 28px 0 35px;
+
+    }
+
+    .category-story__container {
+
+        width: 100%;
+
+        padding: 24px 25px 22px;
+
+        border-radius: 20px;
+
+    }
+
+    .category-story__list {
+
+        justify-content: flex-start;
+
+        gap: 25px;
+
+    }
+
+    .category-story__item {
+
+        flex-basis: 88px;
+
+    }
+
+    .category-story__image {
+
+        width: 50px;
+        height: 50px;
+
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 767px) {
+
+    .category-story {
+
+        margin: 18px 0 28px;
+
+    }
+
+    .category-story__container {
+
+        width: 100%;
+
+        padding: 20px 12px 17px;
+
+        border-radius: 18px;
+
+    }
+
+    .category-story__list {
+
+        justify-content: flex-start;
+
+        gap: 17px;
+
+        padding: 2px 5px 4px;
+
+        -webkit-overflow-scrolling: touch;
+
+    }
+
+    .category-story__item {
+
+        flex: 0 0 72px;
+
+        width: 72px;
+
+    }
+
+    .category-story__image {
+
+        width: 50px;
+        height: 50px;
+
+        margin-bottom: 8px;
+
+    }
+
+    .category-story__name {
+
+        font-size: 12px;
+
+        line-height: 17px;
+
+        min-height: 34px;
+
+    }
+
+    /* Giảm hoa trên mobile */
+
+    .category-story__flower {
+
+        font-size: 20px;
+
+        opacity: .5;
+
+    }
+
+    .category-story__flower--1 {
+
+        left: 4%;
+
+    }
+
+    .category-story__flower--2 {
+
+        right: 3%;
+
+    }
+
+    .category-story__flower--3 {
+
+        right: 30%;
+
+    }
+      .category-story__flower--4 {
+
+        right: 60%;
+        top: 50%;
+
+
+    }
+
+}
+</style>

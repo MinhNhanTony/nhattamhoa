@@ -1,0 +1,82 @@
+{{#each categories}}
+
+    {{#if products.length}}
+
+        <section class="category-collection">
+
+            <div class="category-collection__header">
+
+                <div class="category-collection__title">
+
+                    <h2>
+                        {{categoryName}}
+                    </h2>
+
+                    <span>
+                        Khám phá những sản phẩm được yêu thích
+                    </span>
+
+                </div>
+
+                <a
+                    href="/collections/category/{{categoryName}}"
+                    class="category-collection__view"
+                >
+                    Xem tất cả
+                    <span>→</span>
+                </a>
+
+            </div>
+
+
+            <div class="category-slider">
+
+                <!-- PREV -->
+
+                <button
+                    type="button"
+                    class="category-slider__arrow category-slider__prev"
+                    aria-label="Sản phẩm trước"
+                >
+                    ←
+                </button>
+
+
+                <!-- PRODUCT LIST -->
+
+                <div class="category-slider__track">
+
+                    {{#each products}}
+
+                        <div class="category-slider__item">
+
+                        
+
+                                {{> productItem }}
+
+                            </a>
+
+                        </div>
+
+                    {{/each}}
+
+                </div>
+
+
+                <!-- NEXT -->
+
+                <button
+                    type="button"
+                    class="category-slider__arrow category-slider__next"
+                    aria-label="Sản phẩm tiếp theo"
+                >
+                    →
+                </button>
+
+            </div>
+
+        </section>
+
+    {{/if}}
+
+{{/each}}

@@ -48,6 +48,12 @@ app.engine(
   'hbs',
   engine({
     extname: '.hbs',
+
+    helpers: {
+      subtract: function (a, b) {
+        return Number(a) - Number(b);
+      }
+    }
   })
 );
 app.set('view engine', 'hbs');
@@ -223,3 +229,7 @@ app.use(bodyParser.urlencoded({extended: true}))
   // keepOnlineRenDerApp();
   console.log('Listen');
 });
+
+
+
+

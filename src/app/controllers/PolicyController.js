@@ -15,22 +15,17 @@ class PolicyCotroller {
 
      res.render('policy/introduce',{pageTitle:`Giới thiệu - ${process.env.DOMAINNAME}`})
   }
+
+    //  [GET]  / policy/introduce
+  async faq(req, res) {
+
+     res.render('policy/faq',{pageTitle:`Câu hỏi thường gặp - ${process.env.DOMAINNAME}`})
+  }
   //  [GET]  / policy/sizeguide
-  async sizeguide(req, res) {
-    const sizeList = [
-      {number:1,title:"Bảng size giày Nike",description:"",img:'/img/size/nike.jpg'},
-      {number:2,title:"Bảng size giày Jordan",description:"",img:'/img/size/jordan.jpg'},
-      {number:3,title:"Bảng size giày Converse",description:"",img:'/img/size/converse.jpg'},
-      {number:4,title:"Bảng size giày Adidas",description:"",img:'/img/size/adidas.jpg'},
-      {number:5,title:"Bảng size giày Yeezy",description:"",img:'/img/size/yeezy.jpg'},
-      {number:6,title:"Bảng size giày New Balance",description:"",img:'/img/size/newbalance.jpg'},
-      {number:6,title:"Bảng size giày MLB",description:"",img:'/img/size/mlb.png'},
-      {number:7,title:"Bảng size giày Fila",description:"",img:'/img/size/fila.png'},
-      {number:8,title:"Bảng size giày Puma Nam",description:"",img:'/img/size/puma-nam.jpg'},
-      {number:9,title:"Bảng size giày Puma Nữ",description:"",img:'/img/size/puma-nu.jpg'},
-    ]
+  async choiceguide(req, res) {
+  
     
-    res.render('policy/sizeguide',{sizeList,pageTitle:`Hướng dẫn chọn size - ${process.env.DOMAINNAME}`},)
+    res.render('policy/choiceguide',{pageTitle:`Hướng dẫn chọn size - ${process.env.DOMAINNAME}`},)
     
   }
   //  [GET]  / policy/sizeguide
@@ -45,10 +40,10 @@ class PolicyCotroller {
     res.render('policy/payment',{pageTitle:`Phương thức thanh toán - ${process.env.DOMAINNAME}`})
     
   }
-  //  [GET]  / policy/replacement
-  async replacement(req, res) {
+  //  [GET]  / policy/warranty
+  async warranty(req, res) {
     
-    res.render('policy/replacement',{pageTitle:`Đổi trả hàng - ${process.env.DOMAINNAME}`})
+    res.render('policy/warranty',{pageTitle:`Đổi trả hàng - ${process.env.DOMAINNAME}`})
     
   }
   //  [GET]  / policy/security

@@ -1,97 +1,24 @@
 <div class='main'>
-  <div class='slider__Img'>
-      <div class='slider__Img-list'>
-          <div class="main__partner-item">
-            <a href='#'class="main__partner-link">
-              <img src="/img/Slider_img/slideshow_1.webp" alt="">
-            </a>
-          </div>
-          <div class="main__partner-item">
-            <a href='#'class="main__partner-link">
-              <img src="/img/Slider_img/slideshow_2.webp" alt="">
-            </a>
-          </div>
-          <div class="main__partner-item">
-            <a href='#'class="main__partner-link">
-              <img src="/img/Slider_img/slideshow_3.webp" alt="">
-            </a>
-          </div>
-          <div class="main__partner-item">
-            <a href='#'class="main__partner-link">
-              <img src="/img/Slider_img/slideshow_4.webp" alt="">
-            </a>
-          </div>
-        
+  
 
-      </div>
-  </div>
+{{> categoryStory}}
+ 
+ {{> categoryCollection}}
   <div class='main__collection'>
     <div>
 
       <h2 class='collection__header'>
         <a href='/collections/sale' class='collection__header-link'>
-          SẢN PHẨM ĐẶC BIỆT
+          SẢN PHẨM NỔI BẬT
         </a>
       </h2>
       <div class='collection__product'>
         <div class='row'>
            {{#each products}}
-               <div class='product__item col-6 col-lg-3 col-md-4'>
-                <a href='/products/{{this.slug}}'>
-                  <div class='product__area'>
-                    <div class='product__IMG'>
-                      <img src='{{this.productImg.[0]}}' alt='{{this.productName}}' />
-                      {{#if this.sale includeZero=false}}
-                        <div class='product__sale'> 
-                              <span>Giảm {{this.sale}}%</span>
-                        </div>
-                      {{/if}} 
-                    </div>
-                    <div class='product__detail'>
-                      <a href='/products/{{this.slug}}' class='product__name'>{{this.productName}}
-                      </a>
-                    <div class='product__price'>
-                      {{#if this.sale includeZero=false}}
-                        <span class='product__newPrice'>{{number
-                            this.productSalePrice
-                          }}₫</span>
-                        <span class='product__oldPrice'>{{number this.productPrice}}₫</span>
-                        {{else}}
-                        <span class='product__oldPrice--notsale'>{{number this.productPrice}}₫</span>
-
-                      {{/if}}
-
-
-                      </div>
-
-
-                      <div class="product__detail--footer">
-                        <div class="product__rating">
-                          <div class="product__rating--list">
-                              <div class="product__rating--item">
-                                <i class="product__rating--icon fa-solid fa-star"></i>
-                              </div>
-                              <div class="product__rating--item">
-                                <i class="product__rating--icon fa-solid fa-star"></i>
-                              </div>
-                              <div class="product__rating--item">
-                                <i class="product__rating--icon fa-solid fa-star"></i>
-                              </div>
-                              <div class="product__rating--item">
-                                <i class="product__rating--icon fa-solid fa-star"></i>
-                              </div>
-                              <div class="product__rating--item">
-                                <i class="product__rating--icon fa-solid fa-star"></i>
-                              </div>
-                          </div>
-                        </div>
-                    <div class="product__sold">
-                      <p>Đã bán: <span>{{this.quantitySold}}</span></p>
-                      </div>
-                   </div>
-
-                    </div>
-                  </div>
+               <div class='product__item col-6 col-lg-3 col-md-4 px-2'>
+                <a style='display:block' href='/products/{{this.slug}}'>
+                        {{> productItem }}
+                  
                 </a>
               </div>
            {{/each}}
@@ -109,6 +36,243 @@
 
     </div>
   </div>
+   <div class="main__collection">
+    <section class="social-section">
+    <div class="container">
+
+        <!-- Tiêu đề -->
+        <div class="social-header text-center">
+            <h2>Kết nối với chúng tôi</h2>
+
+            <p>
+                Theo dõi Thơ Fleur trên các nền tảng mạng xã hội để cập nhật
+                những xu hướng hoa tươi mới nhất
+            </p>
+        </div>
+
+
+        <div class="row align-items-center">
+
+            <!-- =========================
+                 6 SOCIAL CARD
+            ========================== -->
+
+            <div class="col-lg-8">
+                <div class="social-grid">
+
+
+                    <!-- FACEBOOK -->
+                    <a href="#" class="social-card">
+
+                        <img src="img/socialmedia/facebook.jpg"
+                             alt="Facebook">
+
+                        <div class="social-overlay"></div>
+
+                        <div class="social-content">
+
+                            <div class="social-icon facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </div>
+
+                            <h3>Facebook</h3>
+
+                            <p>
+                                Theo dõi những bài viết mới nhất
+                            </p>
+
+                            <span class="social-follow">
+                                Theo dõi
+                                <span class="follow-arrow">→</span>
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- INSTAGRAM -->
+                    <a href="#" class="social-card">
+
+                        <img src="img/socialmedia/instagram.jpg"
+                             alt="Instagram">
+
+                        <div class="social-overlay"></div>
+
+                        <div class="social-content">
+
+                            <div class="social-icon instagram">
+                                <i class="fab fa-instagram"></i>
+                            </div>
+
+                            <h3>Instagram</h3>
+
+                            <p>
+                                Khám phá những hình ảnh đẹp
+                            </p>
+
+                            <span class="social-follow">
+                                Theo dõi
+                                <span class="follow-arrow">→</span>
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- YOUTUBE -->
+                    <a href="#" class="social-card">
+
+                        <img src="img/socialmedia/youtube.jpg"
+                             alt="YouTube">
+
+                        <div class="social-overlay"></div>
+
+                        <div class="social-content">
+
+                            <div class="social-icon youtube">
+                                <i class="fab fa-youtube"></i>
+                            </div>
+
+                            <h3>YouTube</h3>
+
+                            <p>
+                                Xem video hướng dẫn cắm hoa
+                            </p>
+
+                            <span class="social-follow">
+                                Theo dõi
+                                <span class="follow-arrow">→</span>
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- ZALO -->
+                    <a href="#" class="social-card">
+
+                        <img src="img/socialmedia/zalo.jpg"
+                             alt="Zalo">
+
+                        <div class="social-overlay"></div>
+
+                        <div class="social-content">
+
+                            <div class="social-icon zalo">
+                                <span>Zalo</span>
+                            </div>
+
+                            <h3>Zalo</h3>
+
+                            <p>
+                                Liên hệ Hoa Nhất Tâm trực tiếp Zalo
+                            </p>
+
+                            <span class="social-follow">
+                                Theo dõi
+                                <span class="follow-arrow">→</span>
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- THREADS -->
+                    <a href="#" class="social-card">
+
+                        <img src="img/socialmedia/threads.jpg"
+                             alt="Threads">
+
+                        <div class="social-overlay"></div>
+
+                        <div class="social-content">
+
+                            <div class="social-icon threads">
+                                <i class="fa-brands fa-threads"></i>
+                            </div>
+
+                            <h3>Threads</h3>
+
+                            <p>
+                                Tham gia thảo luận cộng đồng
+                            </p>
+
+                            <span class="social-follow">
+                                Theo dõi
+                                <span class="follow-arrow">→</span>
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- TIKTOK -->
+                    <a href="#" class="social-card">
+
+                        <img src="img/socialmedia/tiktok.jpg"
+                             alt="TikTok">
+
+                        <div class="social-overlay"></div>
+
+                        <div class="social-content">
+
+                            <div class="social-icon tiktok">
+                                <i class="fab fa-tiktok"></i>
+                            </div>
+
+                            <h3>TikTok</h3>
+
+                            <p>
+                                Video ngắn thú vị hàng ngày
+                            </p>
+
+                            <span class="social-follow">
+                                Theo dõi
+                                <span class="follow-arrow">→</span>
+                            </span>
+
+                        </div>
+
+                    </a>
+
+                </div>
+            </div>
+
+
+            <!-- =========================
+                 NỘI DUNG BÊN PHẢI
+            ========================== -->
+
+            <div class="col-lg-4">
+
+                <div class="social-description">
+
+                    <span>
+                        TRẢI NGHIỆM SỰ KỲ DIỆU CỦA<br>
+                        HOA TƯƠI
+                    </span>
+
+                    <h2>Khám phá</h2>
+
+                    <p>
+                        Khám phá nhiều loại hoa tươi
+                        tắn và rực rỡ cho mọi dịp đặc
+                        biệt tại Thơ Fleur.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+  </div>
   <div class='main__featured'>
     <div class='container'>
       <div class='row'>
@@ -124,10 +288,10 @@
             <div class='detail__nav'>
               <ui class='detail__nav-list'>
                 <li class='detail__nav-item nav__product-featured active'>
-                  <a href='#tab1'>Đặc tính sản phẩm</a>
+                  <a href='#tab1'>Mô tả</a>
                 </li>
                 <li class='detail__nav-item nav__product-size'>
-                  <a href='#tab2'>Size</a>
+                  <a href='#tab2'>Danh Mục</a>
                 </li>
               </ui>
             </div>
@@ -139,14 +303,12 @@
                     <p style='margin-bottom:15px;font-size:15px'>
                        {{this.descText}}
                     </p>
+                   
                   {{/each}}
                 </li>
                 <li class='detail__content-item'>
-                  <p>EU: {{#each newestProduct.productSize}}
-                    <span style='margin-bottom:15px;font-size:15px'>
-                       - {{this}} 
-                    </span>
-                  {{/each}}</p>
+                  {{newestProduct.category}}
+                  
                 </li>
               </ui>
             </div>
@@ -166,10 +328,14 @@
 
   </div>
 
-  <div class="main__partner">
+  
+
+
+</div>
+<div class="main__partner">
       <h1 class='collection__header'>
         <p class='collection__header-link'>
-          QANA NOLAN VÀ KHÁCH HÀNG
+          NHẤT TÂM HOA VÀ KHÁCH HÀNG
         </p>
       </h1>
       <div class="main__partner-list">
@@ -218,9 +384,6 @@
       </div>
   </div>
 
-
-</div>
-
 <script>
 
 const collectionFeatured = document.querySelector(".main__featured");
@@ -231,12 +394,12 @@ const featuredNavItems = document.querySelectorAll(".detail__nav-item");
 // tab UI featuredContentItem
     featuredNavItems.forEach(function (item, index) {
       item.onclick = function (e) {
-        const featuredcontentItemActive = doc(".detail__content-item.active");
-        doc(".detail__nav-item.active").classList.remove("active");
+        const featuredcontentItemActive = document.querySelector(".detail__content-item.active");
+        document.querySelector(".detail__nav-item.active").classList.remove("active");
         featuredcontentItemActive.classList.remove("active");
 
         e.target.closest(".detail__nav-item").classList.add("active");
-        docs(".detail__content-item")[index].classList.add("active");
+        document.querySelectorAll(".detail__content-item")[index].classList.add("active");
       };
     });
     window.onscroll = function () {

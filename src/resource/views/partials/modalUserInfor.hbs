@@ -12,7 +12,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Cập Nhật Địa Chỉ</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Thông tin giao hàng</h5>
         <button
           type="button"
           class="close"
@@ -23,90 +23,219 @@
         </button>
       </div>
       <div class="modal-body">
-        <form id="modalUserInforForm">
-          <p>-- Thông tin cơ bản --</p>
-          <div class="nameAndPhoneInput">
+       <form id="modalUserInforForm">
 
-            <div class='form__group'>
-              <label>
-                <input name='name' id="fname" type="text" placeholder="Họ và tên" />
-                <span>Họ và tên</span>
-                <p></p>
-              </label>
-            </div>
+  <!-- ================= NGƯỜI GỬI ================= -->
+  <div class="user-form__section">
+    <div class="user-form__section-header">
+      <div class="user-form__section-icon">
+        <i class="fa-solid fa-user"></i>
+      </div>
 
-            <div class='form__group'>
-              <label>
-                <input name='phone' id="fphone" type="number" placeholder="Số điện thoại" />
-                <span>Số điện thoại</span>
-                <p></p>
-              </label>
-            </div>
-          </div>
+      <div>
+        <h6>Thông tin người gửi</h6>
+        <span>Thông tin người đặt đơn hàng</span>
+      </div>
+    </div>
 
-             <div class='form__group'>
-              <label>
-                <input name='email' id="femail" type="email" placeholder="Email" />
-                <span>Email</span>
-                <p></p>
-              </label>
-            </div>
+    <div class="user-form__grid user-form__grid--2">
 
-          <p>-- Địa chỉ giao hàng --</p>
-          <div class="addressInput">
-            <div class="provinces address__wrapper form__group">
-              <label>
-                <input
-                  name='provinces'
-                  id="fprovinces"
-                  type="button"
-                  placeholder="Tỉnh/Thành Phố"
-                />
-                <span>Tỉnh/Thành Phố</span>
-                <p></p>
-              </label>
-              <div class="provinces__list address__list"></div>
-            </div>
-            <div class='address__wrapper form__group'>
-              <label>
-                <input
-                  name='district'
-                  id="fdistrict"
-                  type="text"
-                  placeholder="Quận/ Huyện"
-                  disabled
-                />
-                <span>Quận/ Huyện</span>
-                <p></p>
-              </label>
-              <div class="district__list address__list"></div>
-            </div>
-            <div  class='address__wrapper form__group'>
-              <label>
-                <input
-                  name='ward'
-                  id="fward"
-                  type="text"
-                  placeholder="Phường/ Xã"
-                  disabled
-                />
-                <span>Phường/ Xã</span>
-                <p></p>
-              </label>
-              <div class="ward__list address__list"></div>
-            </div>
-          </div>
+      <!-- Tên người gửi -->
+      <div class="form__group">
+        <label>
+          <input
+            name="senderName"
+            id="fsenderName"
+            type="text"
+            placeholder="Họ và tên người gửi"
+          />
+          <span>Họ và tên</span>
+          <p></p>
+        </label>
+      </div>
 
-          <div class='mt-3 form__group'>
-              <label>
-                <input name='detailAddress' id="fdetailAddress" type="text" placeholder="Địa chỉ cụ thể" />
-                <span>Địa chỉ cụ thể</span>
-                <p></p>
-              </label>
-            </div>
+      <!-- SĐT người gửi -->
+      <div class="form__group">
+        <label>
+          <input
+            name="senderPhone"
+            id="fsenderPhone"
+            type="tel"
+            inputmode="numeric"
+            placeholder="Số điện thoại người gửi"
+          />
+          <span>Số điện thoại</span>
+          <p></p>
+        </label>
+      </div>
 
-          {{! <input type="submit" value="Send" /> }}
-        </form>
+      <!-- Email -->
+    <div class="form__group">
+      <label>
+        <input
+          name="email"
+          id="femail"
+          type="email"
+          placeholder="Email"
+        />
+        <span>Email nhận xác nhận đơn hàng</span>
+        <p></p>
+      </label>
+    </div>
+
+    </div>
+  </div>
+
+
+  <!-- ================= NGƯỜI NHẬN ================= -->
+  <div class="user-form__section">
+
+    <div class="user-form__section-header">
+      <div class="user-form__section-icon">
+        <i class="fa-solid fa-location-dot"></i>
+      </div>
+
+      <div>
+        <h6>Thông tin người nhận</h6>
+        <span>Thông tin dùng để giao hàng</span>
+      </div>
+    </div>
+
+
+    <!-- Tên + phone người nhận -->
+    <div class="user-form__grid user-form__grid--2">
+
+      <div class="form__group">
+        <label>
+          <input
+            name="name"
+            id="fname"
+            type="text"
+            placeholder="Họ và tên người nhận"
+          />
+          <span>Họ và tên</span>
+          <p></p>
+        </label>
+      </div>
+
+
+      <div class="form__group">
+        <label>
+          <input
+            name="phone"
+            id="fphone"
+            type="tel"
+            inputmode="numeric"
+            placeholder="Số điện thoại người nhận"
+          />
+          <span>Số điện thoại</span>
+          <p></p>
+        </label>
+      </div>
+
+    </div>
+
+
+    
+
+
+    <!-- Địa chỉ -->
+    <div class="addressInput">
+
+      <!-- Tỉnh -->
+      <div class="provinces address__wrapper form__group">
+
+        <label>
+          <input
+            name="provinces"
+            id="fprovinces"
+            type="button"
+            placeholder="Tỉnh/Thành Phố"
+          />
+
+          <span>Tỉnh / Thành phố</span>
+          <p></p>
+        </label>
+
+        <div class="provinces__list address__list"></div>
+
+      </div>
+
+
+      <!-- Huyện -->
+      <div class="address__wrapper form__group">
+
+        <label>
+          <input
+            name="district"
+            id="fdistrict"
+            type="text"
+            placeholder="Quận / Huyện"
+            disabled
+          />
+
+          <span>Quận / Huyện</span>
+          <p></p>
+        </label>
+
+        <div class="district__list address__list"></div>
+
+      </div>
+
+
+      <!-- Xã -->
+      <div class="address__wrapper form__group">
+
+        <label>
+          <input
+            name="ward"
+            id="fward"
+            type="text"
+            placeholder="Phường / Xã"
+            disabled
+          />
+
+          <span>Phường / Xã</span>
+          <p></p>
+        </label>
+
+        <div class="ward__list address__list"></div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Địa chỉ cụ thể -->
+    <div class="form__group user-form__detail-address">
+
+      <label>
+        <input
+          name="detailAddress"
+          id="fdetailAddress"
+          type="text"
+          placeholder="Số nhà, tên đường..."
+        />
+
+        <span>Địa chỉ cụ thể</span>
+        <p></p>
+      </label>
+
+    </div>
+
+  </div>
+
+
+  <!-- Note -->
+  <div class="user-form__note">
+    <i class="fa-solid fa-circle-info"></i>
+
+    <span>
+      Vui lòng kiểm tra thông tin trước khi lưu để đơn hàng được giao chính xác.
+    </span>
+  </div>
+
+</form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -364,6 +493,7 @@
   function checkIsNumberPhone() {
       const phoneInput = document.querySelector("#fphone");
 
+
       var vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
       let isPhoneNumber =  vnf_regex.test(phoneInput.value);
 
@@ -415,19 +545,40 @@
           })
 
 
-          const {name,phone,email,provinces,district,ward,detailAddress} = dataForm;
+        const {
+  senderName,
+  senderPhone,
+  name,
+  phone,
+  email,
+  provinces,
+  district,
+  ward,
+  detailAddress
+} = dataForm;
 
-          const userInfor = {
-            name,
-            phone,
-            email,
-            address: {
-              provinces,
-              district,
-              ward,
-              detailAddress
-            }
-          }
+
+const userInfor = {
+
+  // NGƯỜI GỬI
+  senderName,
+  senderPhone,
+
+  // NGƯỜI NHẬN
+  name,
+  phone,
+  email,
+
+  // ĐỊA CHỈ NHẬN
+  address: {
+    provinces,
+    district,
+    ward,
+    detailAddress
+  }
+
+};
+          
 
           localStorage.setItem('userInfor',JSON.stringify(userInfor));
           $('#modalUserInfor').modal('hide');
@@ -453,22 +604,68 @@
 
 
 <script>
-    try {
-    const userInfor = JSON.parse(localStorage.getItem('userInfor'));
+  try {
 
-    const {name,phone,email,address}  = userInfor
+  const userInfor =
+    JSON.parse(localStorage.getItem('userInfor'));
 
-      document.getElementById('fname').value = name;
-      document.getElementById('fphone').value = phone;
-      document.getElementById('femail').value = email;
-      document.getElementById('fprovinces').value = address.provinces;
-      document.getElementById('fdistrict').value = address.district;
-      document.getElementById('fward').value = address.ward;
-      document.getElementById('fdetailAddress').value = address.detailAddress;
+  if (userInfor) {
 
-    }catch(err) {
-      console.log(err)
+    // NGƯỜI GỬI
+    document.getElementById('fsenderName').value =
+      userInfor.senderName || '';
+
+    document.getElementById('fsenderPhone').value =
+      userInfor.senderPhone || '';
+
+
+    // NGƯỜI NHẬN
+    document.getElementById('fname').value =
+      userInfor.name || '';
+
+    document.getElementById('fphone').value =
+      userInfor.phone || '';
+
+    document.getElementById('femail').value =
+      userInfor.email || '';
+
+
+    // ĐỊA CHỈ
+    if (userInfor.address) {
+
+      document.getElementById('fprovinces').value =
+        userInfor.address.provinces || '';
+
+      document.getElementById('fdistrict').value =
+        userInfor.address.district || '';
+
+      document.getElementById('fward').value =
+        userInfor.address.ward || '';
+
+      document.getElementById('fdetailAddress').value =
+        userInfor.address.detailAddress || '';
+
     }
+
+
+    // Kích hoạt floating label
+    document
+      .querySelectorAll('#modalUserInfor input')
+      .forEach(input => {
+
+        if (input.value.trim() !== '') {
+          input.classList.add('populated');
+        }
+
+      });
+
+  }
+
+} catch(err) {
+
+  console.log(err);
+
+}
 
 </script>
 

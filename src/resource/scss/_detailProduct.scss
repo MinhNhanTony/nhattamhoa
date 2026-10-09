@@ -146,8 +146,8 @@
     }
     &__text {
         display:block;
-        width:50px;
-        height:50px;
+        width:30px;
+        height:30px;
         border-radius: 50%;
         box-shadow: 1px 1px 4px $border-color;
         opacity:1;
@@ -163,7 +163,7 @@
     justify-content: center;
     align-items: center;
     span {
-        font-size: 1.3rem;
+        font-size: 1rem;
         line-height: 1;
         text-transform: uppercase;
         font-weight: 500;
@@ -211,11 +211,15 @@
 }
 .product__desc--tabs .nav-pills .nav-link {
     border:1px solid $border-color;
+    border-radius: 15px;
+}
+.nav-item {
+    padding-right:10px;
 }
 .product__desc--tabs .nav-pills .nav-link.active {
-    border:1px solid $orange--color;
+    border:1px solid $category-color;
     background-color: unset;
-    color:$orange--color;
+    color:$category-color;
     font-weight: bold;
 }
 .description-productdetail {
@@ -259,6 +263,7 @@
   font-size: 2rem;
   font-weight: bold;
   text-transform: uppercase;
+  
   &-sticky {
     display:none;
     position: fixed;
@@ -343,7 +348,7 @@ padding-bottom: 110px;
 
 .btn-demo {
 padding: 10px 15px;
-border-radius: 0;
+border-radius: 15px;
 font-size: 16px;
 }
 
@@ -553,7 +558,7 @@ outline: 0;
     }
     & .carousel-control-next, .carousel-control-prev  {
         height: 100px;
-        top:50%
+        top:40%
         
         
     }
@@ -694,5 +699,1479 @@ outline: 0;
 
 }
 .productDetail__preOrder {
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+    padding: 2px;
+    span {
+
+    }
+}
+
+/* =========================================
+   PRODUCT IMAGE GALLERY
+========================================= */
+
+.detailProduct__gallery {
+    width: 100%;
+    position: relative;
+}
+
+
+/* =========================================
+   MAIN IMAGE
+========================================= */
+
+.detailProduct__gallery-main {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: #f8f8f8;
+    border-radius: 4px;
+
+    touch-action: pan-y;
+    user-select: none;
+}
+
+.detailProduct__gallery-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    opacity: 0;
+    transform: translateX(100%);
+
+    transition: transform 0.4s ease, opacity 0.4s ease;
+
+    pointer-events: none;
+    cursor: zoom-in;
+}
+@media (max-width: 767px) {
+
+    .detailProduct__gallery-slide {
+        cursor: zoom-in;
+    }
+
+}
+
+.detailProduct__gallery-slide.active {
+    position: relative;
+
+    opacity: 1;
+    transform: translateX(0);
+
+    pointer-events: auto;
+}
+.detailProduct__gallery-slide img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: fill;
+    border-radius: 15px;
+}
+
+
+/* =========================================
+   ZOOM BUTTON
+========================================= */
+
+.detailProduct__gallery-zoom {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.9);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    z-index: 5;
+}
+
+.detailProduct__gallery-zoom img {
+    width: 20px;
+    height: 20px;
+}
+
+
+/* =========================================
+   ARROWS
+========================================= */
+
+.detailProduct__gallery-arrow {
+    position: absolute;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 40px;
+    height: 40px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.85);
+
+    font-size: 32px;
+    line-height: 35px;
+
+    cursor: pointer;
+
+    z-index: 5;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.detailProduct__gallery-arrow--prev {
+    left: 15px;
+}
+
+.detailProduct__gallery-arrow--next {
+    right: 15px;
+}
+
+
+/* =========================================
+   DOTS
+========================================= */
+
+.detailProduct__gallery-dots {
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 6px;
+
+    margin-top: 10px;
+}
+
+.detailProduct__gallery-dot {
+    width: 7px;
+    height: 7px;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #cfcfcf;
+
+    cursor: pointer;
+}
+
+.detailProduct__gallery-dot.active {
+    width: 9px;
+    height: 9px;
+    background: #333;
+}
+
+
+/* =========================================
+   THUMBNAILS
+========================================= */
+
+.detailProduct__gallery-thumbnails {
+    display: flex;
+    justify-content:left;
+    gap: 10px;
+
+    margin-top: 12px;
+
+    overflow-x: auto;
+
+    scrollbar-width: none;
+    border-radius: 15px;
+}
+
+.detailProduct__gallery-thumbnails::-webkit-scrollbar {
+    display: none;
+}
+
+.detailProduct__gallery-thumbnail {
+    flex: 0 0 80px;
+
+    width: 80px;
+    height: 80px;
+
+    padding: 0;
+
+
+    background: white;
+
+    cursor: pointer;
+
+    overflow: hidden;
+}
+
+.detailProduct__gallery-thumbnail.active {
+    img {
+    opacity:1;
+    border: 2px solid #5f5e5e;
+
+    }
+
+}
+
+.detailProduct__gallery-thumbnail img {
+    width: 100%;
+    height: 100%;   
+    opacity:0.5;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 767px) {
+
+    .detailProduct__gallery-main {
+        border-radius: 0;
+
+        /*
+         * Giúp người dùng vuốt dọc trang
+         * nhưng vẫn vuốt ngang gallery
+         */
+        touch-action: pan-y;
+    }
+
+    .detailProduct__gallery-slide img {
+        width: 100%;
+        height: auto;
+
+        /*
+         * Không ép chiều cao.
+         * Giữ nguyên tỷ lệ ảnh hoa.
+         */
+        object-fit: contain;
+    }
+
+    .detailProduct__gallery-dots {
+        display: flex;
+    }
+
+    .detailProduct__gallery-thumbnails {
+        // display: none;
+    }
+
+    .detailProduct__gallery-arrow {
+        width: 34px;
+        height: 34px;
+
+        font-size: 26px;
+
+        opacity: 0.75;
+    }
+
+    .detailProduct__gallery-arrow--prev {
+        left: 8px;
+    }
+
+    .detailProduct__gallery-arrow--next {
+        right: 8px;
+    }
+
+    .detailProduct__gallery-zoom {
+        width: 36px;
+        height: 36px;
+
+        right: 10px;
+        bottom: 10px;
+    }
+
+    .detailProduct__gallery-zoom img {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+
+/* =========================================
+   DESKTOP
+========================================= */
+
+@media (min-width: 768px) {
+
+    .detailProduct__gallery-main {
+        cursor: zoom-in;
+    }
+
+    .detailProduct__gallery-slide img {
+        max-height: 650px;
+    }
+}
+.cart__item--color {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    vertical-align: middle;
+}
+.collection__product {
+    width: 100%;
+    overflow: hidden;
+
+    .row {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .product__item {
+        box-sizing: border-box;
+        min-width: 0;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    img {
+        display: block;
+        max-width: 100%;
+        width: 100%;
+        height: auto;
+    }
+}
+/* =========================================
+   MODAL ZOOM PRODUCT IMAGE
+========================================= */
+
+.ProductImgZoomModal {
+
+    .modal-body {
+        overflow: hidden;
+        background: #000;
+        padding: 0;
+    }
+
+    #ProductImgZoom {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+
+    .carousel-inner {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .carousel-item {
+        height: 100%;
+        min-height: 100vh;
+
+        /* Không ép display:flex ở đây */
+        text-align: center;
+
+        img {
+            width: auto;
+            height: 100vh;
+            max-width: 100%;
+            object-fit: contain;
+
+            cursor: zoom-in;
+
+            transform: scale(1);
+            transform-origin: center center;
+
+            transition:
+                transform 0.3s ease,
+                transform-origin 0s;
+
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        &.is-zoomed {
+            img {
+                cursor: zoom-out;
+            }
+        }
+    }
+
+    /* =========================================
+       NÚT NEXT / PREV
+    ========================================= */
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        z-index: 20;
+        width: 10%;
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-size: contain;
+    }
+
+    /* =========================================
+       CLOSE
+    ========================================= */
+
+    .closeBtn {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        z-index: 100;
+
+        padding: 25px;
+
+        &__icon {
+            font-size: 3rem;
+            color: white;
+        }
+    }
+}
+
+
+/* =========================================
+   ZOOM
+========================================= */
+
+#ProductImgZoom .carousel-item img.is-zoomed {
+    transform: scale(2.5);
+    cursor: zoom-out;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 767px) {
+
+    .ProductImgZoomModal {
+
+        .carousel-item {
+
+            min-height: 100vh;
+
+            img {
+                width: 100%;
+                height: auto;
+                max-height: 100vh;
+                object-fit: contain;
+            }
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 15%;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            width: 35px;
+            height: 35px;
+        }
+
+        .closeBtn {
+            padding: 15px;
+        }
+    }
+}
+
+
+
+/* =========================================================
+   PRODUCT DETAIL - MODERN UI
+========================================================= */
+
+.detailProduct__content {
+    padding: 10px 25px 30px;
+    color: #292929;
+}
+
+
+/* ================= HEADER ================= */
+
+.product-detail__header {
+    padding-bottom: 22px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.product-detail__category {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 12px;
+
+    font-size: 12px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+.product-detail__category i {
+    font-size: 4px;
+    color: #c7a17a;
+}
+
+.product-detail__name {
+    margin: 0;
+
+    font-family: "Playfair Display", serif;
+    font-size: 30px;
+    line-height: 1.35;
+    font-weight: 600;
+
+    color: #252525;
+}
+
+
+/* ================= PRICE ================= */
+
+.product-detail__price-box {
+    padding: 24px 0;
+}
+
+.product-detail__price-main {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 13px;
+}
+
+.product-detail__price-main .product__newPrice,
+.product-detail__price-main .product__oldPrice--notsale {
+    font-size: 29px;
+    font-weight: 700;
+    color: #b36b45;
+}
+
+.product-detail__price-main .product__oldPrice {
+    font-size: 16px;
+    color: #999;
+    text-decoration: line-through;
+}
+
+.product-detail__discount {
+    display: inline-flex;
+    align-items: center;
+    height: 28px;
+    padding: 0 9px;
+
+    background: #f6e7df;
+    color: #a75e3c;
+
+    border-radius: 5px;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.product-detail__saving {
+    margin-top: 8px;
+
+    color: #7a7a7a;
+    font-size: 13px;
+}
+
+.product-detail__saving i {
+    margin-right: 5px;
+    color: #b36b45;
+}
+
+
+/* ================= PRE ORDER ================= */
+
+.product-detail__preorder {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-top: 18px;
+    padding: 13px 15px;
+
+    border-radius: 9px;
+    background: #faf6f2;
+
+    border: 1px solid #eee1d8;
+}
+
+.product-detail__preorder-icon {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #fff;
+    color: #b36b45;
+}
+
+.product-detail__preorder strong,
+.product-detail__preorder small {
+    display: block;
+}
+
+.product-detail__preorder strong {
+    font-size: 13px;
+}
+
+.product-detail__preorder small {
+    margin-top: 3px;
+    color: #888;
+}
+
+
+/* ================= PROMOTION ================= */
+
+.product-detail__promotion {
+    margin-bottom: 22px;
+    padding: 18px;
+
+    border-radius: 10px;
+
+    background: #fafafa;
+    border: 1px solid #eeeeee;
+}
+
+.product-detail__section-title {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    margin-bottom: 15px;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.product-detail__section-icon {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #f5e4da;
+    color: #a96240;
+}
+
+.product-detail__promotion-list {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.product-detail__promotion-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+
+    font-size: 13px;
+}
+
+.promotion-check {
+    flex-shrink: 0;
+
+    width: 20px;
+    height: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 1px;
+
+    border-radius: 50%;
+
+    background: #e9f5ed;
+    color: #3c9a5f;
+
+    font-size: 9px;
+}
+
+.product-detail__promotion-item strong,
+.product-detail__promotion-item span {
+    display: block;
+}
+
+.product-detail__promotion-item strong {
+    margin-bottom: 2px;
+    font-size: 12px;
+}
+
+.product-detail__promotion-item div span {
+    color: #777;
+}
+
+
+/* ================= OPTIONS ================= */
+
+.product-detail__options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+
+    padding: 20px 0;
+
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.product-detail__option-label {
+    margin-bottom: 10px;
+
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+}
+
+.product-detail__color {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 6px 11px 6px 6px;
+
+    border: 1px solid #e4e4e4;
+    border-radius: 30px;
+}
+
+.product-detail__color-circle {
+    width: 27px;
+    height: 27px;
+
+    display: block;
+
+    border-radius: 50%;
+
+    border: 2px solid #fff;
+
+    box-shadow: 0 0 0 1px #d8d8d8;
+}
+
+.product-detail__color-code {
+    font-size: 11px;
+    color: #777;
+    text-transform: uppercase;
+}
+
+
+/* ================= QUANTITY ================= */
+
+.product-detail__quantity {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+
+    height: 40px;
+
+    border: 1px solid #dedede;
+    border-radius: 7px;
+
+    overflow: hidden;
+}
+
+.quantity-control__btn {
+    width: 40px;
+    height: 40px;
+
+    border: 0;
+    background: #fff;
+
+    color: #555;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.quantity-control__btn:hover {
+    background: #f6f6f6;
+    color: #a96240;
+}
+
+.quantity-control__input {
+    width: 42px;
+    height: 40px;
+
+    border: 0;
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+
+    text-align: center;
+
+    background: #fff;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* ================= ADD CART ================= */
+
+.product-detail__actions {
+    padding-top: 22px;
+}
+
+.product-detail__add-cart {
+    position: relative;
+
+    width: 100%;
+    min-height: 68px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 10px 18px;
+
+    border: 0;
+    border-radius: 10px;
+
+    background: #b36b45;
+    color: #fff;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        background .25s ease;
+}
+
+.product-detail__add-cart:hover {
+    background: #9d593a;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 10px 25px rgba(179, 107, 69, .22);
+}
+
+.product-detail__add-cart-icon {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 13px;
+
+    border-radius: 8px;
+
+    background: rgba(255,255,255,.14);
+
+    font-size: 18px;
+}
+
+.product-detail__add-cart strong,
+.product-detail__add-cart small {
+    display: block;
+}
+
+.product-detail__add-cart strong {
+    font-size: 15px;
+}
+
+.product-detail__add-cart small {
+    margin-top: 3px;
+    opacity: .8;
+
+    font-size: 11px;
+}
+
+.product-detail__arrow {
+    margin-left: auto;
+    margin-right: 5px;
+
+    font-size: 14px;
+
+    transition: transform .25s ease;
+}
+
+.product-detail__add-cart:hover .product-detail__arrow {
+    transform: translateX(5px);
+}
+
+
+/* ================= QUICK ORDER ================= */
+
+.product-detail__quick-order {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-top: 14px;
+    padding: 13px 15px;
+
+    border-radius: 9px;
+
+    background: #fff;
+
+    border: 1px solid #eeeeee;
+
+    transition: .2s;
+}
+
+.product-detail__quick-order:hover {
+    border-color: #dbc1b3;
+}
+
+.quick-order__icon {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #f6ebe5;
+    color: #ad6846;
+}
+
+.quick-order__content {
+    flex: 1;
+}
+
+.quick-order__content strong,
+.quick-order__content span {
+    display: block;
+}
+
+.quick-order__content strong {
+    font-size: 12px;
+}
+
+.quick-order__content span {
+    margin-top: 2px;
+    color: #888;
+    font-size: 12px;
+}
+
+.quick-order__content a {
+    color: #ad6846;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.product-detail__quick-order > i {
+    color: #aaa;
+    font-size: 11px;
+}
+
+
+/* ================= NOTE ================= */
+
+.product-detail__note {
+    display: flex;
+    gap: 12px;
+
+    margin-top: 14px;
+    padding: 15px;
+
+    background: #f8f8f8;
+
+    border-radius: 9px;
+}
+
+.product-detail__note-icon {
+    flex-shrink: 0;
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #1877f2;
+    color: #fff;
+
+    font-size: 14px;
+}
+
+.product-detail__note-content strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    font-size: 12px;
+}
+
+.product-detail__note-content p {
+    margin: 0;
+
+    color: #777;
+
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.product-detail__note-content a {
+    color: #a96240;
+    font-weight: 600;
+}
+
+
+/* ================= BENEFITS ================= */
+
+.product-detail__benefits {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+
+    margin-top: 14px;
+}
+
+.product-detail__benefit {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 12px;
+
+    border: 1px solid #eeeeee;
+    border-radius: 8px;
+}
+
+.product-detail__benefit > span {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #faf1ec;
+    color: #ad6846;
+
+    font-size: 13px;
+}
+
+.product-detail__benefit strong,
+.product-detail__benefit small {
+    display: block;
+}
+
+.product-detail__benefit strong {
+    font-size: 11px;
+}
+
+.product-detail__benefit small {
+    margin-top: 2px;
+
+    color: #888;
+
+    font-size: 10px;
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 767px) {
+
+    .detailProduct__content {
+        padding: 20px 15px 30px;
+    }
+
+    .product-detail__name {
+        font-size: 23px;
+        line-height: 1.35;
+    }
+
+    .product-detail__category {
+        font-size: 10px;
+    }
+
+    .product-detail__price-box {
+        padding: 18px 0;
+    }
+
+    .product-detail__price-main .product__newPrice,
+    .product-detail__price-main .product__oldPrice--notsale {
+        font-size: 24px;
+    }
+
+    .product-detail__options {
+        gap: 10px;
+    }
+
+    .product-detail__benefits {
+        grid-template-columns: 1fr;
+    }
+
+    .product-detail__add-cart {
+        min-height: 62px;
+    }
+
+    .product-detail__promotion {
+        padding: 14px;
+    }
+
+}
+
+
+/* ================= SMALL MOBILE ================= */
+
+@media (max-width: 400px) {
+
+    .product-detail__name {
+        font-size: 21px;
+    }
+
+    .product-detail__options {
+        grid-template-columns: 1fr;
+    }
+
+    .product-detail__quantity {
+        align-items: flex-start;
+    }
+
+    .product-detail__benefits {
+        display: block;
+    }
+
+    .product-detail__benefit + .product-detail__benefit {
+        margin-top: 8px;
+    }
+
+}
+
+/* =========================================================
+   PRODUCT IMAGE ZOOM
+========================================================= */
+
+#ProductImgZoomModal {
+    padding: 0 !important;
+}
+
+
+#ProductImgZoomModal .modal-dialog {
+    width: 100%;
+    max-width: none;
+
+    height: 100%;
+    margin: 0;
+}
+
+
+#ProductImgZoomModal .modal-content {
+    width: 100%;
+    height: 100%;
+
+    border: 0;
+    border-radius: 0;
+
+    background: #000;
+}
+
+
+#ProductImgZoomModal .modal-body {
+    width: 100%;
+    height: 100%;
+
+    padding: 0;
+
+    overflow: hidden;
+
+    background: #000;
+}
+
+
+/* =========================================================
+   CAROUSEL
+========================================================= */
+
+#ProductImgZoom {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    /*
+     * Khi chưa zoom:
+     * cho phép trình duyệt xử lý swipe ngang.
+     */
+    touch-action: pan-y;
+}
+
+
+#ProductImgZoom .carousel-inner {
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+}
+
+
+#ProductImgZoom .carousel-item {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+#ProductImgZoom .zoom-product-image {
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 90vh;
+
+    user-select: none;
+    -webkit-user-select: none;
+
+    -webkit-user-drag: none;
+
+    cursor: zoom-in;
+
+    /*
+     * Quan trọng:
+     * transform được JS quản lý hoàn toàn.
+     */
+    transform:
+        translate3d(-50%, -50%, 0)
+        scale(1);
+
+    transform-origin: center center;
+
+    will-change: transform;
+
+    transition:
+        transform .2s ease;
+
+    touch-action: pan-y;
+}
+
+
+/* =========================================================
+   KHI ĐANG ZOOM
+========================================================= */
+
+#ProductImgZoom .zoom-product-image.is-zoomed {
+
+    cursor: grab;
+
+    /*
+     * Không để browser tự xử lý gesture.
+     * JS sẽ tự xử lý kéo ảnh.
+     */
+    touch-action: none;
+
+    transition: none;
+
+}
+
+
+#ProductImgZoom .zoom-product-image.is-dragging {
+
+    cursor: grabbing;
+
+}
+
+
+/* =========================================================
+   CLOSE
+========================================================= */
+
+#ProductImgZoomModal .closeBtn {
+
+    position: fixed;
+
+    top: 20px;
+    right: 25px;
+
+    z-index: 100;
+
+    width: 45px;
+    height: 45px;
+
+    padding: 0;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, .5);
+
+    color: #fff;
+
+    opacity: 1;
+
+    cursor: pointer;
+}
+
+
+#ProductImgZoomModal .closeBtn i {
+    font-size: 25px;
+}
+
+
+/* =========================================================
+   ARROWS
+========================================================= */
+
+#ProductImgZoomModal .carousel-control-prev,
+#ProductImgZoomModal .carousel-control-next {
+
+    z-index: 50;
+
+    width: 10%;
+}
+
+
+/* =========================================================
+   INDICATORS
+========================================================= */
+
+#ProductImgZoomModal .carousel-indicators {
+
+    z-index: 50;
+
+    bottom: 15px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 767px) {
+
+    #ProductImgZoom .zoom-product-image {
+
+        max-width: 100%;
+        max-height: 85vh;
+
+    }
+
+
+    #ProductImgZoomModal .closeBtn {
+
+        top: 15px;
+        right: 15px;
+
+    }
+
+}#ProductImgZoom {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+
+#ProductImgZoom .carousel-inner,
+#ProductImgZoom .carousel-item {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+
+#ProductImgZoom .carousel-item img {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 100vh;
+
+    transform:
+        translate3d(-50%, -50%, 0)
+        scale(1);
+
+    transform-origin: center center;
+
+    cursor: zoom-in;
+
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+
+    touch-action: pan-y;
+
+    will-change: transform;
+
+    transition: transform .2s ease;
+}
+
+
+#ProductImgZoom .carousel-item img.is-zoomed {
+    cursor: grab;
+
+    touch-action: none;
+
+    transition: none;
+}
+
+
+#ProductImgZoom .carousel-item img.is-dragging {
+    cursor: grabbing;
+
+    touch-action: none;
+}
+#ProductImgZoom .carousel-item img {
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+#ProductImgZoom .carousel-item img.is-zoomed {
+    touch-action: none;
+    cursor: grab;
+}
+
+#ProductImgZoom .carousel-item img.is-dragging {
+    cursor: grabbing;
 }

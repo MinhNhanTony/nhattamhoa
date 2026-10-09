@@ -6,214 +6,891 @@
 			</div>
 			<div class="order__content">
 					<div class="order__container">
-						<p class="order__title">
-							<i class="order__title--icon fa-solid fa-location-dot"></i>Địa chỉ nhận hàng
-						</p>
-						<div>
-							<div class="order__user">
-								<span class="order__user--name font-weight-bold">--</span>
-								<p>
-										<span class='font-weight-bold'>(+84)</span> <span class="order__user--phone font-weight-bold">--</span>
 
-								</p>
-								
-								<span class="order__user--address">----------------------</span>
+    <div class="order__header">
+        <p class="order__title mb-0">
+            <i class="order__title--icon fa-solid fa-location-dot"></i>
+            Thông tin giao hàng
+        </p>
 
-								<button class='text-orange' data-target="#modalUserInfor" data-toggle="modal">Thay đổi</button>
-								
-							</div>
-						</div>
-					</div>
+        <button
+            class="order__edit-btn"
+            data-target="#modalUserInfor"
+            data-toggle="modal">
 
-					<div class="order__container">
-						<p class="order__title">
-							<i class="order__title--icon fa-solid fa-box-open"></i>Sản phẩm
+            <i class="fa-solid fa-pen"></i>
+            Thay đổi
+        </button>
+    </div>
 
-						</p>
-						<div class="cart__list">
+    <div class="order__info-grid">
 
-							<div class="cart__table">
-									<div class="cart__row cart__header--row">
-											<div></div>
-											<div></div>
-											<div>Đơn giá</div>
-											<div>Số lượng</div>
-											<div>Thành tiền</div>
-									</div>
-									<div class="cart__body">
-										<div class="cart__row cart__body--row">
-											
-										</div>
-									</div>
-							</div>
+        <!-- NGƯỜI GỬI -->
+        <div class="order__card">
 
-							
-						</div>
-						<div class="cart__body">
-							<div class='cart__body--bottom row'>
-									<div class="cart__body--note col-12 col-md-6">
-										<textarea id="note" name="note" rows="5" cols="10" placeholder="Ghi chú"></textarea>
-									</div>
+            <div class="order__card-title">
+                <i class="fa-solid fa-gift"></i>
+                Người gửi hoa
+            </div>
 
-									<div class='col-12 col-md-6'>
-											<div class="d-flex justify-content-between align-items-center my-3">
-												<span class=''>Đơn vị vận chuyển</span> 
-												<p class='font-weight-bold text-green'>Giao hàng tiết kiệm</p>
-											</div>
+            <div class="order__row">
+                <i class="fa-regular fa-user"></i>
+                <span class="order__sender--name font-weight-bold">
+                    --
+                </span>
+            </div>
 
-											<div class="d-flex justify-content-between align-items-center my-3">
-												<span class=''>Phí bảo hành</span> <span class='insurance__fee'>----</span>
-											</div>
+            <div class="order__row">
+                <i class="fa-solid fa-phone"></i>
+                <span>
+                    (+84)
+                    <span class="order__sender--phone">
+                        --
+                    </span>
+                </span>
+            </div>
+            <div class="order__row">
+                <i class="fa-regular fa-envelope"></i>
+                <span>
+                
+                    <span class="order__sender--mail">
+                        --
+                    </span>
+                </span>
+            </div>
 
+        </div>
 
-											<div class="d-flex justify-content-between">
-												
+        <!-- NGƯỜI NHẬN -->
+        <div class="order__card">
 
-												<span >Phí vận chuyển</span>
-												<span class='ship__fee'>----</span>
+            <div class="order__card-title">
+                <i class="fa-solid fa-location-dot"></i>
+                Người nhận hoa
+            </div>
 
+            <div class="order__row">
+                <i class="fa-regular fa-user"></i>
+                <span class="order__user--name font-weight-bold">
+                    --
+                </span>
+            </div>
 
-												
-											</div>
+            <div class="order__row">
+                <i class="fa-solid fa-phone"></i>
+                <span>
+                    (+84)
+                    <span class="order__user--phone">
+                        --
+                    </span>
+                </span>
+            </div>
 
-											<div class="d-flex justify-content-end align-items-center my-4">
-												<span class='font-weight-bold'> Phí Ship: </span> <span class='total__ship--fee'></span>
-											</div>
-									</div>
+            <div class="order__row order__address-row">
+                <i class="fa-solid fa-location-dot"></i>
+                <span class="order__user--address">
+                    --
+                </span>
+            </div>
 
-								
-								</div>
-						</div>
-					</div>
-					<div class="order__container">
-						<p class="order__title">
-							<i class="order__title--icon fa-categorys fa-cc-amazon-pay"></i>Phương thức thanh toán
+        </div>
 
-						</p>
-						<div class="order__pay--option">
-								 <div class="tabs">
-									<div class="tab__item active">
-										<i class="tab-icon fa-solid fa-money-bill"></i>
-										
-										Thanh toán khi giao hàng (COD)
-										<span class="tab__item--checked">
-											<i class="tab__item--checked-icon fa-solid fa-check"></i>
-										</span>
-									</div>
+    </div>
 
-									<div class="tab__item">
-										<i class="tab-icon fa-solid fa-credit-card"></i>
-										Chuyển khoản qua ngân hàng
-										<span class="tab__item--checked">
-											<i class="tab__item--checked-icon fa-solid fa-check"></i>
-										</span>
-										
-										
-									</div>
-									<div class="tab__item">
-										<i class="tab-icon fas fa-plus-circle"></i>
-										Ví điện tử : Momo
-										<span class="tab__item--checked">
-											<i class="tab__item--checked-icon fa-solid fa-check"></i>
-										</span>
-										
-										
-									</div>
-							
-									<div class="line"></div>
-								</div>
+</div>
 
+					<div class="order__container checkout-product">
 
-								<div class="contents">
-									<div class="tab__content active">
-									<p>
-										Thanh toán khi giao hàng (COD), quý khách sẽ thanh toán <span class='font-weight-bold'>khi</span> shipper <span class='font-weight-bold'>giao hàng</span> đến địa chỉ khách yêu cầu
-									</p>
-									</div>
-									<div class="tab__content">
-										<p>
-											Khách hàng Thanh toán qua Ngân hàng Vui lòng chuyển khoản theo thông tin sau:
-										</p>
-    									{{>payment-bank}}
-										
-									</div>
+    <!-- HEADER -->
+    <div class="checkout-product__header">
 
-									<div class="tab__content">
-									
-    									{{>payment-momo}}
-										
-									</div>
-							
-								</div>
-						</div>
-						<div class="order__pay--discount py-5">
+        <div class="checkout-product__heading">
 
-							{{!-- <div>
-								<input type="text" id='discount__input'>
-								<button  type="submit" id='discount__submit'>
-									Sử dụng
-								</button>
-							</div>  --}}
+            <div class="checkout-product__icon">
+                <i class="fa-solid fa-box-open"></i>
+            </div>
 
-							<div>
-								<div class="container my-1">
-									<p class="order__title">
-										<i class="order__title--icon fa-solid fa-code"></i>Áp dụng giảm giá
-									</p>
-									<div class="discount__list row">
-									
-										
-									</div>
-								</div>
-							</div>
-								
-						</div>
+            <div>
+                <h3 class="order__title">
+                    Sản phẩm
+                </h3>
 
-						<div class="order__pay--summary">
-						
-							<div class='order__pay--whiteSpace'></div>
-							<div class="order__pay--summary--title">
-								Tổng tiền hàng
-							</div>
-							<div class="total__product--price">
-								 0 vnd
-							</div>
+                <p>
+                    Kiểm tra lại sản phẩm trước khi thanh toán
+                </p>
+            </div>
+
+        </div>
+
+        <div class="checkout-product__badge">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span class="checkout-product__count">1 sản phẩm</span>
+        </div>
+
+    </div>
 
 
-							<div class='order__pay--whiteSpace'></div>
-							<div class="order__pay--summary--title">
-								Phí vận chuyển 
-							</div>
-							<div class="total__feeShip--price">
-								 0 vnd
-							</div>
-						
+    <!-- PRODUCT TABLE -->
+    <div class="cart__list">
+
+        <div class="cart__table">
+
+            <!-- TABLE HEADER -->
+            <div class="cart__row cart__header--row">
+
+                <div class="cart__header-product">
+                    Sản phẩm
+                </div>
+
+                <div class="cart__header-color">
+                    Phân loại
+                </div>
+
+                <div>
+                    Đơn giá
+                </div>
+
+                <div>
+                    Số lượng
+                </div>
+
+                <div>
+                    Thành tiền
+                </div>
+
+            </div>
 
 
-							<div class='order__pay--whiteSpace'></div>
-							<div class='discoust--show'></div>
-							<div class='originalTotalPrice'></div>
-							<div></div>
+            <!-- PRODUCT -->
+            <div class="cart__body">
 
-							<div class="order__pay--summary--title font-weight-bold">
-								Tổng Thanh Toán 
-							</div>
-							<div class="total__order--price">
-								 0 vnd
-							</div>
-						</div>
-						<div class="order__pay--bottom">
-							<p class="text-gray">
-								Nhấn "Đặt hàng" đồng nghĩa với việc bạn đồng ý tuân theo <a href="#" class='font-weight-bold'>Điều khoản Qana Nolan</a>
-							</p>
+                <div class="cart__row cart__body--row">
 
-							<span>
-								{{> slideBtn disabled='disabled' title="Đặt hàng" class="order__btn"}}
+                    <!-- PRODUCT INFO -->
+                    <div class="cart__item--main">
 
-							</span>
-						</div>
-						
-					</div>
+                        <div class="cart__item-image">
+                            <img
+                                src="/img/Products/1790345204889_1791064717108550335_2347673774926130672_527408e78168a851beb5631c82892da0.jpg"
+                                alt="BÓ HỒNG CHÙM SOFIA MIX SAO XANH XINH ĐẸP"
+                            >
+                        </div>
+
+                        <div class="cart__item-info">
+
+                            <p class="cart__item-name">
+                                BÓ HỒNG CHÙM SOFIA MIX SAO XANH XINH ĐẸP
+                            </p>
+
+                            <div class="cart__item-meta">
+                                <span>
+                                    Phân loại:
+                                    <strong>BÓ HOA</strong>
+                                </span>
+
+                                <span class="cart__meta-divider"></span>
+
+                                <span>
+                                    Mã SP:
+                                    <strong>SP0008</strong>
+                                </span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- COLOR -->
+                    <div class="cart__item--type">
+
+                        <div class="cart__color">
+
+                            <span class="cart__color-dot"></span>
+
+                            <span>
+                                Màu:
+                                <strong class="cart__item--color">
+                                    pink
+                                </strong>
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PRICE -->
+                    <div class="cart__item-price">
+
+                        <span>
+                            450.000
+                        </span>
+
+                        <span class="vnd">
+                            đ
+                        </span>
+
+                    </div>
+
+
+                    <!-- QUANTITY -->
+                    <div class="cart__item-quantity">
+
+                        <span>
+                            1
+                        </span>
+
+                    </div>
+
+
+                    <!-- TOTAL -->
+                    <div class="cart__item-total">
+
+                        <strong>
+                            450.000
+                        </strong>
+
+                        <span class="vnd">
+                            đ
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- BOTTOM -->
+    <div class="checkout-product__bottom">
+
+        <!-- NOTE -->
+        <div class="cart__body--note">
+
+            <div class="checkout-box__header">
+
+                <div class="checkout-box__icon">
+                    <i class="fa-regular fa-note-sticky"></i>
+                </div>
+
+                <div>
+                    <h4>Ghi chú</h4>
+
+                    <p>
+                        Ghi chú cho đơn hàng nếu có
+                    </p>
+                </div>
+
+            </div>
+
+            <textarea
+                id="note"
+                name="note"
+                rows="5"
+                placeholder="Ví dụ: Giao trước 17h, gọi điện trước khi giao..."
+            ></textarea>
+
+        </div>
+
+
+       
+
+    </div>
+
+</div>
+					<div class="order__container checkout-payment">
+
+    <!-- =========================================
+         PHƯƠNG THỨC THANH TOÁN
+    ========================================== -->
+
+    <div class="checkout-payment__header">
+
+        <div class="checkout-payment__heading">
+
+            <div class="checkout-payment__icon">
+                <i class="fa-solid fa-credit-card"></i>
+            </div>
+
+            <div>
+                <h3 class="order__title">
+                    Phương thức thanh toán
+                </h3>
+
+                <p>
+                    Lựa chọn phương thức thanh toán phù hợp với bạn
+                </p>
+				<div class='tab__item-text'>
+						<strong>
+							Vui lòng cọc trước ít nhất 50% giá trị đơn hàng
+						</strong>
+				</div>
+				
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="order__pay--option">
+
+        <!-- PAYMENT TABS -->
+
+        <div class="tabs">
+
+            <!-- COD -->
+
+            <div class="tab__item active">
+
+                <div class="tab__item-content">
+
+                    <div class="tab__item-icon">
+                        <i class="fa-solid fa-money-bill-wave"></i>
+                    </div>
+
+                    <div class="tab__item-text">
+                        <strong>
+                            Thanh toán khi nhận hàng
+                        </strong>
+
+                        <span>
+                            Thanh toán COD
+                        </span>
+                    </div>
+
+                </div>
+
+                <span class="tab__item--checked">
+                    <i class="tab__item--checked-icon fa-solid fa-check"></i>
+                </span>
+
+            </div>
+
+
+            <!-- BANK -->
+
+            <div class="tab__item">
+
+                <div class="tab__item-content">
+
+                    <div class="tab__item-icon">
+                        <i class="fa-solid fa-building-columns"></i>
+                    </div>
+
+                    <div class="tab__item-text">
+
+                        <strong>
+                            Chuyển khoản ngân hàng
+                        </strong>
+
+                        <span>
+                            Chuyển khoản trực tiếp
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <span class="tab__item--checked">
+                    <i class="tab__item--checked-icon fa-solid fa-check"></i>
+                </span>
+
+            </div>
+
+
+            <!-- MOMO -->
+
+            <div class="tab__item">
+
+                <div class="tab__item-content">
+
+                    <div class="tab__item-icon">
+                        <i class="fa-solid fa-wallet"></i>
+                    </div>
+
+                    <div class="tab__item-text">
+
+                        <strong>
+                            Ví điện tử MoMo
+                        </strong>
+
+                        <span>
+                            Thanh toán bằng MoMo
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <span class="tab__item--checked">
+                    <i class="tab__item--checked-icon fa-solid fa-check"></i>
+                </span>
+
+            </div>
+
+            <!-- JS cũ của bạn vẫn cần .line -->
+            <div class="line"></div>
+
+        </div>
+
+
+        <!-- =========================================
+             PAYMENT CONTENT
+        ========================================== -->
+
+        <div class="contents">
+
+
+            <!-- COD -->
+
+            <div class="tab__content active">
+
+                <div class="payment-info payment-info--cod">
+
+                    <div class="payment-info__icon">
+                        <i class="fa-solid fa-truck"></i>
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Thanh toán khi nhận hàng
+                        </h4>
+
+                        <p>
+                            Quý khách sẽ thanh toán khi shipper
+                            giao hàng đến địa chỉ đã đăng ký.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BANK -->
+
+            <div class="tab__content">
+
+                <div class="payment-detail">
+
+                    <div class="payment-detail__header">
+
+                        <div class="payment-detail__icon">
+                            <i class="fa-solid fa-building-columns"></i>
+                        </div>
+
+                        <div>
+                            <h4>
+                                Chuyển khoản ngân hàng
+                            </h4>
+
+                            <p>
+                                Vui lòng chuyển khoản theo thông tin bên dưới
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="payment-account">
+
+                        <div class="payment-account__row">
+                            <span>Tên ngân hàng</span>
+
+                            <strong>
+                                Vietcombank (VCB)
+                            </strong>
+                        </div>
+
+
+                        <div class="payment-account__row">
+                            <span>Chi nhánh</span>
+
+                            <strong>
+                                Đức Phổ
+                            </strong>
+                        </div>
+
+
+                        <div class="payment-account__row">
+                            <span>Chủ tài khoản</span>
+
+                            <strong>
+                                Trần Minh Nhân
+                            </strong>
+                        </div>
+
+
+                        <div class="payment-account__row payment-account__row--highlight">
+
+                            <span>
+                                Số tài khoản
+                            </span>
+
+                            <strong>
+                                0271001082592
+                            </strong>
+
+                        </div>
+
+
+                        <div class="payment-account__row">
+                            <span>Nội dung chuyển khoản</span>
+
+                            <strong>
+                                Mã đơn __ Tên người mua
+                            </strong>
+                        </div>
+
+                    </div>
+
+                     <div class="payment-qr-wrapper">
+
+                        <p>
+                            Quét mã QR Ngân hàng
+                        </p>
+
+                        <img
+                            class="payment-qr"
+                            src="/img/BankQr.jpg"
+                            alt="Mã QR thanh toán Ngân hàng Vietcombank"
+                        >
+
+                    </div>
+
+
+
+                    <div class="payment-note">
+
+                        <i class="fa-solid fa-circle-info"></i>
+
+                        <div>
+
+                            <strong>
+                                Lưu ý
+                            </strong>
+
+                            <p>
+                                Mã đơn hàng vui lòng kiểm tra trong
+                                Gmail hoặc mục tra cứu đơn hàng.
+                            </p>
+
+                            <p>
+                                Sau khi chuyển khoản, quý khách vui lòng
+                                chụp hình giao dịch và gửi inbox cho fanpage
+                                <a
+                                    href="https://www.facebook.com/profile.php?id=100079283596226"
+                                    target="_blank"
+                                >
+                                    Quana Nolan
+                                </a>.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- MOMO -->
+
+            <div class="tab__content">
+
+                <div class="payment-detail">
+
+                    <div class="payment-detail__header">
+
+                        <div class="payment-detail__icon payment-detail__icon--momo">
+                            <i class="fa-solid fa-wallet"></i>
+                        </div>
+
+                        <div>
+                            <h4>
+                                Thanh toán qua MoMo
+                            </h4>
+
+                            <p>
+                                Quét mã QR để thực hiện thanh toán
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="payment-account">
+
+                        <div class="payment-account__row">
+
+                            <span>
+                                Chủ tài khoản
+                            </span>
+
+                            <strong>
+                                Trần Minh Nhân
+                            </strong>
+
+                        </div>
+
+
+                        <div class="payment-account__row">
+
+                            <span>
+                                Số điện thoại
+                            </span>
+
+                            <strong>
+                                <a href="tel:0962165084">
+                                    0962165084
+                                </a>
+                            </strong>
+
+                        </div>
+
+
+                        <div class="payment-account__row">
+
+                            <span>
+                                Nội dung chuyển khoản
+                            </span>
+
+                            <strong>
+                                Mã đơn __ Tên người mua
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="payment-qr-wrapper">
+
+                        <p>
+                            Quét mã QR MoMo
+                        </p>
+
+                        <img
+                            class="payment-qr"
+                            src="/img/MomoQr.jpg"
+                            alt="Mã QR thanh toán MoMo"
+                        >
+
+                    </div>
+
+
+                    <div class="payment-note">
+
+                        <i class="fa-solid fa-circle-info"></i>
+
+                        <div>
+
+                            <strong>
+                                Lưu ý
+                            </strong>
+
+                            <p>
+                                Mã đơn hàng vui lòng kiểm tra trong
+                                Gmail hoặc mục tra cứu đơn hàng.
+                            </p>
+
+                            <p>
+                                Sau khi chuyển khoản, quý khách vui lòng
+                                chụp hình giao dịch và gửi inbox cho fanpage
+                                <a
+                                    href="https://www.facebook.com/profile.php?id=100079283596226"
+                                    target="_blank"
+                                >
+                                    Quana Nolan
+                                </a>.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         GIẢM GIÁ
+    ========================================== -->
+
+    <div class="order__pay--discount">
+
+        <div class="discount-section">
+
+            <div class="discount-section__header">
+
+                <div class="discount-section__icon">
+                    <i class="fa-solid fa-ticket"></i>
+                </div>
+
+                <div>
+                    <h4>
+                        Ưu đãi & giảm giá
+                    </h4>
+
+                    <p>
+                        Chọn mã giảm giá nếu bạn có
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="discount__list row"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         ORDER SUMMARY
+    ========================================== -->
+
+    <div class="order__pay--summary">
+
+        <!-- PRODUCT -->
+
+        <div class="order__pay--summary-row">
+
+            <span class="order__pay--summary--title">
+                Tổng tiền hàng
+            </span>
+
+            <span class="total__product--price">
+                450.000
+                <span class="vnd">
+                    đ
+                </span>
+            </span>
+
+        </div>
+
+
+        <!-- SHIPPING -->
+
+        {{!-- <div class="order__pay--summary-row">
+
+            <span class="order__pay--summary--title">
+                Phí vận chuyển
+            </span>
+
+            <span class="total__feeShip--price">
+                33.000
+                <span class="vnd">
+                    đ
+                </span>
+            </span>
+
+        </div> --}}
+
+
+        <!-- DISCOUNT -->
+
+        {{!-- <div class="order__pay--summary-discount">
+
+            <div class="discoust--show"></div>
+
+            <div class="originalTotalPrice">
+                483.000
+                <span class="vnd">
+                    đ
+                </span>
+            </div>
+
+        </div> --}}
+
+
+        <!-- TOTAL -->
+
+        <div class="order__pay--summary-total">
+
+            <div>
+
+                <span>
+                    Tổng thanh toán
+                </span>
+
+                <small>
+                    Cảm ơn bạn đã chọn Nhất Tâm Hoa
+                </small>
+
+            </div>
+
+            <strong class="total__order--price">
+
+                483.000
+
+                <span class="vnd">
+                    đ
+                </span>
+
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         ORDER BUTTON
+    ========================================== -->
+
+    <div class="order__pay--bottom">
+
+        <div class="order__terms">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            <p>
+                Nhấn <strong>"Đặt hàng"</strong> đồng nghĩa với việc
+                bạn đồng ý tuân theo
+                <a href="#">
+                    Điều khoản NHẤT TÂM HOA
+                </a>
+            </p>
+
+        </div>
+
+
+        <div class="order__submit">
+
+            <button
+                class="btn-container__btn"
+                id="order__btn"
+                type="button"
+            >
+                <span>
+                    Đặt hàng
+                </span>
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
 			</div>
 	</div>
 {{>modalUserInfor}}
@@ -227,14 +904,64 @@
 	 try {
 			const userInfor = JSON.parse(localStorage.getItem('userInfor'));
 			const {name,phone,email,address} = userInfor;
-			function renderUserInfor () {
-					document.querySelector('.order__user--name').textContent = name;
-					document.querySelector('.order__user--phone').textContent = phone;
-					document.querySelector('.order__user--address').textContent = `${address.detailAddress}, ${address.ward}, ${address.district}, ${address.provinces}`;
+			function renderUserInfor() {
 
-			}
+					try {
 
-			renderUserInfor();
+						const userInfor =
+							JSON.parse(localStorage.getItem('userInfor'));
+
+						if(!userInfor) return;
+
+						// Người gửi
+						document.querySelector(
+							'.order__sender--name'
+						).textContent =
+							userInfor.senderName || '--';
+
+						document.querySelector(
+							'.order__sender--phone'
+						).textContent =
+							userInfor.senderPhone || '--';
+
+                        document.querySelector(
+							'.order__sender--mail'
+						).textContent =
+							userInfor.email || '--';
+
+
+						// Người nhận
+						document.querySelector(
+							'.order__user--name'
+						).textContent =
+							userInfor.name || '--';
+
+						document.querySelector(
+							'.order__user--phone'
+						).textContent =
+							userInfor.phone || '--';
+
+
+						// Địa chỉ
+						const address =
+							userInfor.address;
+
+						document.querySelector(
+							'.order__user--address'
+						).textContent =
+							`${address.detailAddress},
+							${address.ward},
+							${address.district},
+							${address.provinces}`;
+
+					}
+					catch(err){
+						console.log(err);
+					}
+
+				}
+
+				renderUserInfor();
 
 	 }catch(err) {
 		console.log(err);
@@ -285,9 +1012,10 @@
 													Màu: <span class="cart__item--color">${item.cartItemColor}</span>
 												</div>
 												
-												<div>
-													Size: <span class="cart__item--size">${item.cartItemSize}</span>
-												</div>
+												{{!-- <div>
+													Size: <span class="cart__item--size">
+													</span>
+												</div> --}}
 
 												
 											</div>
@@ -347,36 +1075,25 @@ getData('/apis/calculate-ship-price',{address:userInfor.address,cartProductId})
 
 				const totalPriceFromFetch =await getTotalPrice();
 			
-			
-				document.querySelector('.total__ship--fee').innerHTML = `${numberToMoney(fee)} <span class='total-weight'>(${orderWeight}kg)</span>`;
-				document.querySelector('.insurance__fee').innerHTML = numberToMoney(insurance_fee);
-				document.querySelector('.ship__fee').innerHTML = numberToMoney(ship_fee_only);
+				{{!-- document.querySelector('.total__ship--fee').innerHTML = `${numberToMoney(fee)} <span class='total-weight'>(${orderWeight}kg)</span>`; --}}
+				{{!-- document.querySelector('.insurance__fee').innerHTML = numberToMoney(insurance_fee); --}}
+				{{!-- document.querySelector('.ship__fee').innerHTML = numberToMoney(ship_fee_only); --}}
 
 				document.querySelector('.total__product--price').innerHTML = numberToMoney(totalPriceFromFetch);
 
 				
 
-				document.querySelector('.total__feeShip--price').innerHTML = numberToMoney(fee);
-				document.querySelector('.total__order--price').innerHTML = numberToMoney(fee + totalPriceFromFetch) ;
-				document.querySelector('.originalTotalPrice').innerHTML = numberToMoney(fee + totalPriceFromFetch) ;
+				{{!-- document.querySelector('.total__feeShip--price').innerHTML = numberToMoney(fee); --}}
+				document.querySelector('.total__order--price').innerHTML = numberToMoney(totalPriceFromFetch) ;
+				{{!-- document.querySelector('.originalTotalPrice').innerHTML = numberToMoney(fee + totalPriceFromFetch) ; --}}
 
 				totalPrice = fee + totalPriceFromFetch;
 				productPrice = totalPriceFromFetch;
-				shipmentFee = fee;
+				shipmentFee = 0;
 				isShipmentFeeRes = true;
 
 
-				const orderBtnDisabled = document.querySelector('.btn-container.disabled');
-				orderBtnDisabled.classList.remove('disabled');
 				
-
-				const btn = orderBtnDisabled.querySelector('button');
-				btn.removeAttribute('disabled');
-				if(productPrice ===0 ) {
-							orderBtnDisabled.classList.add('disabled');
-
-						btn.setAttribute('disabled',"");
-				}
 			
 			}) 
 	 
@@ -388,6 +1105,248 @@ getData('/apis/calculate-ship-price',{address:userInfor.address,cartProductId})
 
 			
 </script>
+
+
+<script>
+    // =========================================
+    // TÍNH TỔNG TIỀN HÀNG
+    // KHÔNG TÍNH PHÍ VẬN CHUYỂN
+    // =========================================
+
+    function numberToMoney(price) {
+
+        price = Number(price) || 0;
+
+        return price
+            .toLocaleString('vi-VN')
+            + '<span class="vnd px-2">đ</span>';
+    }
+
+
+
+
+  
+
+
+    try {
+
+        const cartProductList =
+            JSON.parse(
+                localStorage.getItem('cartProductList')
+            ) || [];
+
+        // TÍNH TỔNG SỐ LƯỢNG SẢN PHẨM
+            const totalAmount = cartProductList.reduce((total, item) => {
+                return total + (Number(item.cartItemAmount) || 0);
+            }, 0);
+            document.querySelector('.checkout-product__count').textContent =  String(totalAmount).padStart(2, '0') + " Sản Phẩm" 
+        // =========================================
+        // RENDER SẢN PHẨM
+        // =========================================
+
+        const cartBodyHTML =
+            cartProductList.map((item) => {
+
+                const itemPrice =
+                    Number(item.cartItemPrice) || 0;
+
+                const amount =
+                    Number(item.cartItemAmount) || 0;
+
+                const itemTotal =
+                    itemPrice * amount;
+
+
+
+                return `
+                    <div class="cart__row cart__body--row">
+
+                        <div class="cart__item--main">
+
+                            <div class="cart__item-image">
+                                <img
+                                    src="${item.cartItemImgUrl}"
+                                    alt="${item.cartItemName || ''}"
+                                >
+                            </div>
+
+                            <div class="cart__item-info">
+
+                                <p class="cart__item-name">
+                                    ${item.cartItemName || ''}
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="cart__item--type">
+
+                            <div>
+                                Màu:
+                                <span style=background-color:${item.cartItemColor || '--'} class="cart__item--color">
+                                    
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="cart__item-price">
+                            ${numberToMoney(itemPrice)}
+                        </div>
+
+
+                        <div class="cart__item-quantity">
+                            ${amount}
+                        </div>
+
+
+                        <div class="cart__item-total">
+                            ${numberToMoney(itemTotal)}
+                        </div>
+
+                    </div>
+                `;
+            });
+
+        cartBodyElement.innerHTML =
+            cartBodyHTML.join('');
+
+
+        // =========================================
+        // TÍNH TỔNG TIỀN HÀNG
+        // =========================================
+
+        productPrice =
+            cartProductList.reduce(
+                (total, item) => {
+
+                    const price =
+                        Number(item.cartItemPrice) || 0;
+
+                    const amount =
+                        Number(item.cartItemAmount) || 0;
+
+                    return total + (price * amount);
+
+                },
+                0
+            );
+
+
+        // =========================================
+        // PHÍ SHIP = 0
+        // =========================================
+
+        shipmentFee = 0;
+
+
+        // =========================================
+        // TỔNG THANH TOÁN
+        // =========================================
+
+        totalPrice =
+            productPrice;
+
+
+        // Tổng tiền hàng
+        const productPriceElement =
+            document.querySelector(
+                '.total__product--price'
+            );
+
+        if (productPriceElement) {
+
+            productPriceElement.innerHTML =
+                numberToMoney(productPrice);
+
+        }
+
+
+        // Phí vận chuyển = 0
+        const shipElement =
+            document.querySelector(
+                '.total__feeShip--price'
+            );
+
+        if (shipElement) {
+
+            shipElement.innerHTML =
+                numberToMoney(0);
+
+        }
+
+
+        // Tổng thanh toán
+        const orderPriceElement =
+            document.querySelector(
+                '.total__order--price'
+            );
+
+        if (orderPriceElement) {
+
+            orderPriceElement.innerHTML =
+                numberToMoney(totalPrice);
+
+        }
+
+
+        // Tổng trước giảm giá
+        const originalTotalElement =
+            document.querySelector(
+                '.originalTotalPrice'
+            );
+
+        if (originalTotalElement) {
+
+            originalTotalElement.innerHTML =
+                numberToMoney(totalPrice);
+
+        }
+
+
+        // =========================================
+        // CHO PHÉP ĐẶT HÀNG
+        // =========================================
+
+        const orderBtn =
+            document.querySelector('#order__btn');
+
+        if (orderBtn) {
+
+            if (productPrice <= 0) {
+
+                orderBtn.disabled = true;
+                orderBtn.classList.add('disabled');
+
+            } else {
+
+                orderBtn.disabled = false;
+                orderBtn.classList.remove('disabled');
+
+            }
+
+        }
+
+
+      
+
+
+    } catch (err) {
+
+        console.error(
+            'Lỗi tính tổng tiền checkout:',
+            err
+        );
+
+    }
+
+        
+</script>
+
+
 
 
 
@@ -521,7 +1480,6 @@ return `	<div class="col-12 col-lg-4 col-md-6">
 
 													listUseDiscoutBtn.forEach((item)=> {
 														if(item.dataset.discounttype === type ) {
-															console.log("có")
 															item.disabled = true;
 														}
 													})
@@ -611,7 +1569,7 @@ return `	<div class="col-12 col-lg-4 col-md-6">
 			const discountCodeList = JSON.parse(localStorage.getItem("discountCode"))|| [] ;
 			const discountCode=discountCodeList.map((item)=> item.id) ;
 
-			const shipmentFee = document.querySelector('.total__feeShip--price').innerHTML;
+			const shipmentFee = 0
 			
 
 			const totalPriceFromFetch =await getTotalPrice();
@@ -643,7 +1601,6 @@ return `	<div class="col-12 col-lg-4 col-md-6">
 				})
 				.then(response => response.json())
 				.then((response) => {
-				console.log("🚀 ~ file: checkouts.hbs:646 ~ .then ~ response:", response)
 
 						alert(response.message);
 						if(!response.isError) {

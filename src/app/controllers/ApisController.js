@@ -151,7 +151,7 @@ class ApisController {
         if(order.status === "Cancel") {
           order.status = "Đã hủy"
         }
-        const sevendaysAfter = moment(order?.createdAt).subtract(-7, 'days').startOf('day').format('DD/MM/YYYY');
+        const sevendaysAfter = moment(order?.createdAt).subtract(-1, 'days').startOf('day').format('DD/MM/YYYY');
         const orderTime = moment(order?.createdAt).format('DD/MM/YYYY, HH:mm')
  
 
@@ -173,6 +173,7 @@ class ApisController {
     const totalMoney = cartProductList.reduce((total,curr,index)=> {
       return total+ (curr.cartItemPrice * curr.cartItemAmount)  ;
     },0)
+    
 
     res.json(totalMoney)
 }

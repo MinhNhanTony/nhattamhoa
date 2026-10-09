@@ -1,90 +1,586 @@
- <form class='form__search form__search--inSearchPage active'>
-          <input type="hidden" name='type' value='order'>
-          <input
-            type='text'
-            name='orderId'
-            placeholder='Tra cứu đơn hàng'
-            id='search__input'
-            autofocus='true'
-          />
-          <button id='searchOrder__submit'>
-            <i class='search__submit__icon fas fa-search'></i>
-          </button>
-    </form>
-    
-    <div class="order_result p-5 table-responsive">
+<section class="order-tracking">
+
+    <!-- HEADER -->
+    <div class="order-tracking__header">
+        <span class="order-tracking__eyebrow">
+            ORDER TRACKING
+        </span>
+
+        <h1 class="order-tracking__title">
+            Tra cứu đơn hàng
+        </h1>
+
+        <p class="order-tracking__subtitle">
+            Nhập mã đơn hàng để kiểm tra trạng thái và thông tin giao hàng
+            của bạn.
+        </p>
+    </div>
+
+
+    <!-- SEARCH -->
+    <div class="order-tracking__search">
+
+        <form class="form__search--inSearchPage">
+
+            <div class="order-search__input">
+                <i class="fas fa-receipt"></i>
+
+                <input
+                    type="text"
+                    name="orderId"
+                    placeholder="Nhập mã đơn hàng..."
+                    id="search__input"
+                    autocomplete="off"
+                    autofocus
+                />
+            </div>
+
+            <button
+                type="submit"
+                id="searchOrder__submit"
+            >
+                <span>Tra cứu</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+
+        </form>
+
+        <div class="order-search__hint">
+            <i class="fas fa-circle-info"></i>
+
+            <span>
+                Mã đơn hàng được gửi cho bạn sau khi đặt hàng thành công.
+            </span>
+        </div>
 
     </div>
 
-    <script>
-      const searchBtn = document.querySelector('#searchOrder__submit');
-      const orderResultElement = document.querySelector('.order_result')
-      searchBtn.addEventListener('click',(e)=> {
-        
-          e.preventDefault();
-           const orderId = document.querySelector('input[name="orderId"]').value;
 
-          fetch(`/apis/searchOrder`, {
-                method: 'POST',
-                body: JSON.stringify({orderId}),
-                headers: {
-                  'Content-Type': 'application/json'
-                }
-              })
-                .then(response => response.json())
-                .then(result => {
-                  const {isSuccess,message,order,sevendaysAfter,orderTime} = result
-                  if(isSuccess) {
-                    const orderResultHTML = `<table class="table table-bordered">
-                                                <thead class="thead-dark">
-                                                  <tr>
-                                                    <th scope="col">Mã đơn</th>
-                                                    <th scope="col">Ngày đặt</th>
-                                                    <th scope="col">Dự kiến nhận</th>
-                                                    <th scope="col">Ship</th>
-                                                    <th scope="col">Giảm giá</th>
-                                                    <th scope="col">Tổng</th>
-                                                   
-                                                    <th scope="col">Trạng thái</th>
-                                                  </tr>
-                                                </thead>
-                                                <tbody>
-                                                  <tr>
-                                                    <th scope="row">${order._id}</th>
-                                                    <td>${orderTime}</td>
-                                                    <td>${sevendaysAfter}</td>
-                                                    <td>${order.ship}</td>
-                                                    <td>${order.discount}</td>
-                                                    <td>${order.finalPrice}</td>
-                                                    <td>${order.status}</td>
-
-                                                  </tr>
-                                                    </tbody>
-                                              </table>
-                                        `
-
-                              orderResultElement.innerHTML = orderResultHTML;
-                  }
-                  else {
-                    alert(message);
-                  }
-
-                })
-                .catch(error => {
-                  console.error(error);
-                });
-      })
-    </script>
+    <!-- RESULT -->
+    <div class="order_result"></div>
 
 
-    <script>
-        const currentOrderId = localStorage.getItem('orderId');
+    <!-- HELP -->
+    <div class="order-tracking__help">
+
+        <div class="order-help__icon">
+            <i class="fas fa-headset"></i>
+        </div>
+
+        <div class="order-help__content">
+            <h3>Cần hỗ trợ với đơn hàng?</h3>
+
+            <p>
+                Nếu bạn gặp vấn đề khi tra cứu đơn hàng, hãy liên hệ với
+                NHẤT TÂM HOA để được hỗ trợ.
+            </p>
+        </div>
+
+        <a
+            href="tel:0962165084"
+            class="order-help__button"
+        >
+            <i class="fas fa-phone"></i>
+            0962 165 084
+        </a>
+
+    </div>
+
+</section>
 
 
-        if(currentOrderId)
-        {
-          const searchOrderInput = document.querySelector('input[name="orderId"]');
-         searchOrderInput.value = currentOrderId;
+<script>
+(() => {
+
+    const searchForm = document.querySelector(
+        '.form__search--inSearchPage'
+    );
+
+    const searchInput = document.querySelector(
+        'input[name="orderId"]'
+    );
+
+    const searchBtn = document.querySelector(
+        '#searchOrder__submit'
+    );
+
+    const orderResultElement = document.querySelector(
+        '.order_result'
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Format tiền
+    |--------------------------------------------------------------------------
+    */
+
+    function formatPrice(price) {
+
+        if (price === undefined || price === null || price === '') {
+            return '0₫';
         }
-        
-    </script>
+
+        return Number(price).toLocaleString('vi-VN') + '₫';
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Trạng thái đơn hàng
+    |--------------------------------------------------------------------------
+    */
+
+    function getStatus(status) {
+
+        const statusMap = {
+
+            notDone: {
+                text: 'Đang xử lý',
+                className: 'is-processing',
+                icon: 'fa-spinner'
+            },
+
+            pending: {
+                text: 'Chờ xác nhận',
+                className: 'is-pending',
+                icon: 'fa-clock'
+            },
+
+            confirmed: {
+                text: 'Đã xác nhận',
+                className: 'is-confirmed',
+                icon: 'fa-check'
+            },
+
+            shipping: {
+                text: 'Đang giao hàng',
+                className: 'is-shipping',
+                icon: 'fa-truck'
+            },
+
+            completed: {
+                text: 'Đã giao hàng',
+                className: 'is-completed',
+                icon: 'fa-circle-check'
+            },
+
+            done: {
+                text: 'Đã hoàn thành',
+                className: 'is-completed',
+                icon: 'fa-circle-check'
+            },
+
+            cancelled: {
+                text: 'Đã hủy',
+                className: 'is-cancelled',
+                icon: 'fa-xmark'
+            }
+        };
+
+
+        return statusMap[status] || {
+            text: status || 'Đang xử lý',
+            className: 'is-processing',
+            icon: 'fa-spinner'
+        };
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Loading
+    |--------------------------------------------------------------------------
+    */
+
+    function showLoading() {
+
+        searchBtn.disabled = true;
+
+        searchBtn.innerHTML = `
+            <span>Đang tra cứu</span>
+            <i class="fas fa-spinner fa-spin"></i>
+        `;
+
+
+        orderResultElement.innerHTML = `
+            <div class="order-loading">
+
+                <div class="order-loading__icon">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
+
+                <h3>Đang tìm đơn hàng...</h3>
+
+                <p>
+                    Vui lòng chờ trong giây lát.
+                </p>
+
+            </div>
+        `;
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Reset button
+    |--------------------------------------------------------------------------
+    */
+
+    function resetButton() {
+
+        searchBtn.disabled = false;
+
+        searchBtn.innerHTML = `
+            <span>Tra cứu</span>
+            <i class="fas fa-arrow-right"></i>
+        `;
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Render kết quả
+    |--------------------------------------------------------------------------
+    */
+
+    function renderOrder(result) {
+
+        const {
+            order,
+            sevendaysAfter,
+            orderTime
+        } = result;
+
+
+        const status = getStatus(order.status);
+
+
+        orderResultElement.innerHTML = `
+
+            <div class="order-card">
+
+                <!-- CARD HEADER -->
+
+                <div class="order-card__header">
+
+                    <div>
+                        <span class="order-card__label">
+                            MÃ ĐƠN HÀNG
+                        </span>
+
+                        <div class="order-card__code">
+                            #${order._id}
+                        </div>
+                    </div>
+
+
+                    <div class="order-status ${status.className}">
+                        <i class="fas ${status.icon}"></i>
+                        <span>${status.text}</span>
+                    </div>
+
+                </div>
+
+
+                <!-- DIVIDER -->
+
+                <div class="order-card__divider"></div>
+
+
+                <!-- INFO -->
+
+                <div class="order-info">
+
+                    <div class="order-info__item">
+
+                        <div class="order-info__icon">
+                            <i class="far fa-calendar"></i>
+                        </div>
+
+                        <div>
+                            <span>Ngày đặt hàng</span>
+                            <strong>${orderTime}</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="order-info__item">
+
+                        <div class="order-info__icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+
+                        <div>
+                            <span>Dự kiến nhận hàng</span>
+                            <strong>${sevendaysAfter}</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="order-info__item">
+
+                        <div class="order-info__icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+
+                        <div>
+                            <span>Phí vận chuyển</span>
+                            <strong>
+                                ${formatPrice(order.ship)}
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="order-info__item">
+
+                        <div class="order-info__icon">
+                            <i class="fas fa-tag"></i>
+                        </div>
+
+                        <div>
+                            <span>Giảm giá</span>
+                            <strong>
+                                ${formatPrice(order.discount)}
+                            </strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TOTAL -->
+
+                <div class="order-card__total">
+
+                    <div>
+                        <span>Tổng thanh toán</span>
+                        <small>Đã bao gồm phí vận chuyển</small>
+                    </div>
+
+                    <strong>
+                        ${formatPrice(order.finalPrice)}
+                    </strong>
+
+                </div>
+
+
+                <!-- FOOTER -->
+
+                <div class="order-card__footer">
+
+                    <span>
+                        <i class="fas fa-shield-halved"></i>
+                        Thông tin đơn hàng được bảo mật
+                    </span>
+
+                    <button
+                        type="button"
+                        class="order-search-again"
+                    >
+                        Tra cứu đơn khác
+                    </button>
+
+                </div>
+
+            </div>
+        `;
+
+
+        const searchAgainBtn = document.querySelector(
+            '.order-search-again'
+        );
+
+
+        if (searchAgainBtn) {
+
+            searchAgainBtn.addEventListener('click', () => {
+
+                searchInput.focus();
+
+                searchInput.select();
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+
+            });
+
+        }
+
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Empty / Error
+    |--------------------------------------------------------------------------
+    */
+
+    function showError(message) {
+
+        orderResultElement.innerHTML = `
+
+            <div class="order-empty">
+
+                <div class="order-empty__icon">
+                    <i class="fas fa-magnifying-glass"></i>
+                </div>
+
+                <h3>Không tìm thấy đơn hàng</h3>
+
+                <p>
+                    ${message || 'Vui lòng kiểm tra lại mã đơn hàng và thử lại.'}
+                </p>
+
+                <button
+                    type="button"
+                    class="order-empty__button"
+                    onclick="
+                        document.querySelector('input[name=orderId]').focus()
+                    "
+                >
+                    <i class="fas fa-arrow-left"></i>
+                    Nhập lại mã đơn
+                </button>
+
+            </div>
+        `;
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Search
+    |--------------------------------------------------------------------------
+    */
+
+    async function searchOrder() {
+
+        const orderId = searchInput.value.trim();
+
+
+        if (!orderId) {
+
+            searchInput.focus();
+
+            orderResultElement.innerHTML = `
+                <div class="order-warning">
+                    <i class="fas fa-circle-exclamation"></i>
+                    Vui lòng nhập mã đơn hàng.
+                </div>
+            `;
+
+            return;
+        }
+
+
+        showLoading();
+
+
+        try {
+
+            const response = await fetch('/apis/searchOrder', {
+
+                method: 'POST',
+
+                body: JSON.stringify({
+                    orderId
+                }),
+
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+
+            });
+
+
+            const result = await response.json();
+
+
+            resetButton();
+
+
+            if (result.isSuccess) {
+
+                renderOrder(result);
+
+            } else {
+
+                showError(result.message);
+
+            }
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            resetButton();
+
+            showError(
+                'Không thể kết nối đến hệ thống. Vui lòng thử lại sau.'
+            );
+
+        }
+
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Submit
+    |--------------------------------------------------------------------------
+    */
+
+    searchForm.addEventListener('submit', (e) => {
+
+        e.preventDefault();
+
+        searchOrder();
+
+    });
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Enter
+    |--------------------------------------------------------------------------
+    */
+
+    searchInput.addEventListener('keydown', (e) => {
+
+        if (e.key === 'Enter') {
+
+            e.preventDefault();
+
+            searchOrder();
+
+        }
+
+    });
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | LocalStorage
+    |--------------------------------------------------------------------------
+    */
+
+    const currentOrderId = localStorage.getItem('orderId');
+
+
+    if (currentOrderId) {
+
+        searchInput.value = currentOrderId;
+
+    }
+
+})();
+</script>

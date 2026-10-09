@@ -27,15 +27,19 @@ async function getProductWithIdInCart () {
         
           const newlocalListCart = localListCart.map((item,index)=> {
             
+            console.log(item,'hahaha')
             productWithIdInCart.forEach((product)=> {
                 if(product._id == item.cartItemId) {
                     if(product.sale === 0) {
                         item.cartItemPrice =  product.productPrice;
+                        item.cartItemSalePrice =  product.productSalePrice;
                         item.cartItemPriceString =  numberToMoney(product.productPrice);
                     }
                     else {
                         item.cartItemPrice =  product.productSalePrice;
                         item.cartItemPriceString =   numberToMoney(product.productSalePrice);
+                        item.cartItemSalePrice =  product.productSalePrice;
+
                     }
                     
                 }
@@ -65,7 +69,8 @@ getProductWithIdInCart();
 // searchProduct
 async function searchProduct() {
     const searchBtnElement = document.getElementById('search__submit');
-    searchBtnElement.addEventListener('click',()=> {
+    if(searchBtnElement) {
+                 searchBtnElement.addEventListener('click',()=> {
         const searchInput = document.getElementById('search__input');
         fetch('/search?' + new URLSearchParams({
             type: 'product',
@@ -75,6 +80,8 @@ async function searchProduct() {
         })
 
     })
+    }
+   
 }
 searchProduct();
 
@@ -118,12 +125,12 @@ async function getTotalPrice () {
     })
     .then(response => response.json())
     .then((response) => {
-
         return response;
 
     })
     
 
+    
     return totalMoney;
     
 }
@@ -158,3 +165,263 @@ function ScrollToTop() {
     });
   }
   
+
+  document.addEventListener('DOMContentLoaded', function () {
+
+    const categoryStoryList =
+        document.querySelector('#categoryStoryList');
+
+    if (!categoryStoryList) return;
+
+
+    // ================================
+    // KIỂM TRA CACHE
+    // ================================
+
+    const cachedCategories =
+        sessionStorage.getItem('categoryList');
+
+
+    if (cachedCategories) {
+
+        try {
+
+            const categories =
+                JSON.parse(cachedCategories);
+
+            renderCategoryStory(
+                categoryStoryList,
+                categories
+            );
+
+            return;
+
+        } catch (error) {
+
+            sessionStorage.removeItem('categoryList');
+
+        }
+
+    }
+
+
+    // ================================
+    // LOAD CATEGORY
+    // ================================
+
+    fetch('/apis/category-list')
+
+        .then(response => {
+
+            if (!response.ok) {
+                throw new Error(
+                    'Không thể tải danh mục'
+                );
+            }
+
+            return response.json();
+
+        })
+
+        .then(categories => {
+
+            console.log('Categories:', categories);
+
+
+            // Lưu cache
+            sessionStorage.setItem(
+                'categoryList',
+                JSON.stringify(categories)
+            );
+
+
+            renderCategoryStory(
+                categoryStoryList,
+                categories
+            );
+
+        })
+
+        .catch(error => {
+
+            console.error(
+                'Category Story Error:',
+                error
+            );
+
+            categoryStoryList.innerHTML = `
+                <div class="category-story__empty">
+                    Không thể tải danh mục
+                </div>
+            `;
+
+        });
+
+});
+
+
+// ==================================================
+// RENDER CATEGORY STORY
+// ==================================================
+
+function renderCategoryStory(
+    categoryStoryList,
+    categories
+) {
+
+    if (
+        !Array.isArray(categories) ||
+        categories.length === 0
+    ) {
+
+        categoryStoryList.innerHTML = `
+            <div class="category-story__empty">
+                Chưa có danh mục
+            </div>
+        `;
+
+        return;
+    }
+
+
+    const categoryHTML = categories
+        .map(function (category) {
+
+            const categoryName =
+                category.categoryName || '';
+
+            /*
+             * LẤY TRỰC TIẾP imageName TỪ DATABASE
+             */
+            const imageName =
+                category.imageName || 'default';
+
+
+            if (!categoryName) {
+                return '';
+            }
+
+
+            return `
+                <a
+                    href="/collections/category/${encodeURIComponent(categoryName)}"
+                    class="category-story__item"
+                    title="${categoryName}"
+                >
+
+                    <div class="category-story__image">
+
+                        <img
+                            src="/img/category/${imageName}.jpg"
+                            alt="${categoryName}"
+                            loading="lazy"
+                            onerror="
+                                this.onerror=null;
+                                this.src='/img/category/default.jpg';
+                            "
+                        >
+
+                    </div>
+
+                    <span class="category-story__name">
+                        ${categoryName}
+                    </span>
+
+                </a>
+            `;
+
+        })
+        .join('');
+
+
+    categoryStoryList.innerHTML =
+        categoryHTML;
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    const sliders =
+        document.querySelectorAll('.category-slider');
+
+
+    sliders.forEach(function (slider) {
+
+        const track =
+            slider.querySelector('.category-slider__track');
+
+        const prev =
+            slider.querySelector('.category-slider__prev');
+
+        const next =
+            slider.querySelector('.category-slider__next');
+
+
+        if (!track || !prev || !next) {
+            return;
+        }
+
+
+        next.addEventListener('click', function () {
+
+            track.scrollBy({
+                left: track.clientWidth * 0.8,
+                behavior: 'smooth'
+            });
+
+        });
+
+
+        prev.addEventListener('click', function () {
+
+            track.scrollBy({
+                left: -track.clientWidth * 0.8,
+                behavior: 'smooth'
+            });
+
+        });
+
+    });
+
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    const sliders =
+        document.querySelectorAll('.category-slider');
+
+
+    sliders.forEach(function (slider) {
+
+        const track =
+            slider.querySelector('.category-slider__track');
+
+        if (!track) return;
+
+
+        setInterval(function () {
+
+            const maxScroll =
+                track.scrollWidth - track.clientWidth;
+
+
+            if (track.scrollLeft >= maxScroll - 10) {
+
+                track.scrollTo({
+                    left: 0,
+                    behavior: 'smooth'
+                });
+
+            } else {
+
+                track.scrollBy({
+                    left: track.clientWidth * 0.8,
+                    behavior: 'smooth'
+                });
+
+            }
+
+        }, 4000);
+
+    });
+
+});

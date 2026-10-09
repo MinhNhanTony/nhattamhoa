@@ -7,7 +7,7 @@
 .slider__Img {
   width: 100%;
   // overflow: hidden;
-  box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.216);
+  // box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.216);
 
 }
 .slider__Img-list {
@@ -81,11 +81,10 @@
   width: 100%;  
   margin-top: 0px;
   transition: all 0.3s linear;
-  box-shadow: 0 0.5px 2px #00000018;
 
 }
 .product__item:hover{
- box-shadow: 0 5px 50px $border-color;
+//  box-shadow: 0 5px 50px $border-color;
  margin-top: 6px;
  background-color:white;
 }
@@ -116,7 +115,7 @@
   position: absolute;
   bottom: 100%;
   padding: 2px 10px;
-  background-color: $background-sale;
+  background-color: $category-color;
 }
 .product__sale::after {
   --width--height-size: 5px;
@@ -133,11 +132,10 @@
 .product__sale::before {
   content: '';
   position: absolute;
-  left: 100%;
-  top: 0;
+  left: 97%;
   border-style: solid;
   border-width: 14px;
-  border-color: transparent transparent transparent $background-sale;
+  border-color: transparent transparent transparent $category-color
 }
 .product__sale span {
   font-size: 1.4rem;
@@ -146,21 +144,23 @@
 }
 .product__IMG img {
   width: 100%;
+  border-radius: 10px;
 }
 .product__detail {
   padding: 0px 0 20px;
 }
 .product__name {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  color: $text-color;
-  font-size: 1.6rem;
-  font-weight: 400;
-  overflow: hidden;
-  cursor: pointer;
-  transition: color 0.2s linear;
-  min-height:42px;
+    margin-top: 20px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    color: #000;
+    font-size: 2.2rem;
+    font-weight: 500;
+    overflow: hidden;
+    cursor: pointer;
+    transition: color 0.2s linear;
+    min-height: 42px;
 }
 .product__name:hover {
   color: $category-color;
@@ -185,10 +185,14 @@
 }
 
 .product__detail--footer {
-  display: flex;
-  align-items: center;
-  margin-top: 30px;
-  gap:20px;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    /* gap: 20px; */
+    border-top: 0.5px solid #cccccc54;
+}
+.margin-top-2 {
+  margin: 10px !important;;
 }
 .product__rating {
   &--list {
@@ -236,6 +240,7 @@
   position: absolute;
   transition: top 0.5s linear 0s;
   top: 100%;
+  border-radius: 15px;
 }
 .featured__img.active img {
   top: -30px;
@@ -326,6 +331,15 @@
     }
   }
 }
+@media (max-width: 767px) {
+    .main__partner {
+        margin-top: 30px;
+    }
+    .order__pay--summary-row {
+        display: none !important;
+
+    }
+}
 
 
 @keyframes fade-in {
@@ -378,11 +392,1282 @@
       min-height: 266px!important;
     }
     .product__name {
-      font-size: 1.4rem;
+      font-size: 1.7rem;
     }
    
  }
 
- .slick-slide img {
- }
+/* =========================================
+   SOCIAL SECTION
+========================================= */
 
+.social-section {
+    padding: 70px 0;
+    background: #fff;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.social-header {
+    margin-bottom: 50px;
+}
+
+.social-header h2 {
+    font-family: Georgia, serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: #171717;
+    margin-bottom: 20px;
+}
+
+.social-header p {
+    max-width: 720px;
+    margin: 0 auto;
+
+    font-family: Georgia, serif;
+    font-size: 18px;
+    line-height: 1.7;
+
+    color: #666;
+}
+
+
+/* =========================================
+   GRID 3 x 2
+========================================= */
+
+.social-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 16px;
+}
+
+
+/* =========================================
+   CARD
+========================================= */
+
+.social-card {
+    position: relative;
+
+    height: 265px;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    display: block;
+
+    color: #fff;
+
+    text-decoration: none;
+}
+
+
+/* IMAGE */
+
+.social-card img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: transform 0.5s ease;
+}
+
+
+/* Zoom ảnh khi hover */
+
+.social-card:hover img {
+    transform: scale(1.08);
+}
+
+
+/* =========================================
+   OVERLAY
+========================================= */
+
+.social-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.25);
+
+    transition: background 0.3s ease;
+}
+
+.social-card:hover .social-overlay {
+    background: rgba(0, 0, 0, 0.45);
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.social-content {
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 20px;
+}
+
+
+/* =========================================
+   SOCIAL ICON
+========================================= */
+
+.social-icon {
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    margin-bottom: 12px;
+
+    font-size: 28px;
+
+    color: #fff;
+
+    transition: transform 0.3s ease;
+}
+
+
+/* Icon hover */
+
+.social-card:hover .social-icon {
+    transform: translateY(-4px);
+}
+
+
+/* Facebook */
+
+.social-icon.facebook {
+    background: #1877f2;
+}
+
+
+/* Instagram */
+
+.social-icon.instagram {
+    background: linear-gradient(
+        45deg,
+        #feda75,
+        #fa7e1e,
+        #d62976,
+        #962fbf,
+        #4f5bd5
+    );
+}
+
+
+/* YouTube */
+
+.social-icon.youtube {
+    background: #ff0000;
+}
+
+
+/* Zalo */
+
+.social-icon.zalo {
+    background: #0068ff;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+
+/* Threads */
+
+.social-icon.threads {
+    background: #fff;
+
+    color: #000;
+}
+
+
+/* TikTok */
+
+.social-icon.tiktok {
+    background: #000;
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+.social-content h3 {
+    font-family: Georgia, serif;
+
+    font-size: 20px;
+
+    margin: 0 0 6px;
+
+    color: #fff;
+}
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.social-content p {
+    font-family: Georgia, serif;
+
+    font-size: 14px;
+
+    line-height: 1.4;
+
+    margin: 0;
+
+    color: #fff;
+}
+
+
+/* =========================================
+   BUTTON THEO DÕI
+========================================= */
+
+.social-follow {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-top: 14px;
+
+    padding: 8px 18px;
+
+    border: 1px solid rgba(255, 255, 255, 0.9);
+
+    border-radius: 30px;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    backdrop-filter: blur(4px);
+
+    color: #fff;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    transition: all 0.3s ease;
+}
+
+
+/* =========================================
+   MŨI TÊN
+========================================= */
+
+.follow-arrow {
+    display: inline-block;
+
+    font-size: 17px;
+
+    line-height: 1;
+
+    transition: transform 0.3s ease;
+}
+
+
+/* Hover nút */
+
+.social-card:hover .social-follow {
+    background: #fff;
+
+    border-color: #fff;
+
+    color: #315d50;
+}
+
+
+/* Hover mũi tên */
+
+.social-card:hover .follow-arrow {
+    transform: translateX(4px);
+}
+
+
+/* =========================================
+   DESCRIPTION BÊN PHẢI
+========================================= */
+
+.social-description {
+    padding-left: 45px;
+}
+
+.social-description > span {
+    display: block;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 14px;
+
+    letter-spacing: 1.5px;
+
+    line-height: 1.5;
+
+    color: #777;
+
+    margin-bottom: 20px;
+}
+
+.social-description h2 {
+    font-family: Georgia, serif;
+
+    font-size: 38px;
+
+    color: #315d50;
+
+    margin-bottom: 20px;
+}
+
+.social-description p {
+    max-width: 280px;
+
+    font-family: Georgia, serif;
+
+    font-size: 18px;
+
+    line-height: 1.7;
+
+    color: #444;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 991px) {
+
+    .social-description {
+        padding-left: 0;
+
+        padding-top: 40px;
+    }
+
+    .social-description p {
+        max-width: 100%;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 767px) {
+
+    .social-section {
+        padding: 45px 15px;
+    }
+
+    .social-header h2 {
+        font-size: 30px;
+    }
+
+    .social-header p {
+        font-size: 16px;
+    }
+
+    .social-grid {
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 10px;
+    }
+
+    .social-card {
+        height: 220px;
+
+        border-radius: 14px;
+    }
+
+    .social-icon {
+        width: 48px;
+        height: 48px;
+
+        font-size: 22px;
+    }
+
+    .social-content h3 {
+        font-size: 17px;
+    }
+
+    .social-content p {
+        font-size: 12px;
+    }
+
+    .social-follow {
+        padding: 6px 15px;
+
+        font-size: 12px;
+
+        margin-top: 10px;
+    }
+
+    .follow-arrow {
+        font-size: 15px;
+    }
+
+    .social-description h2 {
+        font-size: 30px;
+    }
+
+}
+
+
+/* =========================================
+   ĐIỆN THOẠI NHỎ
+========================================= */
+
+@media (max-width: 480px) {
+
+    .social-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .social-card {
+        height: 240px;
+    }
+
+}.social-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    transition: transform 0.6s ease;
+    transform: scale(1) rotate(0deg);
+}
+
+.social-card:hover img {
+    transform: scale(1.08) rotate(1.5deg);
+}
+.social-overlay {
+    transition: background 0.6s ease;
+}
+
+.social-card:hover .social-overlay {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+
+/* =====================================================
+   PRODUCT CARD
+===================================================== */
+
+.product__area {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100%;
+
+    background: #fff;
+
+    border: 1px solid #eeeeee;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.04);
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+}
+
+
+/* Hover toàn bộ card */
+
+.product__area:hover {
+    transform: translateY(-6px);
+
+    border-color: #e4e4e4;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.10);
+}
+
+
+/* =====================================================
+   PRODUCT IMAGE
+===================================================== */
+
+.product__IMG {
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 1 / 1.18;
+
+    overflow: hidden;
+
+    background: #f7f7f7;
+}
+
+
+/* Link ảnh */
+
+.product__image-link {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+}
+
+
+/* Ảnh */
+
+.product__IMG img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transform:
+        scale(1)
+        rotate(0deg);
+
+    transition:
+        transform 0.65s cubic-bezier(.2,.7,.2,1);
+}
+
+
+/* =====================================================
+   HOVER ẢNH
+===================================================== */
+
+.product__area:hover .product__IMG img {
+    transform:
+        scale(1.07)
+        rotate(1.2deg);
+}
+
+
+/* =====================================================
+   SALE BADGE
+===================================================== */
+
+.product__sale {
+    position: absolute;
+
+    top: 14px;
+    left: 14px;
+
+    z-index: 2;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 58px;
+    height: 30px;
+
+    padding: 0 10px;
+
+    background: #e85d5d;
+
+    color: #fff;
+
+    border-radius: 6px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.3px;
+
+    box-shadow:
+        0 4px 10px rgba(232, 93, 93, 0.25);
+}
+
+
+/* =====================================================
+   PRODUCT DETAIL
+===================================================== */
+
+.product__detail {
+    display: flex;
+
+    flex-direction: column;
+
+    flex: 1;
+
+    padding: 18px 16px 15px;
+}
+
+
+/* =====================================================
+   PRODUCT NAME
+===================================================== */
+
+.product__name {
+    display: -webkit-box;
+
+    -webkit-box-orient: vertical;
+
+    -webkit-line-clamp: 2;
+
+    overflow: hidden;
+
+    min-height: 50px;
+
+    margin: 0 0 8px;
+
+    color: #171717;
+
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 20px;
+
+    font-weight: 600;
+
+    line-height: 1.3;
+
+    transition: color 0.25s ease;
+}
+
+
+/* Hover tên */
+
+.product__name:hover {
+    color: #315d50;
+}
+
+
+/* =====================================================
+   PRODUCT DESCRIPTION
+===================================================== */
+
+.product__description {
+    display: -webkit-box;
+
+    -webkit-box-orient: vertical;
+
+    -webkit-line-clamp: 2;
+
+    overflow: hidden;
+
+    min-height: 40px;
+
+    margin: 0 0 14px;
+
+    color: #777;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 14px;
+
+    line-height: 1.45;
+
+    text-align: left;
+}
+
+
+/* =====================================================
+   PRICE
+===================================================== */
+
+.product__price {
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 9px;
+
+    min-height: 30px;
+
+    margin-bottom: 14px;
+}
+
+
+/* Giá mới */
+
+.product__newPrice {
+    color: #111;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    line-height: 1.3;
+}
+
+
+/* Giá cũ */
+
+.product__oldPrice {
+    color: #999;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 14px;
+
+    text-decoration: line-through;
+
+    line-height: 1.3;
+}
+
+
+/* Giá không sale */
+
+.product__oldPrice--notsale {
+    color: #111;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    line-height: 1.3;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.product__detail--footer {
+    margin-top: auto;
+
+    padding-top: 13px;
+
+    border-top: 1px solid #eeeeee;
+}
+
+
+/* Link xem chi tiết */
+
+.product__detail-link {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    width: 100%;
+
+    color: #315d50;
+
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition: color 0.25s ease;
+}
+
+
+/* Mũi tên */
+
+.product__detail-arrow {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 20px;
+
+    line-height: 1;
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+/* Hover footer */
+
+.product__detail-link:hover {
+    color: #1f4439;
+}
+
+
+/* Hover arrow */
+
+.product__detail-link:hover .product__detail-arrow {
+    transform: translateX(5px);
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 991px) {
+
+    .product__detail {
+        padding: 16px 14px 14px;
+    }
+
+    .product__name {
+        font-size: 18px;
+    }
+
+    .product__newPrice,
+    .product__oldPrice--notsale {
+        font-size: 18px;
+    }
+
+}
+
+
+@media (max-width: 767px) {
+
+    .product__area {
+        border-radius: 14px;
+    }
+
+    .product__IMG {
+        aspect-ratio: 1 / 1.15;
+    }
+
+    .product__detail {
+        padding: 14px 12px 12px;
+    }
+
+    .product__name {
+        font-size: 16px;
+
+        min-height: 42px;
+    }
+
+    .product__description {
+        font-size: 13px;
+
+        min-height: 38px;
+    }
+
+    .product__newPrice,
+    .product__oldPrice--notsale {
+        font-size: 17px;
+    }
+
+    .product__oldPrice {
+        font-size: 13px;
+    }
+
+    .product__sale {
+        top: 10px;
+        left: 10px;
+
+        height: 27px;
+
+        min-width: 52px;
+
+        font-size: 11px;
+    }
+
+}
+
+.category-collection {
+    position: relative;
+
+    margin: 55px auto 0;
+
+    width: 100%;
+    max-width: 1270px;
+
+    padding: 0 20px;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.category-collection__header {
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+
+    border-bottom: 1px solid #eeeeee;
+
+    padding-bottom: 15px;
+}
+
+
+.category-collection__title h2 {
+
+    margin: 0;
+
+    font-size: 25px;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+
+.category-collection__title span {
+
+    display: block;
+
+    margin-top: 6px;
+
+    font-size: 13px;
+
+    color: #888;
+}
+
+
+.category-collection__view {
+
+    color: #222;
+
+    font-size: 14px;
+
+    text-decoration: none;
+
+    white-space: nowrap;
+}
+
+
+.category-collection__view span {
+
+    margin-left: 5px;
+
+    transition: transform .25s ease;
+}
+
+
+.category-collection__view:hover span {
+
+    display: inline-block;
+
+    transform: translateX(5px);
+}
+
+
+/* =========================
+   SLIDER
+========================= */
+
+.category-slider {
+
+    position: relative;
+
+    width: 100%;
+}
+
+
+/* TRACK */
+
+.category-slider__track {
+
+    display: flex;
+
+    gap: 16px;
+
+    width: 100%;
+
+    overflow-x: auto;
+
+    scroll-behavior: smooth;
+
+    scroll-snap-type: x mandatory;
+
+    scrollbar-width: none;
+
+    padding: 5px 2px 15px;
+}
+
+
+.category-slider__track::-webkit-scrollbar {
+
+    display: none;
+}
+
+
+/* ITEM */
+
+.category-slider__item {
+
+    flex: 0 0 calc(20% - 13px);
+
+    min-width: 0;
+
+    scroll-snap-align: start;
+}
+
+
+/* =========================
+   ARROW
+========================= */
+
+.category-slider__arrow {
+
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    z-index: 10;
+
+    width: 42px;
+
+    height: 42px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.95);
+
+    box-shadow: 0 3px 12px rgba(0,0,0,.15);
+
+    cursor: pointer;
+
+    font-size: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transition: all .25s ease;
+}
+
+
+.category-slider__arrow:hover {
+
+    transform: translateY(-50%) scale(1.08);
+
+    box-shadow: 0 5px 18px rgba(0,0,0,.2);
+}
+
+
+.category-slider__prev {
+
+    left: -20px;
+}
+
+
+.category-slider__next {
+
+    right: -20px;
+}
+
+
+/* =========================
+   PRODUCT
+========================= */
+
+.category-product {
+
+    display: block;
+
+    color: inherit;
+
+    text-decoration: none;
+
+    height: 100%;
+}
+
+@media (max-width: 991px) {
+
+    .category-slider__item {
+
+        flex: 0 0 calc(33.333% - 11px);
+
+    }
+
+}
+
+
+@media (max-width: 767px) {
+
+    .category-collection {
+
+        margin-top: 40px;
+
+        padding: 0 12px;
+
+    }
+
+
+    .category-collection__header {
+
+        align-items: center;
+
+        margin-bottom: 15px;
+
+    }
+
+
+    .category-collection__title h2 {
+
+        font-size: 19px;
+
+    }
+
+
+    .category-collection__title span {
+
+        font-size: 11px;
+
+    }
+
+
+    .category-collection__view {
+
+        font-size: 12px;
+
+    }
+
+
+    .category-slider__item {
+
+        flex: 0 0 calc(50% - 8px);
+
+    }
+
+
+    .category-slider__arrow {
+
+        width: 34px;
+
+        height: 34px;
+
+        font-size: 16px;
+
+    }
+
+}
+
+
+@media (max-width: 991px) {
+
+    .category-slider__item {
+
+        flex: 0 0 calc(33.333% - 11px);
+
+    }
+
+}
+
+
+@media (max-width: 767px) {
+
+    .category-collection {
+
+        margin-top: 40px;
+
+        padding: 0 12px;
+
+    }
+
+
+    .category-collection__header {
+
+        align-items: center;
+
+        margin-bottom: 15px;
+
+    }
+
+
+    .category-collection__title h2 {
+
+        font-size: 19px;
+
+    }
+
+
+    .category-collection__title span {
+
+        font-size: 11px;
+
+    }
+
+
+    .category-collection__view {
+
+        font-size: 12px;
+
+    }
+
+
+    .category-slider__item {
+
+        flex: 0 0 calc(50% - 8px);
+
+    }
+
+
+    .category-slider__arrow {
+
+        width: 34px;
+
+        height: 34px;
+
+        font-size: 16px;
+        
+
+    }
+
+}

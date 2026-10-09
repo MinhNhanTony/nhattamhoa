@@ -9,11 +9,11 @@ async function calculateShipPrice(data) {
   const {address:userAdress,cartProductId} = data;     
 
     const pickAdress = {
-        ward:"Bình Hưng Hòa B",
-        district:"Bình Tân",
-        provinces:"Hồ Chí Minh",
-        street: "Nguyễn Thị Tú",
-        adress: "67 Nguyễn Thị Tú",
+        ward:"Phường Lái Thiêu",
+        district:"Thành phố Thuận An",
+        provinces:"Tỉnh Bình Dương",
+        street: "Bình Hòa 3",
+        adress: "178 Bình Hòa 3",
     }
 
 

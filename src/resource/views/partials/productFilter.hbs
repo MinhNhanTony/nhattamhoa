@@ -1,123 +1,387 @@
-<div class="col-md-3 col-sm-12 col-xs-12">
+<!-- ==============================
+     DESKTOP FILTER
+================================ -->
 
-    <div style='position:sticky;top:5%'>
-            <div class="filter-header" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true">     
-                <span class="title">Bộ lọc </span>
-                <span class="accicon">
-                <i class="fa-solid fa-chevron-down rotate-icon"></i></span>
-            </div>
-            <div id="collapseOne" class="collapse" data-parent="#accordionExample">
-                <form class='filter'>
+<div class="col-md-3 col-sm-12 col-xs-12 product-filter-column">
 
-        
-                    <div class="group__filter">
+    <div class="product-filter-desktop">
 
-                        <p class="group__filter--title">
-                            Thương hiệu
-                        </p>
-                        <ul>
+        <div
+            class="filter-header"
+            data-toggle="collapse"
+            data-target="#collapseOne"
+        >
+            <span class="title">Bộ lọc</span>
 
-                            {{#each categoryList}}
-                            <li>  
-                                <div class="form-check">
-                                    <input class="form-check-input checkAndRadio" type="checkbox" name='category' value='{{this.categoryName}}' id='category{{this.categoryName}}'>
-                                    <label class="form-check-label" for="category{{this.categoryName}}">
-                                        {{this.categoryName}}
+            <span class="accicon">
+                <i class="fa-solid fa-chevron-down"></i>
+            </span>
+        </div>
+
+        <div id="collapseOne" class="collapse">
+
+            <form class="filter">
+
+                <!-- LOẠI HOA -->
+
+                <div class="group__filter">
+
+                    <p class="group__filter--title">
+                        Loại hoa
+                    </p>
+
+                    <ul>
+
+                        {{#each categoryList}}
+
+                        <li>
+
+                            <div class="form-check">
+
+                                <input
+                                    class="form-check-input checkAndRadio"
+                                    type="checkbox"
+                                    name="category"
+                                    value="{{this.categoryName}}"
+                                    id="category{{this.categoryName}}"
+                                >
+
+                                <label
+                                    class="form-check-label"
+                                    for="category{{this.categoryName}}"
+                                >
+                                    {{this.categoryName}}
                                 </label>
-                                </div>
-                            </li>
-                            {{/each}}
-                            
-                        </ul>
+
+                            </div>
+
+                        </li>
+
+                        {{/each}}
+
+                    </ul>
+
+                </div>
 
 
+                <!-- GIÁ -->
 
-                    </div>
-                    <div class="group__filter">
+                <div class="group__filter">
 
-                        <p class="group__filter--title">
-                            Giá sản phẩm
-                        </p>
-                        <ul>
+                    <p class="group__filter--title">
+                        Giá sản phẩm
+                    </p>
 
-                            {{#each priceRange}}
-                                <li>  
-                                    <div class="form-check">
-                                        <input class="form-check-input checkAndRadio" type="radio" name='price' value='{{this.from}}-{{this.to}}' id='range{{this.from}}'>
-                                        <label class="form-check-label" for="range{{this.from}}">
-                                            {{this.valueString}}
-                                        </label>
-                                    </div>
-                                </li>
-                            {{/each}}
-                            
-                        </ul>
+                    <ul>
 
+                        {{#each priceRange}}
 
+                        <li>
 
-                    </div>
-                    <div class="group__filter filter__color">
+                            <div class="form-check">
 
-                        <p class="group__filter--title">
-                            Màu sắc
-                        </p>
-                        <ul>
+                                <input
+                                    class="form-check-input checkAndRadio"
+                                    type="radio"
+                                    name="price"
+                                    value="{{this.from}}-{{this.to}}"
+                                    id="range{{this.from}}"
+                                >
 
-                            {{#each listColor}}
-                                <li >  
-                                        <input style='display:none'  type="checkbox" name='color' value='{{this}}' id='color-{{this}}' class='checkAndRadio'>
-                                        <label style='background-color: {{this}}' class='p-4' for='color-{{this}}'>
-                                </li>
-                            {{/each}}
-                            
-                        </ul>
-
-
-
-                    </div>
-                    <div class="group__filter">
-
-                        <p class="group__filter--title">
-                            Giới tính 
-                        </p>
-                        <ul>
-                            <li>  
-                                <div class="form-check">
-                                    <input class="form-check-input checkAndRadio" type="checkbox" name='gender' value='Male' id='genderMale'>
-                                    <label class="form-check-label" for="genderMale">
-                                    Nam
+                                <label
+                                    class="form-check-label"
+                                    for="range{{this.from}}"
+                                >
+                                    {{this.valueString}}
                                 </label>
-                                </div>
-                            </li>
-                            <li>  
-                                <div class="form-check">
-                                    <input class="form-check-input checkAndRadio" type="checkbox" name='gender' value='Female' id='genderFeMale'>
-                                    <label class="form-check-label" for="genderFeMale">
-                                    Nữ
-                                </label>
-                                </div>
-                            </li>
-                            <li>  
-                                <div class="form-check">
-                                    <input class="form-check-input checkAndRadio" type="checkbox" name='gender' value='Unisex' id='genderUnisex'>
-                                    <label class="form-check-label" for="genderUnisex">
-                                    Unisex
-                                </label>
-                                </div>
-                            </li>
-                        </ul>
+
+                            </div>
+
+                        </li>
+
+                        {{/each}}
+
+                    </ul>
+
+                </div>
 
 
+                <!-- MÀU -->
 
-                    </div>
+                <div class="group__filter filter__color">
 
-                </form>
-            </div>
+                    <p class="group__filter--title">
+                        Màu sắc
+                    </p>
+
+                    <ul>
+
+                        {{#each listColor}}
+
+                        <li>
+
+                            <input
+                                style="display:none"
+                                type="checkbox"
+                                name="color"
+                                value="{{this}}"
+                                id="color-{{this}}"
+                                class="checkAndRadio"
+                            >
+
+                            <label
+                                style="background-color:{{this}}"
+                                class="p-4"
+                                for="color-{{this}}"
+                            ></label>
+
+                        </li>
+
+                        {{/each}}
+
+                    </ul>
+
+                </div>
+
+            </form>
+
+        </div>
+
     </div>
-            
+
 </div>
 
 
+<!-- ==============================
+     MOBILE FILTER BUTTON
+================================ -->
+
+<button
+    type="button"
+    class="mobile-filter-button"
+    id="mobileFilterButton"
+>
+    <i class="fa-solid fa-sliders"></i>
+    <span>Filter</span>
+</button>
+
+
+<!-- ==============================
+     MOBILE FILTER DRAWER
+================================ -->
+
+<div
+    class="mobile-filter-drawer"
+    id="mobileFilterDrawer"
+>
+
+    <div class="mobile-filter-drawer__header">
+
+        <div>
+
+            <h3>Bộ lọc</h3>
+
+            <span>
+                Lọc sản phẩm
+            </span>
+
+        </div>
+
+        <button
+            type="button"
+            class="mobile-filter-drawer__close"
+            id="mobileFilterClose"
+        >
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+    </div>
+
+
+    <div class="mobile-filter-drawer__body">
+
+        <form class="filter">
+
+            <!-- LOẠI HOA -->
+
+            <div class="group__filter">
+
+                <p class="group__filter--title">
+                    Loại hoa
+                </p>
+
+                <ul>
+
+                    {{#each categoryList}}
+
+                    <li>
+
+                        <div class="form-check">
+
+                            <input
+                                class="form-check-input checkAndRadio"
+                                type="checkbox"
+                                name="category"
+                                value="{{this.categoryName}}"
+                            >
+
+                            <label class="form-check-label">
+                                {{this.categoryName}}
+                            </label>
+
+                        </div>
+
+                    </li>
+
+                    {{/each}}
+
+                </ul>
+
+            </div>
+
+
+            <!-- GIÁ -->
+
+            <div class="group__filter">
+
+                <p class="group__filter--title">
+                    Giá sản phẩm
+                </p>
+
+                <ul>
+
+                    {{#each priceRange}}
+
+                    <li>
+
+                        <div class="form-check">
+
+                            <input
+                                class="form-check-input checkAndRadio"
+                                type="radio"
+                                name="price"
+                                value="{{this.from}}-{{this.to}}"
+                            >
+
+                            <label class="form-check-label">
+                                {{this.valueString}}
+                            </label>
+
+                        </div>
+
+                    </li>
+
+                    {{/each}}
+
+                </ul>
+
+            </div>
+
+
+            <!-- MÀU -->
+
+            <div class="group__filter filter__color">
+
+                <p class="group__filter--title">
+                    Màu sắc
+                </p>
+
+                <ul>
+
+                    {{#each listColor}}
+
+                    <li>
+
+                        <input
+                            type="checkbox"
+                            name="color"
+                            value="{{this}}"
+                            class="checkAndRadio"
+                            id="mobile-color-{{this}}"
+                        >
+
+                        <label
+                            style="background-color:{{this}}"
+                            for="mobile-color-{{this}}"
+                        ></label>
+
+                    </li>
+
+                    {{/each}}
+
+                </ul>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- LỚP MỜ -->
+<div
+    class="mobile-filter-backdrop"
+    id="mobileFilterBackdrop"
+></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+    const button =
+        document.getElementById('mobileFilterButton');
+
+    const drawer =
+        document.getElementById('mobileFilterDrawer');
+
+    const close =
+        document.getElementById('mobileFilterClose');
+
+    const backdrop =
+        document.getElementById('mobileFilterBackdrop');
+
+
+    if (!button || !drawer || !close || !backdrop) {
+        return;
+    }
+
+
+    function openFilter() {
+
+        drawer.classList.add('active');
+
+        backdrop.classList.add('active');
+    }
+
+
+    function closeFilter() {
+
+        drawer.classList.remove('active');
+
+        backdrop.classList.remove('active');
+    }
+
+
+    button.addEventListener(
+        'click',
+        openFilter
+    );
+
+
+    close.addEventListener(
+        'click',
+        closeFilter
+    );
+
+
+    backdrop.addEventListener(
+        'click',
+        closeFilter
+    );
+
+});
+</script>
 <script>
         const allCheckbox = document.querySelectorAll('.group__filter input.checkAndRadio');
   
@@ -221,58 +485,97 @@
                                              </div>`
                             }
 
-                            return  `<div class='product__item col-6 col-md-3'>
-                                        <a href='/products/${product.slug}'>
-                                            <div class='product__area'>
-                                                <div class='product__IMG'>
-                                                <img src='${product.productImg[0]}' alt='' />
+                              return `
+    <div class="product__item col-6 col-md-3">
 
-                                                ${saleHtml}
+        <div class="product__area">
+
+            <!-- =========================
+                 PRODUCT IMAGE
+            ========================== -->
+            <div class="product__IMG">
+
+                <a
+                    href="/products/${product.slug}"
+                    class="product__image-link"
+                >
+
+                    <img
+                        src="${product.productImg?.[0] || ''}"
+                        alt="${product.productName || ''}"
+                        loading="lazy"
+                    />
+
+                    ${saleHtml}
+
+                </a>
+
+            </div>
 
 
-                                                </div>
-                                                <div class='product__detail'>
-                                                <a href='/products/${product.slug}' class='product__name'>${product.productName}</a>
-                                                </a>
+            <!-- =========================
+                 PRODUCT DETAIL
+            ========================== -->
+            <div class="product__detail">
 
-                                                ${priceHtml}
+                <!-- Tên sản phẩm -->
+                <a
+                    href="/products/${product.slug}"
+                    class="product__name"
+                >
+                    ${product.productName || ''}
+                </a>
 
-                                          
-                                        
-                                                <div class="product__detail--footer">
-                                                    <div class="product__rating">
-                                                        <div class="product__rating--list">
-                                                            <div class="product__rating--item">
-                                                            <i class="product__rating--icon fa-solid fa-star"></i>
-                                                            </div>
-                                                            <div class="product__rating--item">
-                                                            <i class="product__rating--icon fa-solid fa-star"></i>
-                                                            </div>
-                                                            <div class="product__rating--item">
-                                                            <i class="product__rating--icon fa-solid fa-star"></i>
-                                                            </div>
-                                                            <div class="product__rating--item">
-                                                            <i class="product__rating--icon fa-solid fa-star"></i>
-                                                            </div>
-                                                            <div class="product__rating--item">
-                                                            <i class="product__rating--icon fa-solid fa-star"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product__sold">
-                                                        <p>Đã bán: <span>${product.quantitySold}</span></p>
-                                                    </div>
-                                                </div>
-                                                </div>
-                                            </div>
-                                            </a>  
-                                    </div>`
+
+                <!-- Mô tả sản phẩm -->
+                <p class="product__description">
+                    ${
+                        product.productDescription
+                            ?.map(item => item.descText)
+                            .join(' ') || ''
+                    }
+                </p>
+
+
+                <!-- =========================
+                     PRICE
+                ========================== -->
+
+                ${priceHtml}
+
+
+                <!-- =========================
+                     FOOTER
+                ========================== -->
+
+                <div class="product__detail--footer">
+
+                    <a
+                        href="/products/${product.slug}"
+                        class="product__detail-link"
+                    >
+
+                        <span>Xem chi tiết</span>
+
+                        <span class="product__detail-arrow">
+                            →
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+`;
                             })
                             productListRowElement.innerHTML = ProductListHtml.join("");
                        }
                        renderProductList()
-                       document.body.scrollTop = 0; // For Safari
-                        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+                      
 
                     }).catch(error=> {
                         console.log(error);
