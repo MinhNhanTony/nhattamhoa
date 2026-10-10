@@ -1146,7 +1146,11 @@
     .order__info-grid{
         grid-template-columns:1fr;
     }
-
+    .order__edit-btn {
+        span {
+            display:none;
+        }
+    }
 }
 
 /* =========================================================

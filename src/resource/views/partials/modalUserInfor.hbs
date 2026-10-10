@@ -19,7 +19,10 @@
           data-dismiss="modal"
           aria-label="Close"
         >
-          <span aria-hidden="true">&times;</span>
+        <span>
+          <i class="fa-solid fa-xmark"></i>
+
+        </span>
         </button>
       </div>
       <div class="modal-body">
@@ -50,7 +53,6 @@
             placeholder="Họ và tên người gửi"
           />
           <span>Họ và tên</span>
-          <p></p>
         </label>
       </div>
 
@@ -65,7 +67,6 @@
             placeholder="Số điện thoại người gửi"
           />
           <span>Số điện thoại</span>
-          <p></p>
         </label>
       </div>
 
@@ -79,7 +80,6 @@
           placeholder="Email"
         />
         <span>Email nhận xác nhận đơn hàng</span>
-        <p></p>
       </label>
     </div>
 
@@ -114,7 +114,6 @@
             placeholder="Họ và tên người nhận"
           />
           <span>Họ và tên</span>
-          <p></p>
         </label>
       </div>
 
@@ -129,7 +128,6 @@
             placeholder="Số điện thoại người nhận"
           />
           <span>Số điện thoại</span>
-          <p></p>
         </label>
       </div>
 
@@ -154,7 +152,6 @@
           />
 
           <span>Tỉnh / Thành phố</span>
-          <p></p>
         </label>
 
         <div class="provinces__list address__list"></div>
@@ -175,7 +172,6 @@
           />
 
           <span>Quận / Huyện</span>
-          <p></p>
         </label>
 
         <div class="district__list address__list"></div>
@@ -196,7 +192,6 @@
           />
 
           <span>Phường / Xã</span>
-          <p></p>
         </label>
 
         <div class="ward__list address__list"></div>
@@ -218,7 +213,6 @@
         />
 
         <span>Địa chỉ cụ thể</span>
-        <p></p>
       </label>
 
     </div>
@@ -474,13 +468,13 @@
 
               if(item.value.length === 0) {
 
-                document.querySelectorAll('.form__group p')[index].textContent = "Vui lòng nhập trường này"
+                document.querySelectorAll('.form__group input')[index].textContent = "Vui lòng nhập trường này"
                 item.classList.add("error");
                 isError = true
 
               }
               else {
-                document.querySelectorAll('.form__group p')[index].textContent = ""
+                document.querySelectorAll('.form__group input')[index].textContent = ""
                item.classList.remove("error");
 
               }
@@ -501,7 +495,7 @@
       if(!isPhoneNumber){
           phoneInput.classList.add("error");
           const phoneFormGroup = phoneInput.closest('.form__group');
-          phoneFormGroup.querySelector('p').textContent = "Số điện thoại không hợp lệ";
+          phoneFormGroup.querySelector('input').textContent = "Số điện thoại không hợp lệ";
           return true;
       }
 
@@ -518,7 +512,7 @@
       if(!isEmail){
           emailInput.classList.add("error");
           const emailFormGroup = emailInput.closest('.form__group');
-          emailFormGroup.querySelector('p').textContent = "Email không hợp lệ";
+          emailFormGroup.querySelector('input').textContent = "Email không hợp lệ";
           return true;
       }
 

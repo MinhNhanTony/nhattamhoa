@@ -1,41 +1,43 @@
+
 const axios = require('axios');
 
+let intervalId = null;
+let isChecking = false;
+
 async function keepOnlineRenDerApp() {
-    // Hàm gọi API
-        async function fetchDataFromAPI() {
-            const apiUrl = 'https://qana-sneaker.onrender.com';
+    const apiUrl = 'https://nhattamhoa.com/';
+    const intervalTime = 10 * 60 * 1000; // 10 phút
 
-            try {
-            const response = await axios.get(apiUrl);
-            return response.status;
-            } catch (error) {
-            console.error('Error fetching data:', error.message);
-            throw error;
-            }
-        }
+    async function fetchDataFromAPI() {
+        if (isChecking) return;
 
-         // Thời gian cách nhau giữa mỗi lần gọi API (đơn vị là milliseconds)
-         const callAfterMinutes =  10;
-         const intervalTime = callAfterMinutes * 60 * 1000; 
+        isChecking = true;
 
-        // Hàm bắt đầu gọi API sử dụng setInterval
-        function startAPICalls() {
-        fetchDataFromAPI()
-            .then(data => {
-            console.log(data);
-            // Tiếp tục xử lý dữ liệu ở đây nếu cần thiết
-            })
-            .catch(error => {
-            console.error('Error:', error);
+        try {
+            const response = await axios.get(apiUrl, {
+                timeout: 30000,
             });
+
+            console.log(
+                `[Render Monitor] ${new Date().toISOString()} - HTTP ${response.status}`
+            );
+        } catch (error) {
+            console.error(
+                '[Render Monitor] Lỗi:',
+                error.response?.status || error.message
+            );
+        } finally {
+            isChecking = false;
         }
+    }
 
-        // Bắt đầu gọi API ban đầu
-        startAPICalls();
+    // Tránh tạo nhiều setInterval nếu hàm bị gọi nhiều lần
+    if (intervalId) return;
 
-        // Lập lịch gọi API sử dụng setInterval
-        setInterval(startAPICalls, intervalTime);
+    // Kiểm tra ngay khi khởi động
+    await fetchDataFromAPI();
+
+    intervalId = setInterval(fetchDataFromAPI, intervalTime);
 }
 
 module.exports = { keepOnlineRenDerApp };
-
