@@ -1,8 +1,7 @@
-
 /* Georgia Regular */
 @font-face {
     font-family: "Georgia Local";
-    src: url("../../public/font/georgia.ttf") format("truetype");
+    src: url("/font/georgia.ttf") format("truetype");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -11,7 +10,7 @@
 /* Georgia Bold */
 @font-face {
     font-family: "Georgia Local";
-    src: url("../../public/font/georgiab.ttf") format("truetype");
+    src: url("/font/georgiab.ttf") format("truetype");
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -20,7 +19,7 @@
 /* Georgia Italic */
 @font-face {
     font-family: "Georgia Local";
-    src: url("../../public/font/georgiai.ttf") format("truetype");
+    src: url("/font/georgiai.ttf") format("truetype");
     font-weight: 400;
     font-style: italic;
     font-display: swap;
@@ -29,11 +28,12 @@
 /* Georgia Bold Italic */
 @font-face {
     font-family: "Georgia Local";
-    src: url("../../public/font/georgiaz.ttf") format("truetype");
+    src: url("/font/georgiaz.ttf") format("truetype");
     font-weight: 700;
     font-style: italic;
     font-display: swap;
 }
+
 
 /* button */
 .btn-container {
