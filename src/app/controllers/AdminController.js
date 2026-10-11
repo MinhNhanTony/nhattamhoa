@@ -18,39 +18,71 @@ try {
 
   class AuthCotroller {
     //  [GET]  / admin/order
-    async order(req, res) {
-      
-      const orderListDocument = await OrderModel.find({});
-  
-      const orderList = mutipleMongooseToObject(orderListDocument)
-      orderList.map(async function(order) {
-        order.ship = await numberToMoney(order.ship);
-        order.discount = await numberToMoney(order.discount);
-        order.finalPrice = await numberToMoney(order.finalPrice);
-        const a = order.createdAt;
-        const b = moment(a).fromNow();
-        order.orderTimeFromNow = b;
-        const {orderDate} =await exportTimeString(order.createdAt);
-        order.orderDate = orderDate;
-        return order;
-  
-      });
-      
-  
-      const orderWait = orderList.filter((order)=> order.status === 'Waiting');
-      const orderConfirm = orderList.filter((order)=> order.status === 'Confirm').reverse();
-      const orderCancel = orderList.filter((order)=> order.status === 'Cancel').reverse();
-    
-      var data = {
-        layout: false, 
-        orderWait,
-        orderConfirm,
-        orderCancel
-      };
-  
-      res.render('admin/order',data)
-      
+async order(req, res) {
+    try {
+        const orderListDocument = await OrderModel.find({})
+            .sort({ createdAt: -1 })
+            .lean();
+
+        const orderList = await Promise.all(
+            orderListDocument.map(async (order) => {
+                order.ship = await numberToMoney(order.ship);
+                order.discount = await numberToMoney(order.discount);
+                order.finalPrice = await numberToMoney(order.finalPrice);
+
+                order.orderTimeFromNow = moment(order.createdAt).fromNow();
+
+                const { orderDate } = await exportTimeString(order.createdAt);
+                order.orderDate = orderDate;
+
+                return order;
+            })
+        );
+
+        // Hàm sắp xếp: đơn mới nhất trước
+        const sortNewestFirst = (a, b) => {
+            const timeA = new Date(a.createdAt).getTime() || 0;
+            const timeB = new Date(b.createdAt).getTime() || 0;
+
+            return timeB - timeA;
+        };
+
+        // Lọc và sắp xếp từng nhóm riêng biệt
+        const orderWait = orderList
+            .filter(order => order.status === 'Waiting')
+            .sort(sortNewestFirst);
+
+        const orderConfirm = orderList
+            .filter(order => order.status === 'Confirm')
+            .sort(sortNewestFirst);
+
+        const orderCancel = orderList
+            .filter(order => order.status === 'Cancel')
+            .sort(sortNewestFirst);
+
+        // Kiểm tra thứ tự thời gian trong terminal
+        console.log(
+            'Đơn hàng mới nhất:',
+            orderList.slice(0, 5).map(order => ({
+                id: order._id,
+                createdAt: order.createdAt,
+                status: order.status
+            }))
+        );
+
+        return res.render('admin/order', {
+            layout: false,
+            orderWait,
+            orderConfirm,
+            orderCancel
+        });
+
+    } catch (error) {
+        console.error('Lỗi tải danh sách đơn hàng:', error);
+        return res.status(500).send('Không thể tải danh sách đơn hàng.');
     }
+}
+
     // [ POST ] / admin/order-detail
     async orderDetail(req, res) {
         

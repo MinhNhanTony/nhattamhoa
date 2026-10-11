@@ -237,8 +237,68 @@
 
 </div>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const page = document.querySelector(".introduce");
+
+    if (!page) return;
+
+    const revealSelectors = [
+        ".introduce__hero-content",
+        ".introduce__section-heading",
+        ".introduce__about-content",
+        ".introduce__story-content > p",
+        ".introduce__value-item",
+        ".introduce__experience-content",
+        ".introduce__cta > *"
+    ];
+
+    const elements = page.querySelectorAll(
+        revealSelectors.join(", ")
+    );
+
+    // Nếu trình duyệt không hỗ trợ IntersectionObserver
+    if (!("IntersectionObserver" in window)) {
+        elements.forEach(function (element) {
+            element.classList.add("reveal-visible");
+        });
+        return;
+    }
+
+    // Tôn trọng cài đặt giảm hiệu ứng chuyển động
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        elements.forEach(function (element) {
+            element.classList.add("reveal-visible");
+        });
+        return;
+    }
+
+    // Hiệu ứng xuất hiện khi cuộn tới
+    const observer = new IntersectionObserver(
+        function (entries, observer) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("reveal-visible");
+
+                    // Chỉ chạy một lần cho mỗi block
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        {
+            threshold: 0.12,
+            rootMargin: "0px 0px -40px 0px"
+        }
+    );
+
+    elements.forEach(function (element) {
+        observer.observe(element);
+    });
+});
+</script>
+
 <style>
-    ```css
+    
 /* =========================================================
    NHẤT TÂM HOA - INTRODUCE PAGE
 ========================================================= */
@@ -687,6 +747,56 @@
         font-size: 38px;
     }
 
+}
+
+/* ========================================
+   REVEAL ON SCROLL
+======================================== */
+
+/* Trạng thái ban đầu */
+.introduce .introduce__hero-content,
+.introduce .introduce__section-heading,
+.introduce .introduce__about-content,
+.introduce .introduce__story-content > p,
+.introduce .introduce__value-item,
+.introduce .introduce__experience-content,
+.introduce .introduce__cta > * {
+    opacity: 0;
+    transform: translateY(35px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+
+    will-change: opacity, transform;
+}
+
+/* Khi block xuất hiện trong màn hình */
+.introduce .reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Tôn trọng cài đặt giảm chuyển động */
+@media (prefers-reduced-motion: reduce) {
+    .introduce .introduce__hero-content,
+    .introduce .introduce__section-heading,
+    .introduce .introduce__about-content,
+    .introduce .introduce__story-content > p,
+    .introduce .introduce__value-item,
+    .introduce .introduce__experience-content,
+    .introduce .introduce__cta > * {
+        opacity: 1;
+        transform: none;
+        transition: none;
+        will-change: auto;
+    }
+}
+/* Đảm bảo nội dung đã reveal luôn hiển thị */
+.introduce .reveal-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    visibility: visible !important;
 }
 
 </style>

@@ -123,6 +123,38 @@ a:hover {
     padding-block: 10px;
   }
 }
+/* Georgia Regular */
+@font-face {
+  font-family: "Georgia Local";
+  src: url("../../public/font/georgia.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* Georgia Bold */
+@font-face {
+  font-family: "Georgia Local";
+  src: url("../../public/font/georgiab.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+/* Georgia Italic */
+@font-face {
+  font-family: "Georgia Local";
+  src: url("../../public/font/georgiai.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+/* Georgia Bold Italic */
+@font-face {
+  font-family: "Georgia Local";
+  src: url("../../public/font/georgiaz.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
 /* button */
 .btn-container {
   display: inline-block;
@@ -1701,7 +1733,6 @@ body.menu-open {
   margin: 0 0 20px;
   padding-bottom: 11px;
   font-size: 14px;
-  font-weight: 800;
   line-height: 1.4;
   color: #000;
   text-transform: uppercase;
@@ -5821,11 +5852,8 @@ form#modalUserInforForm .address__wrapper input[type=button] {
   margin: 0;
   padding: 0;
   border-radius: 50%;
-  background: #fff7f3;
-  span {
-  color: #ff6b35;
-
-  }
+  background: #f6f6f6;
+  color: #777;
   font-size: 24px;
   font-weight: 300;
   opacity: 1;
