@@ -556,7 +556,7 @@ button:focus {
 
 .header-logo__img {
   display: block;
-  width: 135px;
+  width: 200px;
   max-width: 100%;
   height: auto;
   object-fit: contain;
@@ -1395,7 +1395,7 @@ body.menu-open {
     right: 8px;
   }
   .header-logo__img {
-    width: 120px;
+    width: 200px;
   }
   .mega-menu__inner {
     gap: 25px;
@@ -1432,7 +1432,7 @@ body.menu-open {
     transform: translateX(-50%);
   }
   .header-logo__img {
-    width: 110px;
+    width: 200px;
   }
   .header-navigation {
     display: none;
@@ -1459,7 +1459,7 @@ body.menu-open {
     top: 61px;
   }
   .site-header.is-sticky .header-logo__img {
-    width: 100px;
+    width: 200px;
   }
 }
 /* =========================================================
@@ -1478,7 +1478,7 @@ body.menu-open {
     height: 38px;
   }
   .header-logo__img {
-    width: 100px;
+    width: 160px;
   }
   .header-action {
     width: 38px;
@@ -2667,7 +2667,7 @@ body.menu-open {
 }
 
 .social-header h2 {
-  font-family: Georgia, serif;
+  font-family: "Playfair Display", serif;
   font-size: 38px;
   font-weight: 700;
   color: #171717;
@@ -2677,7 +2677,7 @@ body.menu-open {
 .social-header p {
   max-width: 720px;
   margin: 0 auto;
-  font-family: Georgia, serif;
+  font-family: "Playfair Display", serif;
   font-size: 18px;
   line-height: 1.7;
   color: #666;
@@ -2804,7 +2804,7 @@ body.menu-open {
    TITLE
 ========================================= */
 .social-content h3 {
-  font-family: Georgia, serif;
+  font-family: "Playfair Display", serif;
   font-size: 20px;
   margin: 0 0 6px;
   color: #fff;
@@ -2814,7 +2814,7 @@ body.menu-open {
    DESCRIPTION
 ========================================= */
 .social-content p {
-  font-family: Georgia, serif;
+  font-family: "Playfair Display", serif;
   font-size: 14px;
   line-height: 1.4;
   margin: 0;
@@ -2882,7 +2882,7 @@ body.menu-open {
 }
 
 .social-description h2 {
-  font-family: Georgia, serif;
+  font-family: "Playfair Display", serif;
   font-size: 38px;
   color: #315d50;
   margin-bottom: 20px;
@@ -2890,7 +2890,7 @@ body.menu-open {
 
 .social-description p {
   max-width: 280px;
-  font-family: Georgia, serif;
+  font-family: "Playfair Display", serif;
   font-size: 18px;
   line-height: 1.7;
   color: #444;

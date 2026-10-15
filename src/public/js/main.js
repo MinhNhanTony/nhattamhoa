@@ -166,97 +166,39 @@ function ScrollToTop() {
   }
   
 
-  document.addEventListener('DOMContentLoaded', function () {
 
-    const categoryStoryList =
-        document.querySelector('#categoryStoryList');
+document.addEventListener('DOMContentLoaded', function () {
+    const categoryStoryList = document.querySelector('#categoryStoryList');
 
     if (!categoryStoryList) return;
 
-
-    // ================================
-    // KIỂM TRA CACHE
-    // ================================
-
-    const cachedCategories =
-        sessionStorage.getItem('categoryList');
-
-
-    if (cachedCategories) {
-
-        try {
-
-            const categories =
-                JSON.parse(cachedCategories);
-
-            renderCategoryStory(
-                categoryStoryList,
-                categories
-            );
-
-            return;
-
-        } catch (error) {
-
-            sessionStorage.removeItem('categoryList');
-
-        }
-
-    }
-
-
-    // ================================
-    // LOAD CATEGORY
-    // ================================
-
-    fetch('/apis/category-list')
-
+    fetch('/apis/category-list', {
+        cache: 'no-store'
+    })
         .then(response => {
-
             if (!response.ok) {
-                throw new Error(
-                    'Không thể tải danh mục'
-                );
+                throw new Error('Không thể tải danh mục');
             }
 
             return response.json();
-
         })
-
         .then(categories => {
-
-            console.log('Categories:', categories);
-
-
-            // Lưu cache
-            sessionStorage.setItem(
-                'categoryList',
-                JSON.stringify(categories)
-            );
-
+            console.log('Categories mới nhất:', categories);
 
             renderCategoryStory(
                 categoryStoryList,
                 categories
             );
-
         })
-
         .catch(error => {
-
-            console.error(
-                'Category Story Error:',
-                error
-            );
+            console.error('Category Story Error:', error);
 
             categoryStoryList.innerHTML = `
                 <div class="category-story__empty">
                     Không thể tải danh mục
                 </div>
             `;
-
         });
-
 });
 
 
