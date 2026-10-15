@@ -3474,6 +3474,129 @@ body.menu-open {
     font-size: 3rem;
   }
 }
+/* =====================================
+   NHẤT TÂM HOA - BOX NGÀY 20/10
+===================================== */
+.october20-intro {
+  position: relative;
+  overflow: hidden;
+  margin: 20px 0 35px;
+  padding: 42px 28px;
+  border: 1px solid #ead3d0;
+  border-radius: 5px;
+  background: radial-gradient(circle at 8% 15%, rgba(255, 255, 255, 0.85), transparent 35%), linear-gradient(135deg, #fff8f4 0%, #f8e9e5 55%, #f2dfda 100%);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.october20-intro__content {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.october20-intro__eyebrow {
+  display: inline-block;
+  margin-bottom: 15px;
+  color: #986c68;
+  font-size: 11px;
+  letter-spacing: 3px;
+  font-weight: 600;
+}
+
+.october20-intro__heading {
+  margin: 0 auto 18px;
+  color: #753d46;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.october20-intro__divider {
+  display: block;
+  width: 55px;
+  height: 1px;
+  margin: 0 auto 20px;
+  background: #b67a7d;
+}
+
+.october20-intro__description {
+  max-width: 680px;
+  margin: 0 auto 12px;
+  color: #5f4b48;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.october20-intro__message {
+  margin: 0 auto 22px;
+  color: #81565a;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  font-style: italic;
+  line-height: 1.8;
+}
+
+.october20-intro__signature {
+  display: block;
+  color: #986c68;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  line-height: 1.8;
+}
+
+.october20-intro__decor {
+  position: absolute;
+  color: rgba(166, 100, 109, 0.13);
+  font-family: Georgia, serif;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.october20-intro__decor--left {
+  top: 5px;
+  left: 22px;
+  font-size: 110px;
+  transform: rotate(-20deg);
+}
+
+.october20-intro__decor--right {
+  right: 20px;
+  bottom: -12px;
+  font-size: 130px;
+  transform: rotate(18deg);
+}
+
+@media (max-width: 576px) {
+  .october20-intro {
+    margin: 15px 0 25px;
+    padding: 30px 18px;
+  }
+  .october20-intro__eyebrow {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+  .october20-intro__heading {
+    font-size: 25px;
+  }
+  .october20-intro__description {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .october20-intro__message {
+    font-size: 15px;
+  }
+  .october20-intro__decor--left {
+    left: -12px;
+    font-size: 75px;
+  }
+  .october20-intro__decor--right {
+    right: -10px;
+    font-size: 85px;
+  }
+}
 .detailProduct__img {
   display: flex;
 }

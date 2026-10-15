@@ -158,7 +158,7 @@ class CollectionsController {
     res.render('collections/saleProduct', {
       products: mutipleMongooseToObject(saleProduct),
       path:getPathName(req),
-      pageTitle:`Giày Sneaker Khuyến mãi Chất Lượng Giá Tốt- ${process.env.DOMAINNAME}`
+      pageTitle:`Hoa khuyến mãi- ${process.env.DOMAINNAME}`
     });
   }
   async allProduct(req, res) {
@@ -237,37 +237,47 @@ class CollectionsController {
     res.render('collections/newArrival', {
       products: mutipleMongooseToObject(products),
       path:getPathName(req),
-      pageTitle:`Giày Sneaker Hàng Mới Về ưu đãi - ${process.env.DOMAINNAME}`
+      pageTitle:`Hoa mới - ${process.env.DOMAINNAME}`
 
     });
   }
 
-  async categoryProduct(req, res) {
-    const categoryName = req.params.name;
 
-    let productsCollection = await ProductModel.find({ category: categoryName});
+async categoryProduct(req, res) {
+    const categoryName = req.params.name;
+      console.log('URL:', req.originalUrl);
+    console.log('categoryName:', categoryName);
+
+    // Kiểm tra danh mục Ngày Phụ nữ Việt Nam 20/10
+    const is20October = categoryName === '20-10';
+    console.log(is20October)
+
+    let productsCollection = await ProductModel.find({
+        category: categoryName
+    });
+
     let products = await filterAvailableProduct(productsCollection);
 
-    const {sortBy} = req.query;
+    const { sortBy } = req.query;
     let newproducts;
 
-    if(sortBy) {
-      newproducts= sort(products,sortBy);
+    if (sortBy) {
+        newproducts = sort(products, sortBy);
+    } else {
+        newproducts = products;
     }
-    else {
-      newproducts = products;
-    }
+
     products = await makeNumberSorter(newproducts);
 
     res.render('collections/categoryProduct', {
-      products: mutipleMongooseToObject(products),
-      path:getPathName(req),
-      categoryName:categoryName,
-      pageTitle:`Sản phẩm Unisex - ${process.env.DOMAINNAME}`
-
-
+        products: mutipleMongooseToObject(products),
+        path: getPathName(req),
+        categoryName: categoryName,
+        pageTitle: `Sản Phẩm ${process.env.DOMAINNAME}`,
+        is20October
     });
-  }
+}
+
 }
 
 module.exports = new CollectionsController();

@@ -1,6 +1,35 @@
 <div  {{#if haveFilter}}class="col-md-9 col-sm-12 col-xs-12"{{/if}} class='col-md-12 col-sm-12 col-xs-12'>
   <div class='row d-flex align-items-center justify-content-between mb-5'>
     <h1 class='collections__type col-md-12 col-sm-12 col-xs-12'>{{collectionType}}</h1>
+    
+{{#if is20October}}
+<section class="october20-intro">
+    <span class="october20-intro__eyebrow">
+        NGÀY PHỤ NỮ VIỆT NAM · 20.10
+    </span>
+
+    <h2 class="october20-intro__heading">
+        Gửi yêu thương đến những người phụ nữ tuyệt vời
+    </h2>
+
+    <span class="october20-intro__divider"></span>
+
+    <p class="october20-intro__description">
+        Ngày 20/10 là dịp để gửi lời yêu thương, lòng biết ơn
+        và sự trân trọng đến những người phụ nữ quan trọng
+        trong cuộc đời bạn.
+    </p>
+
+    <p class="october20-intro__message">
+        Một bó hoa trao tay, ngàn lời yêu thương gửi gắm.
+    </p>
+
+    <span class="october20-intro__signature">
+        Nhất Tâm Hoa — Gửi trọn yêu thương qua từng đóa hoa
+    </span>
+</section>
+{{/if}}
+
     <div class='sortByBtnList--contaiter d-flex align-items-center col-md-12 col-sm-12 col-xs-12'>
       <p class='sort__title'>Sắp xếp theo</p>
       <form action="{{path}}">
