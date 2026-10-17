@@ -254,7 +254,7 @@ function renderCategoryStory(
                     <div class="category-story__image">
 
                         <img
-                            src="/img/category/${imageName}.jpg"
+                            src="/img/category/${imageName}.webp"
                             alt="${categoryName}"
                             loading="lazy"
                             onerror="

@@ -93,7 +93,7 @@ async index(req, res) {
             categories: categoryCollections,
 
             pageTitle:
-                `NHẤT TÂM HOA - ${process.env.DOMAINNAME}`,
+                `TIỆM HOA NHẤT TÂM`,
 
             newestProductAvatar,
             isHomePage: true,

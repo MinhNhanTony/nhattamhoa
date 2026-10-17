@@ -40,7 +40,7 @@ function getPathName (req) {
 
 function PaginationProducts (req,products) {
 
-      const limit = 10;
+      const limit = 1000;
       const page = req.query.page || 1;
 
       const totalProducts = products.length;
