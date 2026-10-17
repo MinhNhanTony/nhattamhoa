@@ -5512,7 +5512,6 @@ form#modalUserInforForm .address__wrapper input[type=button] {
 }
 .order .cart__list {
   border: 1px;
-  border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
 }
 .order .modal-header {
   padding: 1rem;
@@ -5671,7 +5670,6 @@ form#modalUserInforForm .address__wrapper input[type=button] {
 
 .order__pay--option {
   padding-bottom: 30px;
-  border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
 }
 .order__pay--summary {
   background: #fffefb;
@@ -5689,7 +5687,6 @@ form#modalUserInforForm .address__wrapper input[type=button] {
 }
 .order__pay--bottom {
   padding-block: 20px;
-  border-top: 1px dashed rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: space-between;
 }
